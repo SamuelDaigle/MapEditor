@@ -8,8 +8,25 @@ namespace Map_Editor.GameData
 {
     public class Tile
     {
-        public TileType type;
+        public int x;
+        public int y;
         public List<IObject> objectsOnTile;
+        private TileType type;
+
+        public TileType Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+                OnTileChanged(EventArgs.Empty);
+            }
+        }
+
+        public event EventHandler TileChanged;
 
         public enum TileType
         {
@@ -26,10 +43,21 @@ namespace Map_Editor.GameData
             BreakPass
         }
 
-        public Tile(TileType _type)
+        public void Initialize(TileType _type, int _x, int _y)
         {
-            type = _type;
+            x = _x;
+            y = _y;
+            Type = _type;
             objectsOnTile = new List<IObject>();
+        }
+
+        // Notify the terrain.
+        private void OnTileChanged(EventArgs e)
+        {
+            if (TileChanged != null)
+            {
+                TileChanged(this, e);
+            }
         }
     }
 }

@@ -71,6 +71,8 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
+            this.pnlStatus = new System.Windows.Forms.Panel();
+            this.pnlFloor = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.pnlDraw.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -114,7 +116,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(888, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1204, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,29 +133,31 @@
             // newSceneToolStripMenuItem
             // 
             this.newSceneToolStripMenuItem.Name = "newSceneToolStripMenuItem";
-            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newSceneToolStripMenuItem.Text = "New Scene...";
             this.newSceneToolStripMenuItem.Click += new System.EventHandler(this.newSceneToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // pnlDraw
             // 
+            this.pnlDraw.Controls.Add(this.pnlFloor);
+            this.pnlDraw.Controls.Add(this.pnlStatus);
             this.pnlDraw.Controls.Add(this.tabControl1);
             this.pnlDraw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDraw.Location = new System.Drawing.Point(0, 24);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(888, 427);
+            this.pnlDraw.Size = new System.Drawing.Size(1204, 534);
             this.pnlDraw.TabIndex = 1;
             // 
             // tabControl1
@@ -161,10 +165,10 @@
             this.tabControl1.Controls.Add(this.tabTiles);
             this.tabControl1.Controls.Add(this.tabObjects);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tabControl1.Location = new System.Drawing.Point(688, 0);
+            this.tabControl1.Location = new System.Drawing.Point(1004, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(200, 427);
+            this.tabControl1.Size = new System.Drawing.Size(200, 534);
             this.tabControl1.TabIndex = 0;
             // 
             // tabTiles
@@ -185,7 +189,7 @@
             this.tabTiles.Location = new System.Drawing.Point(4, 22);
             this.tabTiles.Name = "tabTiles";
             this.tabTiles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTiles.Size = new System.Drawing.Size(192, 401);
+            this.tabTiles.Size = new System.Drawing.Size(192, 508);
             this.tabTiles.TabIndex = 0;
             this.tabTiles.Text = "Tiles";
             // 
@@ -527,12 +531,30 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
+            // pnlStatus
+            // 
+            this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlStatus.Location = new System.Drawing.Point(0, 443);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
+            this.pnlStatus.TabIndex = 1;
+            // 
+            // pnlFloor
+            // 
+            this.pnlFloor.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlFloor.Location = new System.Drawing.Point(967, 0);
+            this.pnlFloor.Name = "pnlFloor";
+            this.pnlFloor.Size = new System.Drawing.Size(37, 443);
+            this.pnlFloor.TabIndex = 2;
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(888, 451);
+            this.ClientSize = new System.Drawing.Size(1204, 558);
             this.Controls.Add(this.pnlDraw);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -626,6 +648,8 @@
         private System.Windows.Forms.Label lblUtilities;
         private System.Windows.Forms.Label lblBonus;
         private System.Windows.Forms.Label lblTraps;
+        private System.Windows.Forms.Panel pnlFloor;
+        private System.Windows.Forms.Panel pnlStatus;
     }
 }
 

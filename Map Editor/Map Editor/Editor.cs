@@ -13,8 +13,6 @@ namespace Map_Editor
 {
     public partial class Editor : Form
     {
-        private Scene scene;
-
         public Editor()
         {
             InitializeComponent();
@@ -27,23 +25,16 @@ namespace Map_Editor
                 DialogResult dialogResult = form.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
-                    scene = new Scene();
-                    scene.name = form.SceneName;
                     int terrainWidth = form.TerrainWidth;
                     int terrainHeight = form.TerrainHeight;
 
-                    Terrain terrain = new Terrain();
-
-                    for (int y = 0; y < terrainHeight; y++)
-                    {
-                        for (int x = 0; x < terrainWidth; x++)
-                        {
-                            Tile tile = new Tile(Tile.TileType.Empty);
-                            terrain.tiles.Add(tile);
-                        }
-                    }
-
                     InitializeView(terrainWidth, terrainHeight);
+
+                    Scene = new Scene();
+                    Scene.name = form.SceneName;
+
+                    Scene.terrain.Initialize(terrainWidth, terrainHeight);
+                    
                 }
             }
         }
