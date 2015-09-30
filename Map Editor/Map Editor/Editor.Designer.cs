@@ -34,9 +34,15 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDraw = new System.Windows.Forms.Panel();
+            this.pnlFloor = new System.Windows.Forms.Panel();
+            this.pnlStatus = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.lblProperties = new System.Windows.Forms.Label();
+            this.tabObjects = new System.Windows.Forms.TabPage();
+            this.lblUtilities = new System.Windows.Forms.Label();
+            this.lblBonus = new System.Windows.Forms.Label();
+            this.lblTraps = new System.Windows.Forms.Label();
             this.picTileBreakPass = new System.Windows.Forms.PictureBox();
             this.picTileOneByOne = new System.Windows.Forms.PictureBox();
             this.picTileSlow = new System.Windows.Forms.PictureBox();
@@ -48,7 +54,6 @@
             this.picTileFloor = new System.Windows.Forms.PictureBox();
             this.picTileWall = new System.Windows.Forms.PictureBox();
             this.picTileEmpty = new System.Windows.Forms.PictureBox();
-            this.tabObjects = new System.Windows.Forms.TabPage();
             this.picBonusDash = new System.Windows.Forms.PictureBox();
             this.picBonusDecoy = new System.Windows.Forms.PictureBox();
             this.picBonusPower = new System.Windows.Forms.PictureBox();
@@ -68,15 +73,11 @@
             this.picTrapFire = new System.Windows.Forms.PictureBox();
             this.picTrapSpike = new System.Windows.Forms.PictureBox();
             this.picTrapTurret = new System.Windows.Forms.PictureBox();
-            this.lblUtilities = new System.Windows.Forms.Label();
-            this.lblBonus = new System.Windows.Forms.Label();
-            this.lblTraps = new System.Windows.Forms.Label();
-            this.pnlStatus = new System.Windows.Forms.Panel();
-            this.pnlFloor = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.pnlDraw.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabTiles.SuspendLayout();
+            this.tabObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).BeginInit();
@@ -88,7 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileWall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).BeginInit();
-            this.tabObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).BeginInit();
@@ -160,6 +160,24 @@
             this.pnlDraw.Size = new System.Drawing.Size(1204, 534);
             this.pnlDraw.TabIndex = 1;
             // 
+            // pnlFloor
+            // 
+            this.pnlFloor.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlFloor.Location = new System.Drawing.Point(967, 0);
+            this.pnlFloor.Name = "pnlFloor";
+            this.pnlFloor.Size = new System.Drawing.Size(37, 443);
+            this.pnlFloor.TabIndex = 2;
+            // 
+            // pnlStatus
+            // 
+            this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlStatus.Location = new System.Drawing.Point(0, 443);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
+            this.pnlStatus.TabIndex = 1;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabTiles);
@@ -202,105 +220,6 @@
             this.lblProperties.TabIndex = 11;
             this.lblProperties.Text = "Properties";
             // 
-            // picTileBreakPass
-            // 
-            this.picTileBreakPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileBreakPass.Location = new System.Drawing.Point(88, 88);
-            this.picTileBreakPass.Name = "picTileBreakPass";
-            this.picTileBreakPass.Size = new System.Drawing.Size(35, 35);
-            this.picTileBreakPass.TabIndex = 10;
-            this.picTileBreakPass.TabStop = false;
-            // 
-            // picTileOneByOne
-            // 
-            this.picTileOneByOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileOneByOne.Location = new System.Drawing.Point(47, 88);
-            this.picTileOneByOne.Name = "picTileOneByOne";
-            this.picTileOneByOne.Size = new System.Drawing.Size(35, 35);
-            this.picTileOneByOne.TabIndex = 9;
-            this.picTileOneByOne.TabStop = false;
-            // 
-            // picTileSlow
-            // 
-            this.picTileSlow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileSlow.Location = new System.Drawing.Point(6, 88);
-            this.picTileSlow.Name = "picTileSlow";
-            this.picTileSlow.Size = new System.Drawing.Size(35, 35);
-            this.picTileSlow.TabIndex = 8;
-            this.picTileSlow.TabStop = false;
-            // 
-            // picTileDoor
-            // 
-            this.picTileDoor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileDoor.Location = new System.Drawing.Point(129, 47);
-            this.picTileDoor.Name = "picTileDoor";
-            this.picTileDoor.Size = new System.Drawing.Size(35, 35);
-            this.picTileDoor.TabIndex = 7;
-            this.picTileDoor.TabStop = false;
-            // 
-            // picTileBad
-            // 
-            this.picTileBad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileBad.Location = new System.Drawing.Point(88, 47);
-            this.picTileBad.Name = "picTileBad";
-            this.picTileBad.Size = new System.Drawing.Size(35, 35);
-            this.picTileBad.TabIndex = 6;
-            this.picTileBad.TabStop = false;
-            // 
-            // picTileTower
-            // 
-            this.picTileTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileTower.Location = new System.Drawing.Point(47, 47);
-            this.picTileTower.Name = "picTileTower";
-            this.picTileTower.Size = new System.Drawing.Size(35, 35);
-            this.picTileTower.TabIndex = 5;
-            this.picTileTower.TabStop = false;
-            // 
-            // picTileTeleport
-            // 
-            this.picTileTeleport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileTeleport.Location = new System.Drawing.Point(6, 47);
-            this.picTileTeleport.Name = "picTileTeleport";
-            this.picTileTeleport.Size = new System.Drawing.Size(35, 35);
-            this.picTileTeleport.TabIndex = 4;
-            this.picTileTeleport.TabStop = false;
-            // 
-            // picTileSlope
-            // 
-            this.picTileSlope.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileSlope.Location = new System.Drawing.Point(129, 6);
-            this.picTileSlope.Name = "picTileSlope";
-            this.picTileSlope.Size = new System.Drawing.Size(35, 35);
-            this.picTileSlope.TabIndex = 3;
-            this.picTileSlope.TabStop = false;
-            // 
-            // picTileFloor
-            // 
-            this.picTileFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileFloor.Location = new System.Drawing.Point(88, 6);
-            this.picTileFloor.Name = "picTileFloor";
-            this.picTileFloor.Size = new System.Drawing.Size(35, 35);
-            this.picTileFloor.TabIndex = 2;
-            this.picTileFloor.TabStop = false;
-            // 
-            // picTileWall
-            // 
-            this.picTileWall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileWall.Location = new System.Drawing.Point(47, 6);
-            this.picTileWall.Name = "picTileWall";
-            this.picTileWall.Size = new System.Drawing.Size(35, 35);
-            this.picTileWall.TabIndex = 1;
-            this.picTileWall.TabStop = false;
-            // 
-            // picTileEmpty
-            // 
-            this.picTileEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileEmpty.Location = new System.Drawing.Point(6, 6);
-            this.picTileEmpty.Name = "picTileEmpty";
-            this.picTileEmpty.Size = new System.Drawing.Size(35, 35);
-            this.picTileEmpty.TabIndex = 0;
-            this.picTileEmpty.TabStop = false;
-            // 
             // tabObjects
             // 
             this.tabObjects.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -329,180 +248,9 @@
             this.tabObjects.Location = new System.Drawing.Point(4, 22);
             this.tabObjects.Name = "tabObjects";
             this.tabObjects.Padding = new System.Windows.Forms.Padding(3);
-            this.tabObjects.Size = new System.Drawing.Size(192, 401);
+            this.tabObjects.Size = new System.Drawing.Size(192, 508);
             this.tabObjects.TabIndex = 1;
             this.tabObjects.Text = "Objects";
-            // 
-            // picBonusDash
-            // 
-            this.picBonusDash.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusDash.Location = new System.Drawing.Point(50, 220);
-            this.picBonusDash.Name = "picBonusDash";
-            this.picBonusDash.Size = new System.Drawing.Size(35, 35);
-            this.picBonusDash.TabIndex = 21;
-            this.picBonusDash.TabStop = false;
-            // 
-            // picBonusDecoy
-            // 
-            this.picBonusDecoy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusDecoy.Location = new System.Drawing.Point(9, 220);
-            this.picBonusDecoy.Name = "picBonusDecoy";
-            this.picBonusDecoy.Size = new System.Drawing.Size(35, 35);
-            this.picBonusDecoy.TabIndex = 20;
-            this.picBonusDecoy.TabStop = false;
-            // 
-            // picBonusPower
-            // 
-            this.picBonusPower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusPower.Location = new System.Drawing.Point(132, 179);
-            this.picBonusPower.Name = "picBonusPower";
-            this.picBonusPower.Size = new System.Drawing.Size(35, 35);
-            this.picBonusPower.TabIndex = 19;
-            this.picBonusPower.TabStop = false;
-            // 
-            // picBonusSpeed
-            // 
-            this.picBonusSpeed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusSpeed.Location = new System.Drawing.Point(91, 179);
-            this.picBonusSpeed.Name = "picBonusSpeed";
-            this.picBonusSpeed.Size = new System.Drawing.Size(35, 35);
-            this.picBonusSpeed.TabIndex = 18;
-            this.picBonusSpeed.TabStop = false;
-            // 
-            // picBonusDouble
-            // 
-            this.picBonusDouble.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusDouble.Location = new System.Drawing.Point(50, 179);
-            this.picBonusDouble.Name = "picBonusDouble";
-            this.picBonusDouble.Size = new System.Drawing.Size(35, 35);
-            this.picBonusDouble.TabIndex = 17;
-            this.picBonusDouble.TabStop = false;
-            // 
-            // picUtilJump
-            // 
-            this.picUtilJump.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picUtilJump.Location = new System.Drawing.Point(132, 285);
-            this.picUtilJump.Name = "picUtilJump";
-            this.picUtilJump.Size = new System.Drawing.Size(35, 35);
-            this.picUtilJump.TabIndex = 16;
-            this.picUtilJump.TabStop = false;
-            // 
-            // picUtilTrigger
-            // 
-            this.picUtilTrigger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picUtilTrigger.Location = new System.Drawing.Point(91, 285);
-            this.picUtilTrigger.Name = "picUtilTrigger";
-            this.picUtilTrigger.Size = new System.Drawing.Size(35, 35);
-            this.picUtilTrigger.TabIndex = 15;
-            this.picUtilTrigger.TabStop = false;
-            // 
-            // picUtilGoal
-            // 
-            this.picUtilGoal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picUtilGoal.Location = new System.Drawing.Point(50, 285);
-            this.picUtilGoal.Name = "picUtilGoal";
-            this.picUtilGoal.Size = new System.Drawing.Size(35, 35);
-            this.picUtilGoal.TabIndex = 14;
-            this.picUtilGoal.TabStop = false;
-            // 
-            // picUtilSpawn
-            // 
-            this.picUtilSpawn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picUtilSpawn.Location = new System.Drawing.Point(9, 285);
-            this.picUtilSpawn.Name = "picUtilSpawn";
-            this.picUtilSpawn.Size = new System.Drawing.Size(35, 35);
-            this.picUtilSpawn.TabIndex = 13;
-            this.picUtilSpawn.TabStop = false;
-            // 
-            // picBonusMissile
-            // 
-            this.picBonusMissile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusMissile.Location = new System.Drawing.Point(9, 179);
-            this.picBonusMissile.Name = "picBonusMissile";
-            this.picBonusMissile.Size = new System.Drawing.Size(35, 35);
-            this.picBonusMissile.TabIndex = 12;
-            this.picBonusMissile.TabStop = false;
-            // 
-            // picBonusRicochet
-            // 
-            this.picBonusRicochet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusRicochet.Location = new System.Drawing.Point(132, 138);
-            this.picBonusRicochet.Name = "picBonusRicochet";
-            this.picBonusRicochet.Size = new System.Drawing.Size(35, 35);
-            this.picBonusRicochet.TabIndex = 11;
-            this.picBonusRicochet.TabStop = false;
-            // 
-            // picBonusImplosion
-            // 
-            this.picBonusImplosion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusImplosion.Location = new System.Drawing.Point(91, 138);
-            this.picBonusImplosion.Name = "picBonusImplosion";
-            this.picBonusImplosion.Size = new System.Drawing.Size(35, 35);
-            this.picBonusImplosion.TabIndex = 10;
-            this.picBonusImplosion.TabStop = false;
-            // 
-            // picBonusEMP
-            // 
-            this.picBonusEMP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusEMP.Location = new System.Drawing.Point(50, 138);
-            this.picBonusEMP.Name = "picBonusEMP";
-            this.picBonusEMP.Size = new System.Drawing.Size(35, 35);
-            this.picBonusEMP.TabIndex = 9;
-            this.picBonusEMP.TabStop = false;
-            // 
-            // picBonusShield
-            // 
-            this.picBonusShield.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picBonusShield.Location = new System.Drawing.Point(9, 138);
-            this.picBonusShield.Name = "picBonusShield";
-            this.picBonusShield.Size = new System.Drawing.Size(35, 35);
-            this.picBonusShield.TabIndex = 8;
-            this.picBonusShield.TabStop = false;
-            // 
-            // picTrapDrop
-            // 
-            this.picTrapDrop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTrapDrop.Location = new System.Drawing.Point(9, 70);
-            this.picTrapDrop.Name = "picTrapDrop";
-            this.picTrapDrop.Size = new System.Drawing.Size(35, 35);
-            this.picTrapDrop.TabIndex = 7;
-            this.picTrapDrop.TabStop = false;
-            // 
-            // picTrapFreeze
-            // 
-            this.picTrapFreeze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTrapFreeze.Location = new System.Drawing.Point(132, 29);
-            this.picTrapFreeze.Name = "picTrapFreeze";
-            this.picTrapFreeze.Size = new System.Drawing.Size(35, 35);
-            this.picTrapFreeze.TabIndex = 6;
-            this.picTrapFreeze.TabStop = false;
-            // 
-            // picTrapFire
-            // 
-            this.picTrapFire.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTrapFire.Location = new System.Drawing.Point(91, 29);
-            this.picTrapFire.Name = "picTrapFire";
-            this.picTrapFire.Size = new System.Drawing.Size(35, 35);
-            this.picTrapFire.TabIndex = 5;
-            this.picTrapFire.TabStop = false;
-            // 
-            // picTrapSpike
-            // 
-            this.picTrapSpike.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTrapSpike.Location = new System.Drawing.Point(50, 29);
-            this.picTrapSpike.Name = "picTrapSpike";
-            this.picTrapSpike.Size = new System.Drawing.Size(35, 35);
-            this.picTrapSpike.TabIndex = 4;
-            this.picTrapSpike.TabStop = false;
-            // 
-            // picTrapTurret
-            // 
-            this.picTrapTurret.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTrapTurret.Location = new System.Drawing.Point(9, 29);
-            this.picTrapTurret.Name = "picTrapTurret";
-            this.picTrapTurret.Size = new System.Drawing.Size(35, 35);
-            this.picTrapTurret.TabIndex = 3;
-            this.picTrapTurret.TabStop = false;
             // 
             // lblUtilities
             // 
@@ -531,23 +279,275 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // pnlStatus
+            // picTileBreakPass
             // 
-            this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlStatus.Location = new System.Drawing.Point(0, 443);
-            this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
-            this.pnlStatus.TabIndex = 1;
+            this.picTileBreakPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileBreakPass.Location = new System.Drawing.Point(88, 88);
+            this.picTileBreakPass.Name = "picTileBreakPass";
+            this.picTileBreakPass.Size = new System.Drawing.Size(32, 32);
+            this.picTileBreakPass.TabIndex = 10;
+            this.picTileBreakPass.TabStop = false;
             // 
-            // pnlFloor
+            // picTileOneByOne
             // 
-            this.pnlFloor.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFloor.Location = new System.Drawing.Point(967, 0);
-            this.pnlFloor.Name = "pnlFloor";
-            this.pnlFloor.Size = new System.Drawing.Size(37, 443);
-            this.pnlFloor.TabIndex = 2;
+            this.picTileOneByOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileOneByOne.Location = new System.Drawing.Point(47, 88);
+            this.picTileOneByOne.Name = "picTileOneByOne";
+            this.picTileOneByOne.Size = new System.Drawing.Size(32, 32);
+            this.picTileOneByOne.TabIndex = 9;
+            this.picTileOneByOne.TabStop = false;
+            // 
+            // picTileSlow
+            // 
+            this.picTileSlow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileSlow.Location = new System.Drawing.Point(6, 88);
+            this.picTileSlow.Name = "picTileSlow";
+            this.picTileSlow.Size = new System.Drawing.Size(32, 32);
+            this.picTileSlow.TabIndex = 8;
+            this.picTileSlow.TabStop = false;
+            // 
+            // picTileDoor
+            // 
+            this.picTileDoor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileDoor.Location = new System.Drawing.Point(129, 47);
+            this.picTileDoor.Name = "picTileDoor";
+            this.picTileDoor.Size = new System.Drawing.Size(32, 32);
+            this.picTileDoor.TabIndex = 7;
+            this.picTileDoor.TabStop = false;
+            // 
+            // picTileBad
+            // 
+            this.picTileBad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileBad.Location = new System.Drawing.Point(88, 47);
+            this.picTileBad.Name = "picTileBad";
+            this.picTileBad.Size = new System.Drawing.Size(32, 32);
+            this.picTileBad.TabIndex = 6;
+            this.picTileBad.TabStop = false;
+            // 
+            // picTileTower
+            // 
+            this.picTileTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileTower.Location = new System.Drawing.Point(47, 47);
+            this.picTileTower.Name = "picTileTower";
+            this.picTileTower.Size = new System.Drawing.Size(32, 32);
+            this.picTileTower.TabIndex = 5;
+            this.picTileTower.TabStop = false;
+            // 
+            // picTileTeleport
+            // 
+            this.picTileTeleport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileTeleport.Location = new System.Drawing.Point(6, 47);
+            this.picTileTeleport.Name = "picTileTeleport";
+            this.picTileTeleport.Size = new System.Drawing.Size(32, 32);
+            this.picTileTeleport.TabIndex = 4;
+            this.picTileTeleport.TabStop = false;
+            // 
+            // picTileSlope
+            // 
+            this.picTileSlope.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileSlope.Location = new System.Drawing.Point(129, 6);
+            this.picTileSlope.Name = "picTileSlope";
+            this.picTileSlope.Size = new System.Drawing.Size(32, 32);
+            this.picTileSlope.TabIndex = 3;
+            this.picTileSlope.TabStop = false;
+            // 
+            // picTileFloor
+            // 
+            this.picTileFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileFloor.Location = new System.Drawing.Point(88, 6);
+            this.picTileFloor.Name = "picTileFloor";
+            this.picTileFloor.Size = new System.Drawing.Size(32, 32);
+            this.picTileFloor.TabIndex = 2;
+            this.picTileFloor.TabStop = false;
+            // 
+            // picTileWall
+            // 
+            this.picTileWall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTileWall.Location = new System.Drawing.Point(47, 6);
+            this.picTileWall.Name = "picTileWall";
+            this.picTileWall.Size = new System.Drawing.Size(32, 32);
+            this.picTileWall.TabIndex = 1;
+            this.picTileWall.TabStop = false;
+            // 
+            // picTileEmpty
+            // 
+            this.picTileEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picTileEmpty.Location = new System.Drawing.Point(6, 6);
+            this.picTileEmpty.Name = "picTileEmpty";
+            this.picTileEmpty.Size = new System.Drawing.Size(32, 32);
+            this.picTileEmpty.TabIndex = 0;
+            this.picTileEmpty.TabStop = false;
+            // 
+            // picBonusDash
+            // 
+            this.picBonusDash.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusDash.Location = new System.Drawing.Point(50, 220);
+            this.picBonusDash.Name = "picBonusDash";
+            this.picBonusDash.Size = new System.Drawing.Size(32, 32);
+            this.picBonusDash.TabIndex = 21;
+            this.picBonusDash.TabStop = false;
+            // 
+            // picBonusDecoy
+            // 
+            this.picBonusDecoy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusDecoy.Location = new System.Drawing.Point(9, 220);
+            this.picBonusDecoy.Name = "picBonusDecoy";
+            this.picBonusDecoy.Size = new System.Drawing.Size(32, 32);
+            this.picBonusDecoy.TabIndex = 20;
+            this.picBonusDecoy.TabStop = false;
+            // 
+            // picBonusPower
+            // 
+            this.picBonusPower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusPower.Location = new System.Drawing.Point(132, 179);
+            this.picBonusPower.Name = "picBonusPower";
+            this.picBonusPower.Size = new System.Drawing.Size(32, 32);
+            this.picBonusPower.TabIndex = 19;
+            this.picBonusPower.TabStop = false;
+            // 
+            // picBonusSpeed
+            // 
+            this.picBonusSpeed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusSpeed.Location = new System.Drawing.Point(91, 179);
+            this.picBonusSpeed.Name = "picBonusSpeed";
+            this.picBonusSpeed.Size = new System.Drawing.Size(32, 32);
+            this.picBonusSpeed.TabIndex = 18;
+            this.picBonusSpeed.TabStop = false;
+            // 
+            // picBonusDouble
+            // 
+            this.picBonusDouble.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusDouble.Location = new System.Drawing.Point(50, 179);
+            this.picBonusDouble.Name = "picBonusDouble";
+            this.picBonusDouble.Size = new System.Drawing.Size(32, 32);
+            this.picBonusDouble.TabIndex = 17;
+            this.picBonusDouble.TabStop = false;
+            // 
+            // picUtilJump
+            // 
+            this.picUtilJump.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picUtilJump.Location = new System.Drawing.Point(132, 285);
+            this.picUtilJump.Name = "picUtilJump";
+            this.picUtilJump.Size = new System.Drawing.Size(32, 32);
+            this.picUtilJump.TabIndex = 16;
+            this.picUtilJump.TabStop = false;
+            // 
+            // picUtilTrigger
+            // 
+            this.picUtilTrigger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picUtilTrigger.Location = new System.Drawing.Point(91, 285);
+            this.picUtilTrigger.Name = "picUtilTrigger";
+            this.picUtilTrigger.Size = new System.Drawing.Size(32, 32);
+            this.picUtilTrigger.TabIndex = 15;
+            this.picUtilTrigger.TabStop = false;
+            // 
+            // picUtilGoal
+            // 
+            this.picUtilGoal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picUtilGoal.Location = new System.Drawing.Point(50, 285);
+            this.picUtilGoal.Name = "picUtilGoal";
+            this.picUtilGoal.Size = new System.Drawing.Size(32, 32);
+            this.picUtilGoal.TabIndex = 14;
+            this.picUtilGoal.TabStop = false;
+            // 
+            // picUtilSpawn
+            // 
+            this.picUtilSpawn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picUtilSpawn.Location = new System.Drawing.Point(9, 285);
+            this.picUtilSpawn.Name = "picUtilSpawn";
+            this.picUtilSpawn.Size = new System.Drawing.Size(32, 32);
+            this.picUtilSpawn.TabIndex = 13;
+            this.picUtilSpawn.TabStop = false;
+            // 
+            // picBonusMissile
+            // 
+            this.picBonusMissile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusMissile.Location = new System.Drawing.Point(9, 179);
+            this.picBonusMissile.Name = "picBonusMissile";
+            this.picBonusMissile.Size = new System.Drawing.Size(32, 32);
+            this.picBonusMissile.TabIndex = 12;
+            this.picBonusMissile.TabStop = false;
+            // 
+            // picBonusRicochet
+            // 
+            this.picBonusRicochet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusRicochet.Location = new System.Drawing.Point(132, 138);
+            this.picBonusRicochet.Name = "picBonusRicochet";
+            this.picBonusRicochet.Size = new System.Drawing.Size(32, 32);
+            this.picBonusRicochet.TabIndex = 11;
+            this.picBonusRicochet.TabStop = false;
+            // 
+            // picBonusImplosion
+            // 
+            this.picBonusImplosion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusImplosion.Location = new System.Drawing.Point(91, 138);
+            this.picBonusImplosion.Name = "picBonusImplosion";
+            this.picBonusImplosion.Size = new System.Drawing.Size(32, 32);
+            this.picBonusImplosion.TabIndex = 10;
+            this.picBonusImplosion.TabStop = false;
+            // 
+            // picBonusEMP
+            // 
+            this.picBonusEMP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusEMP.Location = new System.Drawing.Point(50, 138);
+            this.picBonusEMP.Name = "picBonusEMP";
+            this.picBonusEMP.Size = new System.Drawing.Size(32, 32);
+            this.picBonusEMP.TabIndex = 9;
+            this.picBonusEMP.TabStop = false;
+            // 
+            // picBonusShield
+            // 
+            this.picBonusShield.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBonusShield.Location = new System.Drawing.Point(9, 138);
+            this.picBonusShield.Name = "picBonusShield";
+            this.picBonusShield.Size = new System.Drawing.Size(32, 32);
+            this.picBonusShield.TabIndex = 8;
+            this.picBonusShield.TabStop = false;
+            // 
+            // picTrapDrop
+            // 
+            this.picTrapDrop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTrapDrop.Location = new System.Drawing.Point(9, 70);
+            this.picTrapDrop.Name = "picTrapDrop";
+            this.picTrapDrop.Size = new System.Drawing.Size(32, 32);
+            this.picTrapDrop.TabIndex = 7;
+            this.picTrapDrop.TabStop = false;
+            // 
+            // picTrapFreeze
+            // 
+            this.picTrapFreeze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTrapFreeze.Location = new System.Drawing.Point(132, 29);
+            this.picTrapFreeze.Name = "picTrapFreeze";
+            this.picTrapFreeze.Size = new System.Drawing.Size(32, 32);
+            this.picTrapFreeze.TabIndex = 6;
+            this.picTrapFreeze.TabStop = false;
+            // 
+            // picTrapFire
+            // 
+            this.picTrapFire.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTrapFire.Location = new System.Drawing.Point(91, 29);
+            this.picTrapFire.Name = "picTrapFire";
+            this.picTrapFire.Size = new System.Drawing.Size(32, 32);
+            this.picTrapFire.TabIndex = 5;
+            this.picTrapFire.TabStop = false;
+            // 
+            // picTrapSpike
+            // 
+            this.picTrapSpike.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTrapSpike.Location = new System.Drawing.Point(50, 29);
+            this.picTrapSpike.Name = "picTrapSpike";
+            this.picTrapSpike.Size = new System.Drawing.Size(32, 32);
+            this.picTrapSpike.TabIndex = 4;
+            this.picTrapSpike.TabStop = false;
+            // 
+            // picTrapTurret
+            // 
+            this.picTrapTurret.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picTrapTurret.Location = new System.Drawing.Point(9, 29);
+            this.picTrapTurret.Name = "picTrapTurret";
+            this.picTrapTurret.Size = new System.Drawing.Size(32, 32);
+            this.picTrapTurret.TabIndex = 3;
+            this.picTrapTurret.TabStop = false;
             // 
             // Editor
             // 
@@ -566,6 +566,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabTiles.ResumeLayout(false);
             this.tabTiles.PerformLayout();
+            this.tabObjects.ResumeLayout(false);
+            this.tabObjects.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).EndInit();
@@ -577,8 +579,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileWall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).EndInit();
-            this.tabObjects.ResumeLayout(false);
-            this.tabObjects.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).EndInit();

@@ -36,7 +36,7 @@ namespace Map_Editor
         }
 
         private PictureBox[][] pictureBoxes;
-        private const int PICTURE_BOX_SIZE = 50;
+        private const int PICTURE_BOX_SIZE = 48;
 
         public void InitializeView(int width, int height)
         {
@@ -48,6 +48,7 @@ namespace Map_Editor
                 {
                     pictureBoxes[y][x] = new PictureBox();
                     pictureBoxes[y][x].SetBounds(x * PICTURE_BOX_SIZE, y * PICTURE_BOX_SIZE, PICTURE_BOX_SIZE, PICTURE_BOX_SIZE);
+                    pictureBoxes[y][x].BackgroundImageLayout = ImageLayout.Stretch;
                     pictureBoxes[y][x].BorderStyle = BorderStyle.FixedSingle;
                     pictureBoxes[y][x].BackColor = System.Drawing.Color.Red;
                     pictureBoxes[y][x].Padding = new System.Windows.Forms.Padding(5);
@@ -89,7 +90,7 @@ namespace Map_Editor
                     break;
 
                 case Tile.TileType.Empty:
-                    path = "..\\..\\Resources\\brick.png";
+                    path = "..\\..\\Resources\\Bad.png";
                     break;
 
                 case Tile.TileType.Floor:

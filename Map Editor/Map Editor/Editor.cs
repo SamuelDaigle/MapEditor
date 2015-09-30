@@ -16,6 +16,8 @@ namespace Map_Editor
         public Editor()
         {
             InitializeComponent();
+            picTileEmpty.BackgroundImage = Image.FromFile("..\\..\\Resources\\Bad.png");
+            
         }
 
         private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
