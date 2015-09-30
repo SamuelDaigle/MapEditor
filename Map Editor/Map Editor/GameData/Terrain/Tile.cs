@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,13 +9,21 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
-    public class Tile
+    [DefaultPropertyAttribute("Name")]
+    public class Tile : IComponent
     {
+        public string path;
         public int x;
         public int y;
+        [CategoryAttribute("Speed"), DescriptionAttribute("Changes the speed of entities walking on the tile.")]
+        public int speedModifier { get; set; }
+        public Orientation orientation;
+
         //public List<IObject> objectsOnTile;
         private TileType type;
+        
 
+        public enum Orientation { Top, Right, Bottom, Left }
         public TileType Type
         {
             get
@@ -60,6 +70,30 @@ namespace Map_Editor.GameData
             {
                 TileChanged(this, e);
             }
+        }
+
+
+        event EventHandler IComponent.Disposed
+        {
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
+        }
+
+        ISite IComponent.Site
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Map_Editor
     public partial class Editor
     {
         private PictureBox selectedPictureBox;
+        private Tile selectedTile;
         private bool isMouseDown = false;
 
         public void InitializeControls()
@@ -21,6 +22,7 @@ namespace Map_Editor
             picTileOneByOne.Click += new System.EventHandler(this.picTile_Click);
             picTileSlow.Click += new System.EventHandler(this.picTile_Click);
             picTileDoor.Click += new System.EventHandler(this.picTile_Click);
+            selectedPictureBox = picTileEmpty;
         }
 
         private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace Map_Editor
                     Scene.name = form.SceneName;
 
                     Scene.terrain.Initialize(terrainWidth, terrainHeight);
-                    
+
                 }
             }
         }
@@ -52,10 +54,9 @@ namespace Map_Editor
             }
             selectedPictureBox = (PictureBox)sender;
             selectedPictureBox.BackColor = Color.Yellow;
-
         }
 
-        public void picModify_Move(object sender, EventArgs e)
+        public void picModify_Move(object sender, MouseEventArgs e)
         {
             if (isMouseDown)
             {
@@ -64,19 +65,29 @@ namespace Map_Editor
                 int pictureBoxX = (position.X - pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                 int pictureBoxY = (position.Y - pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                 label1.Text = position.ToString();
-                if (pictureBoxX >= 0 && pictureBoxX < scene.terrain.width && 
+                if (pictureBoxX >= 0 && pictureBoxX < scene.terrain.width &&
                     pictureBoxY >= 0 && pictureBoxY < scene.terrain.height)
                 {
                     if (selectedPictureBox != null)
+                    {
+                        selectedTile = scene.terrain.GetTile(pictureBoxX, pictureBoxY);
+                        selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
+                        selectedTile.path = selectedPictureBox.ImageLocation;
+                        if (e.Button == MouseButtons.Right)
                         {
-                            scene.terrain.GetTile(pictureBoxX, pictureBoxY).Type = GetTileType(selectedPictureBox.ImageLocation);
+                            selectedPictureBox = (PictureBox)sender;
+                            lblTileName.Text = selectedTile.path.Substring(selectedTile.path.LastIndexOf('/') + 1);
+                            lblTileName.Text = lblTileName.Text.Substring(0, lblTileName.Text.LastIndexOf('.'));
+                            grbProperties.Visible = true;
+                            properties.SelectedObject = selectedTile;
                         }
+                    }
                 }
-               
+
             }
         }
 
-        private void picModify_Down(object sender, EventArgs e)
+        private void picModify_Down(object sender, MouseEventArgs e)
         {
             isMouseDown = true;
             picModify_Move(sender, e);

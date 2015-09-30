@@ -18,17 +18,17 @@ namespace Map_Editor
         private const int PICTURE_BOX_SIZE = 52;
 
         #region TILES_PATH
-        private const string PATH_TILE_EMPTY = "..\\..\\Resources\\Tile\\Empty.png";
-        private const string PATH_TILE_BAD = "..\\..\\Resources\\Tile\\Bad.png";
-        private const string PATH_TILE_BREAKING = "..\\..\\Resources\\Tile\\Breaking.png";
-        private const string PATH_TILE_DOOR = "..\\..\\Resources\\Tile\\Door.png";
-        private const string PATH_TILE_FLOOR = "..\\..\\Resources\\Tile\\Floor.png";
-        private const string PATH_TILE_ONE_BY_ONE = "..\\..\\Resources\\Tile\\OneByOne.png";
-        private const string PATH_TILE_SLOW = "..\\..\\Resources\\Tile\\Slow.png";
-        private const string PATH_TILE_TELEPORT = "..\\..\\Resources\\Tile\\Teleport.png";
-        private const string PATH_TILE_TOWER = "..\\..\\Resources\\Tile\\Tower.png";
-        private const string PATH_TILE_WALL = "..\\..\\Resources\\Tile\\Wall.png";
-        private const string PATH_TILE_SLOPE = "..\\..\\Resources\\Tile\\Slope.png";
+        private const string PATH_TILE_EMPTY = "../../Resources/Tile/Empty.png";
+        private const string PATH_TILE_BAD = "../../Resources/Tile/Bad.png";
+        private const string PATH_TILE_BREAKING = "../../Resources/Tile/Breaking.png";
+        private const string PATH_TILE_DOOR = "../../Resources/Tile/Door.png";
+        private const string PATH_TILE_FLOOR = "../../Resources/Tile/Floor.png";
+        private const string PATH_TILE_ONE_BY_ONE = "../../Resources/Tile/OneByOne.png";
+        private const string PATH_TILE_SLOW = "../../Resources/Tile/Slow.png";
+        private const string PATH_TILE_TELEPORT = "../../Resources/Tile/Teleport.png";
+        private const string PATH_TILE_TOWER = "../../Resources/Tile/Tower.png";
+        private const string PATH_TILE_WALL = "../../Resources/Tile/Wall.png";
+        private const string PATH_TILE_SLOPE = "../../Resources/Tile/Slope.png";
         #endregion
 
         public Editor()
@@ -275,6 +275,7 @@ namespace Map_Editor
             }
             return Image.FromFile(path);
         }
+
       
     }
 }

@@ -39,7 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
-            this.lblProperties = new System.Windows.Forms.Label();
+            this.grbProperties = new System.Windows.Forms.GroupBox();
+            this.lblTileName = new System.Windows.Forms.Label();
+            this.properties = new System.Windows.Forms.PropertyGrid();
             this.picTileBreakPass = new System.Windows.Forms.PictureBox();
             this.picTileOneByOne = new System.Windows.Forms.PictureBox();
             this.picTileSlow = new System.Windows.Forms.PictureBox();
@@ -78,6 +80,7 @@
             this.pnlStatus.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabTiles.SuspendLayout();
+            this.grbProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).BeginInit();
@@ -134,20 +137,20 @@
             // newSceneToolStripMenuItem
             // 
             this.newSceneToolStripMenuItem.Name = "newSceneToolStripMenuItem";
-            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newSceneToolStripMenuItem.Text = "New Scene...";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -201,7 +204,7 @@
             // tabTiles
             // 
             this.tabTiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.tabTiles.Controls.Add(this.lblProperties);
+            this.tabTiles.Controls.Add(this.grbProperties);
             this.tabTiles.Controls.Add(this.picTileBreakPass);
             this.tabTiles.Controls.Add(this.picTileOneByOne);
             this.tabTiles.Controls.Add(this.picTileSlow);
@@ -220,14 +223,34 @@
             this.tabTiles.TabIndex = 0;
             this.tabTiles.Text = "Tiles";
             // 
-            // lblProperties
+            // grbProperties
             // 
-            this.lblProperties.AutoSize = true;
-            this.lblProperties.Location = new System.Drawing.Point(6, 254);
-            this.lblProperties.Name = "lblProperties";
-            this.lblProperties.Size = new System.Drawing.Size(54, 13);
-            this.lblProperties.TabIndex = 11;
-            this.lblProperties.Text = "Properties";
+            this.grbProperties.Controls.Add(this.lblTileName);
+            this.grbProperties.Controls.Add(this.properties);
+            this.grbProperties.Location = new System.Drawing.Point(0, 238);
+            this.grbProperties.Name = "grbProperties";
+            this.grbProperties.Size = new System.Drawing.Size(192, 274);
+            this.grbProperties.TabIndex = 15;
+            this.grbProperties.TabStop = false;
+            this.grbProperties.Text = "Properties";
+            this.grbProperties.Visible = false;
+            // 
+            // lblTileName
+            // 
+            this.lblTileName.AutoSize = true;
+            this.lblTileName.Location = new System.Drawing.Point(6, 16);
+            this.lblTileName.Name = "lblTileName";
+            this.lblTileName.Size = new System.Drawing.Size(35, 13);
+            this.lblTileName.TabIndex = 13;
+            this.lblTileName.Text = "label2";
+            // 
+            // properties
+            // 
+            this.properties.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.properties.Location = new System.Drawing.Point(6, 46);
+            this.properties.Name = "properties";
+            this.properties.Size = new System.Drawing.Size(180, 218);
+            this.properties.TabIndex = 12;
             // 
             // picTileBreakPass
             // 
@@ -608,7 +631,8 @@
             this.pnlStatus.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabTiles.ResumeLayout(false);
-            this.tabTiles.PerformLayout();
+            this.grbProperties.ResumeLayout(false);
+            this.grbProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).EndInit();
@@ -656,7 +680,6 @@
         private System.Windows.Forms.Panel pnlDraw;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabTiles;
-        private System.Windows.Forms.Label lblProperties;
         private System.Windows.Forms.PictureBox picTileBreakPass;
         private System.Windows.Forms.PictureBox picTileOneByOne;
         private System.Windows.Forms.PictureBox picTileSlow;
@@ -694,6 +717,9 @@
         private System.Windows.Forms.Panel pnlFloor;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PropertyGrid properties;
+        private System.Windows.Forms.Label lblTileName;
+        private System.Windows.Forms.GroupBox grbProperties;
     }
 }
 

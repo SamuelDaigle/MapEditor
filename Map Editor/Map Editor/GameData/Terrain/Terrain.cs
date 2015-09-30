@@ -57,6 +57,7 @@ namespace Map_Editor.GameData
                     tiles[y][x] = new Tile();
                     tiles[y][x].TileChanged += OnTerrainChanged;
                     tiles[y][x].Initialize(Tile.TileType.Empty, x, y);
+                    tiles[y][x].path = "../../Resources/Tile/Empty.png";
                 }
             }
         }
