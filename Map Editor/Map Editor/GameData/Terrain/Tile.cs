@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
@@ -10,7 +11,7 @@ namespace Map_Editor.GameData
     {
         public int x;
         public int y;
-        public List<IObject> objectsOnTile;
+        //public List<IObject> objectsOnTile;
         private TileType type;
 
         public TileType Type
@@ -26,6 +27,7 @@ namespace Map_Editor.GameData
             }
         }
 
+        [field: NonSerialized]
         public event EventHandler TileChanged;
 
         public enum TileType
@@ -48,7 +50,7 @@ namespace Map_Editor.GameData
             x = _x;
             y = _y;
             Type = _type;
-            objectsOnTile = new List<IObject>();
+            //objectsOnTile = new List<IObject>();
         }
 
         // Notify the terrain.

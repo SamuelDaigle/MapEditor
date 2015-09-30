@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
@@ -11,6 +12,7 @@ namespace Map_Editor.GameData
         public string name;
         public Terrain terrain;
 
+        [field: NonSerialized]
         public event EventHandler SceneChanged;
 
         public Scene()

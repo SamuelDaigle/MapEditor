@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
@@ -10,8 +11,37 @@ namespace Map_Editor.GameData
     {
         public int width;
         public int height;
-        public Tile[][] tiles;
+        private Tile[][] tiles;
 
+        public Tile[] Tiles
+        {
+            get
+            {
+                Tile[] result = new Tile[height * width];
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        result[x * width + y] = tiles[x][y];
+                    }
+                }
+                return result;
+            }
+            set
+            {
+                Initialize(width, height);
+                Tile[] readData = value;
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        tiles[x][y] = readData[x * width + y];
+                    }
+                }
+            }
+        }
+
+        [field: NonSerialized]
         public event EventHandler TerrainChanged;
 
         public void Initialize(int _width, int _height)

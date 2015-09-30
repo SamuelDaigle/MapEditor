@@ -36,13 +36,10 @@
             this.pnlDraw = new System.Windows.Forms.Panel();
             this.pnlFloor = new System.Windows.Forms.Panel();
             this.pnlStatus = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.lblProperties = new System.Windows.Forms.Label();
-            this.tabObjects = new System.Windows.Forms.TabPage();
-            this.lblUtilities = new System.Windows.Forms.Label();
-            this.lblBonus = new System.Windows.Forms.Label();
-            this.lblTraps = new System.Windows.Forms.Label();
             this.picTileBreakPass = new System.Windows.Forms.PictureBox();
             this.picTileOneByOne = new System.Windows.Forms.PictureBox();
             this.picTileSlow = new System.Windows.Forms.PictureBox();
@@ -54,6 +51,7 @@
             this.picTileFloor = new System.Windows.Forms.PictureBox();
             this.picTileWall = new System.Windows.Forms.PictureBox();
             this.picTileEmpty = new System.Windows.Forms.PictureBox();
+            this.tabObjects = new System.Windows.Forms.TabPage();
             this.picBonusDash = new System.Windows.Forms.PictureBox();
             this.picBonusDecoy = new System.Windows.Forms.PictureBox();
             this.picBonusPower = new System.Windows.Forms.PictureBox();
@@ -73,11 +71,13 @@
             this.picTrapFire = new System.Windows.Forms.PictureBox();
             this.picTrapSpike = new System.Windows.Forms.PictureBox();
             this.picTrapTurret = new System.Windows.Forms.PictureBox();
+            this.lblUtilities = new System.Windows.Forms.Label();
+            this.lblBonus = new System.Windows.Forms.Label();
+            this.lblTraps = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.pnlDraw.SuspendLayout();
+            this.pnlStatus.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabTiles.SuspendLayout();
-            this.tabObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).BeginInit();
@@ -89,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileWall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).BeginInit();
+            this.tabObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).BeginInit();
@@ -133,38 +134,36 @@
             // newSceneToolStripMenuItem
             // 
             this.newSceneToolStripMenuItem.Name = "newSceneToolStripMenuItem";
-            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newSceneToolStripMenuItem.Text = "New Scene...";
-            this.newSceneToolStripMenuItem.Click += new System.EventHandler(this.newSceneToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // pnlDraw
             // 
-            this.pnlDraw.Controls.Add(this.pnlFloor);
-            this.pnlDraw.Controls.Add(this.pnlStatus);
-            this.pnlDraw.Controls.Add(this.tabControl1);
             this.pnlDraw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDraw.Location = new System.Drawing.Point(0, 24);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(1204, 534);
+            this.pnlDraw.Size = new System.Drawing.Size(967, 443);
             this.pnlDraw.TabIndex = 1;
             // 
             // pnlFloor
             // 
             this.pnlFloor.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFloor.Location = new System.Drawing.Point(967, 0);
+            this.pnlFloor.Location = new System.Drawing.Point(967, 24);
             this.pnlFloor.Name = "pnlFloor";
             this.pnlFloor.Size = new System.Drawing.Size(37, 443);
             this.pnlFloor.TabIndex = 2;
@@ -172,18 +171,28 @@
             // pnlStatus
             // 
             this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlStatus.Controls.Add(this.label1);
             this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlStatus.Location = new System.Drawing.Point(0, 443);
+            this.pnlStatus.Location = new System.Drawing.Point(0, 467);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
             this.pnlStatus.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(64, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabTiles);
             this.tabControl1.Controls.Add(this.tabObjects);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tabControl1.Location = new System.Drawing.Point(1004, 0);
+            this.tabControl1.Location = new System.Drawing.Point(1004, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(200, 534);
@@ -214,11 +223,140 @@
             // lblProperties
             // 
             this.lblProperties.AutoSize = true;
-            this.lblProperties.Location = new System.Drawing.Point(6, 202);
+            this.lblProperties.Location = new System.Drawing.Point(6, 254);
             this.lblProperties.Name = "lblProperties";
             this.lblProperties.Size = new System.Drawing.Size(54, 13);
             this.lblProperties.TabIndex = 11;
             this.lblProperties.Text = "Properties";
+            // 
+            // picTileBreakPass
+            // 
+            this.picTileBreakPass.BackColor = System.Drawing.Color.Transparent;
+            this.picTileBreakPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileBreakPass.Location = new System.Drawing.Point(64, 180);
+            this.picTileBreakPass.Name = "picTileBreakPass";
+            this.picTileBreakPass.Size = new System.Drawing.Size(52, 52);
+            this.picTileBreakPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileBreakPass.TabIndex = 10;
+            this.picTileBreakPass.TabStop = false;
+            // 
+            // picTileOneByOne
+            // 
+            this.picTileOneByOne.BackColor = System.Drawing.Color.Transparent;
+            this.picTileOneByOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileOneByOne.Location = new System.Drawing.Point(6, 180);
+            this.picTileOneByOne.Name = "picTileOneByOne";
+            this.picTileOneByOne.Size = new System.Drawing.Size(52, 52);
+            this.picTileOneByOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileOneByOne.TabIndex = 9;
+            this.picTileOneByOne.TabStop = false;
+            // 
+            // picTileSlow
+            // 
+            this.picTileSlow.BackColor = System.Drawing.Color.Transparent;
+            this.picTileSlow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileSlow.Location = new System.Drawing.Point(122, 122);
+            this.picTileSlow.Name = "picTileSlow";
+            this.picTileSlow.Size = new System.Drawing.Size(52, 52);
+            this.picTileSlow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileSlow.TabIndex = 8;
+            this.picTileSlow.TabStop = false;
+            // 
+            // picTileDoor
+            // 
+            this.picTileDoor.BackColor = System.Drawing.Color.Transparent;
+            this.picTileDoor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileDoor.Location = new System.Drawing.Point(64, 122);
+            this.picTileDoor.Name = "picTileDoor";
+            this.picTileDoor.Size = new System.Drawing.Size(52, 52);
+            this.picTileDoor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileDoor.TabIndex = 7;
+            this.picTileDoor.TabStop = false;
+            // 
+            // picTileBad
+            // 
+            this.picTileBad.BackColor = System.Drawing.Color.Transparent;
+            this.picTileBad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileBad.Location = new System.Drawing.Point(6, 122);
+            this.picTileBad.Name = "picTileBad";
+            this.picTileBad.Size = new System.Drawing.Size(52, 52);
+            this.picTileBad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileBad.TabIndex = 6;
+            this.picTileBad.TabStop = false;
+            this.picTileBad.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileTower
+            // 
+            this.picTileTower.BackColor = System.Drawing.Color.Transparent;
+            this.picTileTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileTower.Location = new System.Drawing.Point(122, 64);
+            this.picTileTower.Name = "picTileTower";
+            this.picTileTower.Size = new System.Drawing.Size(52, 52);
+            this.picTileTower.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileTower.TabIndex = 5;
+            this.picTileTower.TabStop = false;
+            this.picTileTower.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileTeleport
+            // 
+            this.picTileTeleport.BackColor = System.Drawing.Color.Transparent;
+            this.picTileTeleport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileTeleport.Location = new System.Drawing.Point(64, 64);
+            this.picTileTeleport.Name = "picTileTeleport";
+            this.picTileTeleport.Size = new System.Drawing.Size(52, 52);
+            this.picTileTeleport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileTeleport.TabIndex = 4;
+            this.picTileTeleport.TabStop = false;
+            this.picTileTeleport.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileSlope
+            // 
+            this.picTileSlope.BackColor = System.Drawing.Color.Transparent;
+            this.picTileSlope.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileSlope.Location = new System.Drawing.Point(6, 64);
+            this.picTileSlope.Name = "picTileSlope";
+            this.picTileSlope.Size = new System.Drawing.Size(52, 52);
+            this.picTileSlope.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileSlope.TabIndex = 3;
+            this.picTileSlope.TabStop = false;
+            this.picTileSlope.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileFloor
+            // 
+            this.picTileFloor.BackColor = System.Drawing.Color.Transparent;
+            this.picTileFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileFloor.Location = new System.Drawing.Point(122, 6);
+            this.picTileFloor.Name = "picTileFloor";
+            this.picTileFloor.Size = new System.Drawing.Size(52, 52);
+            this.picTileFloor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileFloor.TabIndex = 2;
+            this.picTileFloor.TabStop = false;
+            this.picTileFloor.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileWall
+            // 
+            this.picTileWall.BackColor = System.Drawing.Color.Transparent;
+            this.picTileWall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileWall.Location = new System.Drawing.Point(64, 6);
+            this.picTileWall.Name = "picTileWall";
+            this.picTileWall.Size = new System.Drawing.Size(52, 52);
+            this.picTileWall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileWall.TabIndex = 1;
+            this.picTileWall.TabStop = false;
+            this.picTileWall.Click += new System.EventHandler(this.picTile_Click);
+            // 
+            // picTileEmpty
+            // 
+            this.picTileEmpty.BackColor = System.Drawing.Color.Transparent;
+            this.picTileEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picTileEmpty.Cursor = System.Windows.Forms.Cursors.Default;
+            this.picTileEmpty.Location = new System.Drawing.Point(6, 6);
+            this.picTileEmpty.Name = "picTileEmpty";
+            this.picTileEmpty.Size = new System.Drawing.Size(52, 52);
+            this.picTileEmpty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picTileEmpty.TabIndex = 0;
+            this.picTileEmpty.TabStop = false;
+            this.picTileEmpty.Click += new System.EventHandler(this.picTile_Click);
             // 
             // tabObjects
             // 
@@ -251,132 +389,6 @@
             this.tabObjects.Size = new System.Drawing.Size(192, 508);
             this.tabObjects.TabIndex = 1;
             this.tabObjects.Text = "Objects";
-            // 
-            // lblUtilities
-            // 
-            this.lblUtilities.AutoSize = true;
-            this.lblUtilities.Location = new System.Drawing.Point(6, 266);
-            this.lblUtilities.Name = "lblUtilities";
-            this.lblUtilities.Size = new System.Drawing.Size(40, 13);
-            this.lblUtilities.TabIndex = 2;
-            this.lblUtilities.Text = "Utilities";
-            // 
-            // lblBonus
-            // 
-            this.lblBonus.AutoSize = true;
-            this.lblBonus.Location = new System.Drawing.Point(6, 118);
-            this.lblBonus.Name = "lblBonus";
-            this.lblBonus.Size = new System.Drawing.Size(37, 13);
-            this.lblBonus.TabIndex = 1;
-            this.lblBonus.Text = "Bonus";
-            // 
-            // lblTraps
-            // 
-            this.lblTraps.AutoSize = true;
-            this.lblTraps.Location = new System.Drawing.Point(6, 12);
-            this.lblTraps.Name = "lblTraps";
-            this.lblTraps.Size = new System.Drawing.Size(34, 13);
-            this.lblTraps.TabIndex = 0;
-            this.lblTraps.Text = "Traps";
-            // 
-            // picTileBreakPass
-            // 
-            this.picTileBreakPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileBreakPass.Location = new System.Drawing.Point(88, 88);
-            this.picTileBreakPass.Name = "picTileBreakPass";
-            this.picTileBreakPass.Size = new System.Drawing.Size(32, 32);
-            this.picTileBreakPass.TabIndex = 10;
-            this.picTileBreakPass.TabStop = false;
-            // 
-            // picTileOneByOne
-            // 
-            this.picTileOneByOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileOneByOne.Location = new System.Drawing.Point(47, 88);
-            this.picTileOneByOne.Name = "picTileOneByOne";
-            this.picTileOneByOne.Size = new System.Drawing.Size(32, 32);
-            this.picTileOneByOne.TabIndex = 9;
-            this.picTileOneByOne.TabStop = false;
-            // 
-            // picTileSlow
-            // 
-            this.picTileSlow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileSlow.Location = new System.Drawing.Point(6, 88);
-            this.picTileSlow.Name = "picTileSlow";
-            this.picTileSlow.Size = new System.Drawing.Size(32, 32);
-            this.picTileSlow.TabIndex = 8;
-            this.picTileSlow.TabStop = false;
-            // 
-            // picTileDoor
-            // 
-            this.picTileDoor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileDoor.Location = new System.Drawing.Point(129, 47);
-            this.picTileDoor.Name = "picTileDoor";
-            this.picTileDoor.Size = new System.Drawing.Size(32, 32);
-            this.picTileDoor.TabIndex = 7;
-            this.picTileDoor.TabStop = false;
-            // 
-            // picTileBad
-            // 
-            this.picTileBad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileBad.Location = new System.Drawing.Point(88, 47);
-            this.picTileBad.Name = "picTileBad";
-            this.picTileBad.Size = new System.Drawing.Size(32, 32);
-            this.picTileBad.TabIndex = 6;
-            this.picTileBad.TabStop = false;
-            // 
-            // picTileTower
-            // 
-            this.picTileTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileTower.Location = new System.Drawing.Point(47, 47);
-            this.picTileTower.Name = "picTileTower";
-            this.picTileTower.Size = new System.Drawing.Size(32, 32);
-            this.picTileTower.TabIndex = 5;
-            this.picTileTower.TabStop = false;
-            // 
-            // picTileTeleport
-            // 
-            this.picTileTeleport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileTeleport.Location = new System.Drawing.Point(6, 47);
-            this.picTileTeleport.Name = "picTileTeleport";
-            this.picTileTeleport.Size = new System.Drawing.Size(32, 32);
-            this.picTileTeleport.TabIndex = 4;
-            this.picTileTeleport.TabStop = false;
-            // 
-            // picTileSlope
-            // 
-            this.picTileSlope.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileSlope.Location = new System.Drawing.Point(129, 6);
-            this.picTileSlope.Name = "picTileSlope";
-            this.picTileSlope.Size = new System.Drawing.Size(32, 32);
-            this.picTileSlope.TabIndex = 3;
-            this.picTileSlope.TabStop = false;
-            // 
-            // picTileFloor
-            // 
-            this.picTileFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileFloor.Location = new System.Drawing.Point(88, 6);
-            this.picTileFloor.Name = "picTileFloor";
-            this.picTileFloor.Size = new System.Drawing.Size(32, 32);
-            this.picTileFloor.TabIndex = 2;
-            this.picTileFloor.TabStop = false;
-            // 
-            // picTileWall
-            // 
-            this.picTileWall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTileWall.Location = new System.Drawing.Point(47, 6);
-            this.picTileWall.Name = "picTileWall";
-            this.picTileWall.Size = new System.Drawing.Size(32, 32);
-            this.picTileWall.TabIndex = 1;
-            this.picTileWall.TabStop = false;
-            // 
-            // picTileEmpty
-            // 
-            this.picTileEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picTileEmpty.Location = new System.Drawing.Point(6, 6);
-            this.picTileEmpty.Name = "picTileEmpty";
-            this.picTileEmpty.Size = new System.Drawing.Size(32, 32);
-            this.picTileEmpty.TabIndex = 0;
-            this.picTileEmpty.TabStop = false;
             // 
             // picBonusDash
             // 
@@ -549,6 +561,33 @@
             this.picTrapTurret.TabIndex = 3;
             this.picTrapTurret.TabStop = false;
             // 
+            // lblUtilities
+            // 
+            this.lblUtilities.AutoSize = true;
+            this.lblUtilities.Location = new System.Drawing.Point(6, 266);
+            this.lblUtilities.Name = "lblUtilities";
+            this.lblUtilities.Size = new System.Drawing.Size(40, 13);
+            this.lblUtilities.TabIndex = 2;
+            this.lblUtilities.Text = "Utilities";
+            // 
+            // lblBonus
+            // 
+            this.lblBonus.AutoSize = true;
+            this.lblBonus.Location = new System.Drawing.Point(6, 118);
+            this.lblBonus.Name = "lblBonus";
+            this.lblBonus.Size = new System.Drawing.Size(37, 13);
+            this.lblBonus.TabIndex = 1;
+            this.lblBonus.Text = "Bonus";
+            // 
+            // lblTraps
+            // 
+            this.lblTraps.AutoSize = true;
+            this.lblTraps.Location = new System.Drawing.Point(6, 12);
+            this.lblTraps.Name = "lblTraps";
+            this.lblTraps.Size = new System.Drawing.Size(34, 13);
+            this.lblTraps.TabIndex = 0;
+            this.lblTraps.Text = "Traps";
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -556,18 +595,20 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1204, 558);
             this.Controls.Add(this.pnlDraw);
+            this.Controls.Add(this.pnlFloor);
+            this.Controls.Add(this.pnlStatus);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Editor";
             this.Text = "Ducktators\'s map editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.pnlDraw.ResumeLayout(false);
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabTiles.ResumeLayout(false);
             this.tabTiles.PerformLayout();
-            this.tabObjects.ResumeLayout(false);
-            this.tabObjects.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileOneByOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileSlow)).EndInit();
@@ -579,6 +620,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileWall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).EndInit();
+            this.tabObjects.ResumeLayout(false);
+            this.tabObjects.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).EndInit();
@@ -650,6 +693,7 @@
         private System.Windows.Forms.Label lblTraps;
         private System.Windows.Forms.Panel pnlFloor;
         private System.Windows.Forms.Panel pnlStatus;
+        private System.Windows.Forms.Label label1;
     }
 }
 

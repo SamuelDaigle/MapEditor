@@ -36,6 +36,8 @@
             this.lblSceneName = new System.Windows.Forms.Label();
             this.txtSceneName = new System.Windows.Forms.TextBox();
             this.grbTerrain = new System.Windows.Forms.GroupBox();
+            this.lblDefaultTile = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).BeginInit();
             this.grbTerrain.SuspendLayout();
@@ -122,16 +124,35 @@
             // 
             // grbTerrain
             // 
+            this.grbTerrain.Controls.Add(this.comboBox1);
+            this.grbTerrain.Controls.Add(this.lblDefaultTile);
             this.grbTerrain.Controls.Add(this.numWidth);
             this.grbTerrain.Controls.Add(this.lblWidth);
             this.grbTerrain.Controls.Add(this.numHeight);
             this.grbTerrain.Controls.Add(this.lblHeight);
-            this.grbTerrain.Location = new System.Drawing.Point(53, 169);
+            this.grbTerrain.Location = new System.Drawing.Point(53, 127);
             this.grbTerrain.Name = "grbTerrain";
-            this.grbTerrain.Size = new System.Drawing.Size(200, 100);
+            this.grbTerrain.Size = new System.Drawing.Size(200, 150);
             this.grbTerrain.TabIndex = 7;
             this.grbTerrain.TabStop = false;
             this.grbTerrain.Text = "Terrain";
+            // 
+            // lblDefaultTile
+            // 
+            this.lblDefaultTile.AutoSize = true;
+            this.lblDefaultTile.Location = new System.Drawing.Point(6, 108);
+            this.lblDefaultTile.Name = "lblDefaultTile";
+            this.lblDefaultTile.Size = new System.Drawing.Size(61, 13);
+            this.lblDefaultTile.TabIndex = 4;
+            this.lblDefaultTile.Text = "Default Tile";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(71, 105);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 5;
             // 
             // SceneCreation
             // 
@@ -163,5 +184,7 @@
         private System.Windows.Forms.Label lblSceneName;
         private System.Windows.Forms.TextBox txtSceneName;
         private System.Windows.Forms.GroupBox grbTerrain;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblDefaultTile;
     }
 }
