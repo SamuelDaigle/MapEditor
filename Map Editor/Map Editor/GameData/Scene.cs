@@ -12,12 +12,16 @@ namespace Map_Editor.GameData
         public string name;
         public Terrain terrain;
 
-        [field: NonSerialized]
         public event EventHandler SceneChanged;
 
         public Scene()
         {
             terrain = new Terrain();
+            SetEvents();
+        }
+
+        public void SetEvents()
+        {
             terrain.TerrainChanged += OnTerrainChanged;
         }
 
@@ -26,7 +30,6 @@ namespace Map_Editor.GameData
         {
             OnSceneChanged(sender, e);
         }
-
 
         // Notify the view.
         private void OnSceneChanged(object sender, EventArgs e)

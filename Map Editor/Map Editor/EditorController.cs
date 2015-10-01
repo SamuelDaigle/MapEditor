@@ -74,6 +74,10 @@ namespace Map_Editor
                         if (e.Button == MouseButtons.Left)
                         {
                             selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
+                            if (selectedPictureBox.ImageLocation == null)
+                            {
+                                selectedPictureBox.ImageLocation = selectedTile.path;
+                            }
                             selectedTile.path = selectedPictureBox.ImageLocation;
                         }
                         if (e.Button == MouseButtons.Right)
@@ -108,7 +112,7 @@ namespace Map_Editor
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>("scene.xml");
-            scene = sceneXML.Load();
+            Scene = sceneXML.Load();
             InitializeView(scene.terrain.width, scene.terrain.height);
             for (int y = 0; y < scene.terrain.height; y++)
             {
@@ -117,6 +121,8 @@ namespace Map_Editor
                     pictureBoxes[y][x].Image = GetImage(scene.terrain.GetTile(x, y));
                 }
             }
+            Scene.SetEvents();
+            Scene.terrain.SetEvents();
         }
 
         private Tile.TileType GetTileType(string _path)

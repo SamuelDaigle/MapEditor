@@ -37,7 +37,6 @@ namespace Map_Editor.GameData
             }
         }
 
-        [field: NonSerialized]
         public event EventHandler TileChanged;
 
         public enum TileType

@@ -22,7 +22,7 @@ namespace Map_Editor.GameData
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        result[x * width + y] = tiles[x][y];
+                        result[y * width + x] = tiles[y][x];
                     }
                 }
                 return result;
@@ -35,13 +35,13 @@ namespace Map_Editor.GameData
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        tiles[x][y] = readData[x * width + y];
+                        tiles[y][x].Type = readData[y * width + x].Type;
+                        tiles[y][x].path = readData[y * width + x].path;
                     }
                 }
             }
         }
 
-        [field: NonSerialized]
         public event EventHandler TerrainChanged;
 
         public void Initialize(int _width, int _height)
@@ -58,6 +58,17 @@ namespace Map_Editor.GameData
                     tiles[y][x].TileChanged += OnTerrainChanged;
                     tiles[y][x].Initialize(Tile.TileType.Empty, x, y);
                     tiles[y][x].path = "../../Resources/Tile/Empty.png";
+                }
+            }
+        }
+
+        public void SetEvents()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    tiles[y][x].TileChanged += OnTerrainChanged;
                 }
             }
         }
