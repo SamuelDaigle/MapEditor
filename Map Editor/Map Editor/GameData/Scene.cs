@@ -23,6 +23,11 @@ namespace Map_Editor.GameData
             SetEvents();
         }
 
+        public void UnsetEvents()
+        {
+            selectedTerrain.TerrainChanged -= OnTerrainChanged;
+        }
+
         public void SetEvents()
         {
             selectedTerrain.TerrainChanged += OnTerrainChanged;

@@ -62,6 +62,17 @@ namespace Map_Editor.GameData
             }
         }
 
+        public void UnsetEvents()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    tiles[y][x].TileChanged -= OnTerrainChanged;
+                }
+            }
+        }
+
         public void SetEvents()
         {
             for (int y = 0; y < height; y++)

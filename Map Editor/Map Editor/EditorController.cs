@@ -84,19 +84,18 @@ namespace Map_Editor
         {
             Button button = (Button) sender;
             int floorID = Convert.ToInt32(button.Text);
+
+            // Remove handles from the old floor
+            Scene.UnsetEvents();
+            Scene.selectedTerrain.UnsetEvents(); 
+
             Scene.selectedTerrain = Scene.floors[floorID - 1];
+            // Add handles to the new floor.
+            Scene.SetEvents();
             Scene.selectedTerrain.SetEvents();
-            Tile[] result = Scene.selectedTerrain.Tiles;
-            for (int y = 0; y < floorHeight; y++)
-            {
-                for (int x = 0; x < floorWidth; x++)
-                {
-                    pictureBoxes[y][x].Image = GetImage(result[y * floorWidth + x]);
-                }
-            }
+
+            UpdatePictureBoxes();
         }
-
-
 
         private void picTile_Click(object sender, EventArgs e)
         {

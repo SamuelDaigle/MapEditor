@@ -103,6 +103,18 @@ namespace Map_Editor
             pnlDraw.AutoScroll = true;
         }
 
+        private void UpdatePictureBoxes()
+        {
+            Tile[] result = Scene.selectedTerrain.Tiles;
+            for (int y = 0; y < floorHeight; y++)
+            {
+                for (int x = 0; x < floorWidth; x++)
+                {
+                    pictureBoxes[y][x].Image = GetImage(result[y * floorWidth + x]);
+                }
+            }
+        }
+
         // Received the modified tile.
         private void OnSceneChanged(object sender, EventArgs e)
         {
