@@ -92,8 +92,6 @@ namespace Map_Editor
                     pictureBoxes[y][x] = new PictureBox();
                     pictureBoxes[y][x].SetBounds(x * PICTURE_BOX_SIZE, y * PICTURE_BOX_SIZE, PICTURE_BOX_SIZE, PICTURE_BOX_SIZE);
                     pictureBoxes[y][x].BackgroundImageLayout = ImageLayout.Center;
-                    pictureBoxes[y][x].Image = Image.FromFile(PATH_TILE_EMPTY);
-                    pictureBoxes[y][x].ImageLocation = PATH_TILE_EMPTY;
                     pictureBoxes[y][x].MouseMove += picModify_Move;
                     pictureBoxes[y][x].MouseDown += picModify_Down;
                     pictureBoxes[y][x].MouseUp += picModify_Up;

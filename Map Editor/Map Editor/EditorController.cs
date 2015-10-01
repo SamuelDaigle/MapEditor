@@ -49,8 +49,20 @@ namespace Map_Editor
                     floorWidth = terrainWidth;
                     floorHeight = terrainHeight;
                     btnAdd_Click(btnAdd, EventArgs.Empty);
+                    SetAllTiles(type);
 
                     Scene.SetEvents();
+                }
+            }
+        }
+
+        private void SetAllTiles(Tile.TileType _type)
+        {
+            for (int y = 0; y < scene.selectedTerrain.height; y++)
+            {
+                for (int x = 0; x < scene.selectedTerrain.width; x++)
+                {
+                    scene.selectedTerrain.GetTile(x, y).Type = _type;
                 }
             }
         }
