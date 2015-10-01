@@ -29,7 +29,7 @@ namespace Map_Editor.GameData
             }
             set
             {
-                Initialize(width, height);
+                Initialize(width, height, Tile.TileType.Empty);
                 Tile[] readData = value;
                 for (int y = 0; y < height; y++)
                 {
@@ -44,7 +44,7 @@ namespace Map_Editor.GameData
 
         public event EventHandler TerrainChanged;
 
-        public void Initialize(int _width, int _height)
+        public void Initialize(int _width, int _height, Tile.TileType _type)
         {
             width = _width;
             height = _height;
@@ -56,7 +56,7 @@ namespace Map_Editor.GameData
                 {
                     tiles[y][x] = new Tile();
                     tiles[y][x].TileChanged += OnTerrainChanged;
-                    tiles[y][x].Initialize(Tile.TileType.Empty, x, y);
+                    tiles[y][x].Initialize(_type, x, y);
                     tiles[y][x].path = "../../Resources/Tile/Empty.png";
                 }
             }

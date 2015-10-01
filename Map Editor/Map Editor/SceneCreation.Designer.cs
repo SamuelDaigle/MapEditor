@@ -36,8 +36,9 @@
             this.lblSceneName = new System.Windows.Forms.Label();
             this.txtSceneName = new System.Windows.Forms.TextBox();
             this.grbTerrain = new System.Windows.Forms.GroupBox();
+            this.dropDefaultTile = new System.Windows.Forms.ComboBox();
             this.lblDefaultTile = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).BeginInit();
             this.grbTerrain.SuspendLayout();
@@ -97,8 +98,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSubmit.Location = new System.Drawing.Point(110, 296);
+            this.btnSubmit.Location = new System.Drawing.Point(113, 301);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 4;
@@ -124,18 +124,26 @@
             // 
             // grbTerrain
             // 
-            this.grbTerrain.Controls.Add(this.comboBox1);
+            this.grbTerrain.Controls.Add(this.dropDefaultTile);
             this.grbTerrain.Controls.Add(this.lblDefaultTile);
             this.grbTerrain.Controls.Add(this.numWidth);
             this.grbTerrain.Controls.Add(this.lblWidth);
             this.grbTerrain.Controls.Add(this.numHeight);
             this.grbTerrain.Controls.Add(this.lblHeight);
-            this.grbTerrain.Location = new System.Drawing.Point(53, 127);
+            this.grbTerrain.Location = new System.Drawing.Point(53, 117);
             this.grbTerrain.Name = "grbTerrain";
             this.grbTerrain.Size = new System.Drawing.Size(200, 150);
             this.grbTerrain.TabIndex = 7;
             this.grbTerrain.TabStop = false;
             this.grbTerrain.Text = "Terrain";
+            // 
+            // dropDefaultTile
+            // 
+            this.dropDefaultTile.FormattingEnabled = true;
+            this.dropDefaultTile.Location = new System.Drawing.Point(71, 105);
+            this.dropDefaultTile.Name = "dropDefaultTile";
+            this.dropDefaultTile.Size = new System.Drawing.Size(121, 21);
+            this.dropDefaultTile.TabIndex = 5;
             // 
             // lblDefaultTile
             // 
@@ -146,25 +154,28 @@
             this.lblDefaultTile.TabIndex = 4;
             this.lblDefaultTile.Text = "Default Tile";
             // 
-            // comboBox1
+            // lblError
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(71, 105);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
+            this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(91, 270);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 13);
+            this.lblError.TabIndex = 8;
             // 
             // SceneCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(309, 336);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.grbTerrain);
             this.Controls.Add(this.txtSceneName);
             this.Controls.Add(this.lblSceneName);
             this.Controls.Add(this.btnSubmit);
             this.Name = "SceneCreation";
             this.Text = "SceneCreation";
+            this.Load += new System.EventHandler(this.SceneCreation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).EndInit();
             this.grbTerrain.ResumeLayout(false);
@@ -184,7 +195,8 @@
         private System.Windows.Forms.Label lblSceneName;
         private System.Windows.Forms.TextBox txtSceneName;
         private System.Windows.Forms.GroupBox grbTerrain;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox dropDefaultTile;
         private System.Windows.Forms.Label lblDefaultTile;
+        private System.Windows.Forms.Label lblError;
     }
 }

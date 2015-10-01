@@ -23,6 +23,7 @@ namespace Map_Editor
             picTileSlow.Click += new System.EventHandler(this.picTile_Click);
             picTileDoor.Click += new System.EventHandler(this.picTile_Click);
             selectedPictureBox = picTileEmpty;
+            picTile_Click(selectedPictureBox, EventArgs.Empty);
         }
 
         private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,13 +35,14 @@ namespace Map_Editor
                 {
                     int terrainWidth = form.TerrainWidth;
                     int terrainHeight = form.TerrainHeight;
+                    Tile.TileType type = form.TileType;
 
                     InitializeView(terrainWidth, terrainHeight);
 
                     Scene = new Scene();
                     Scene.name = form.SceneName;
 
-                    Scene.terrain.Initialize(terrainWidth, terrainHeight);
+                    Scene.terrain.Initialize(terrainWidth, terrainHeight, type);
 
                 }
             }
