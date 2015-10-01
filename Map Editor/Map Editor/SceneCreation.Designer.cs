@@ -109,7 +109,7 @@
             // lblSceneName
             // 
             this.lblSceneName.AutoSize = true;
-            this.lblSceneName.Location = new System.Drawing.Point(50, 94);
+            this.lblSceneName.Location = new System.Drawing.Point(57, 23);
             this.lblSceneName.Name = "lblSceneName";
             this.lblSceneName.Size = new System.Drawing.Size(67, 13);
             this.lblSceneName.TabIndex = 5;
@@ -117,7 +117,8 @@
             // 
             // txtSceneName
             // 
-            this.txtSceneName.Location = new System.Drawing.Point(139, 91);
+            this.txtSceneName.AcceptsTab = true;
+            this.txtSceneName.Location = new System.Drawing.Point(146, 20);
             this.txtSceneName.Name = "txtSceneName";
             this.txtSceneName.Size = new System.Drawing.Size(100, 20);
             this.txtSceneName.TabIndex = 6;
@@ -130,9 +131,9 @@
             this.grbTerrain.Controls.Add(this.lblWidth);
             this.grbTerrain.Controls.Add(this.numHeight);
             this.grbTerrain.Controls.Add(this.lblHeight);
-            this.grbTerrain.Location = new System.Drawing.Point(53, 117);
+            this.grbTerrain.Location = new System.Drawing.Point(60, 97);
             this.grbTerrain.Name = "grbTerrain";
-            this.grbTerrain.Size = new System.Drawing.Size(200, 150);
+            this.grbTerrain.Size = new System.Drawing.Size(200, 147);
             this.grbTerrain.TabIndex = 7;
             this.grbTerrain.TabStop = false;
             this.grbTerrain.Text = "Terrain";

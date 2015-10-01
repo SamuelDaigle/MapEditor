@@ -10,19 +10,22 @@ namespace Map_Editor.GameData
     public class Scene
     {
         public string name;
-        public Terrain terrain;
+        public Floor selectedTerrain;
+
+        public List<Floor> floors;
 
         public event EventHandler SceneChanged;
 
         public Scene()
         {
-            terrain = new Terrain();
+            floors = new List<Floor>();
+            selectedTerrain = new Floor();
             SetEvents();
         }
 
         public void SetEvents()
         {
-            terrain.TerrainChanged += OnTerrainChanged;
+            selectedTerrain.TerrainChanged += OnTerrainChanged;
         }
 
         // Received the tile by the terrain.

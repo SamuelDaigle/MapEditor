@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
-    public class Terrain
+    public class Floor
     {
         public int width;
         public int height;

@@ -56,7 +56,7 @@
     <Compile Include="GameData\Terrain\Bonus.cs" />
     <Compile Include="GameData\Terrain\IObject.cs" />
     <Compile Include="GameData\Scene.cs" />
-    <Compile Include="GameData\Terrain\Terrain.cs" />
+    <Compile Include="GameData\Terrain\Floor.cs" />
     <Compile Include="GameData\Terrain\Tile.cs" />
     <Compile Include="GameData\Terrain\Trap.cs" />
     <Compile Include="GameData\Terrain\Utilities.cs" />

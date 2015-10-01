@@ -15,6 +15,9 @@ namespace Map_Editor
         private Tile selectedTile;
         private bool isMouseDown = false;
 
+        private int floorWidth;
+        private int floorHeight;
+
         public void InitializeControls()
         {
             newSceneToolStripMenuItem.Click += new System.EventHandler(this.newSceneToolStripMenuItem_Click);
@@ -24,6 +27,7 @@ namespace Map_Editor
             picTileDoor.Click += new System.EventHandler(this.picTile_Click);
             selectedPictureBox = picTileEmpty;
             picTile_Click(selectedPictureBox, EventArgs.Empty);
+            
         }
 
         private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,11 +46,57 @@ namespace Map_Editor
                     Scene = new Scene();
                     Scene.name = form.SceneName;
 
-                    Scene.terrain.Initialize(terrainWidth, terrainHeight, type);
+                    floorWidth = terrainWidth;
+                    floorHeight = terrainHeight;
+                    btnAdd_Click(btnAdd, EventArgs.Empty);
 
+                    Scene.SetEvents();
                 }
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Floor floor = new Floor();
+            floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
+            Scene.floors.Add(floor);
+            
+
+            Control downButton = pnlGroupFloors.Controls[pnlGroupFloors.Controls.Count - 1];
+            pnlGroupFloors.Controls.RemoveAt(pnlGroupFloors.Controls.Count - 1);
+
+            Button btnFloor = new Button();
+            btnFloor.Text = Scene.floors.Count.ToString();
+            btnFloor.Size = new Size(btnUp.Size.Width, btnUp.Size.Height);
+            btnFloor.Click += selectFloor_Click;
+            pnlGroupFloors.Controls.Add(btnFloor);
+
+            pnlGroupFloors.Controls.Add(downButton);
+            selectFloor_Click(btnFloor, EventArgs.Empty);
+
+            if (Scene.floors.Count >= 5)
+            {
+                btnAdd.Enabled = false;
+            }
+        }
+
+        private void selectFloor_Click(object sender, EventArgs e)
+        {
+            Button button = (Button) sender;
+            int floorID = Convert.ToInt32(button.Text);
+            Scene.selectedTerrain = Scene.floors[floorID - 1];
+            Scene.selectedTerrain.SetEvents();
+            Tile[] result = Scene.selectedTerrain.Tiles;
+            for (int y = 0; y < floorHeight; y++)
+            {
+                for (int x = 0; x < floorWidth; x++)
+                {
+                    pictureBoxes[y][x].Image = GetImage(result[y * floorWidth + x]);
+                }
+            }
+        }
+
+
 
         private void picTile_Click(object sender, EventArgs e)
         {
@@ -67,12 +117,12 @@ namespace Map_Editor
                 int pictureBoxX = (position.X - pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                 int pictureBoxY = (position.Y - pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                 label1.Text = position.ToString();
-                if (pictureBoxX >= 0 && pictureBoxX < scene.terrain.width &&
-                    pictureBoxY >= 0 && pictureBoxY < scene.terrain.height)
+                if (pictureBoxX >= 0 && pictureBoxX < scene.selectedTerrain.width &&
+                    pictureBoxY >= 0 && pictureBoxY < scene.selectedTerrain.height)
                 {
                     if (selectedPictureBox != null)
                     {
-                        selectedTile = scene.terrain.GetTile(pictureBoxX, pictureBoxY);
+                        selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
                         if (e.Button == MouseButtons.Left)
                         {
                             selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
@@ -115,16 +165,16 @@ namespace Map_Editor
         {
             XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>("scene.xml");
             Scene = sceneXML.Load();
-            InitializeView(scene.terrain.width, scene.terrain.height);
-            for (int y = 0; y < scene.terrain.height; y++)
+            InitializeView(scene.selectedTerrain.width, scene.selectedTerrain.height);
+            for (int y = 0; y < scene.selectedTerrain.height; y++)
             {
-                for (int x = 0; x < scene.terrain.width; x++)
+                for (int x = 0; x < scene.selectedTerrain.width; x++)
                 {
-                    pictureBoxes[y][x].Image = GetImage(scene.terrain.GetTile(x, y));
+                    pictureBoxes[y][x].Image = GetImage(scene.selectedTerrain.GetTile(x, y));
                 }
             }
             Scene.SetEvents();
-            Scene.terrain.SetEvents();
+            Scene.selectedTerrain.SetEvents();
         }
 
         private Tile.TileType GetTileType(string _path)

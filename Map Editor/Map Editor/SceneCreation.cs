@@ -56,6 +56,8 @@ namespace Map_Editor
 
         private void SceneCreation_Load(object sender, EventArgs e)
         {
+            this.ActiveControl = txtSceneName;
+
             string[] val = Enum.GetNames(typeof(Tile.TileType));
 
             foreach (string st in val)
