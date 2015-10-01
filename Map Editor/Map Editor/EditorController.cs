@@ -71,15 +71,16 @@ namespace Map_Editor
                     if (selectedPictureBox != null)
                     {
                         selectedTile = scene.terrain.GetTile(pictureBoxX, pictureBoxY);
-                        selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
-                        selectedTile.path = selectedPictureBox.ImageLocation;
+                        if (e.Button == MouseButtons.Left)
+                        {
+                            selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
+                            selectedTile.path = selectedPictureBox.ImageLocation;
+                        }
                         if (e.Button == MouseButtons.Right)
                         {
-                            selectedPictureBox = (PictureBox)sender;
-                            lblTileName.Text = selectedTile.path.Substring(selectedTile.path.LastIndexOf('/') + 1);
-                            lblTileName.Text = lblTileName.Text.Substring(0, lblTileName.Text.LastIndexOf('.'));
-                            grbProperties.Visible = true;
+                            lblTileName.Text = selectedTile.Type.ToString();
                             properties.SelectedObject = selectedTile;
+                            grbProperties.Visible = true;
                         }
                     }
                 }

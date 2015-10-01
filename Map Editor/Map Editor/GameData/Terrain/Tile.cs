@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 namespace Map_Editor.GameData
 {
     [DefaultPropertyAttribute("Name")]
-    public class Tile : IComponent
+    public class Tile
     {
         public string path;
         public int x;
@@ -70,30 +70,6 @@ namespace Map_Editor.GameData
             {
                 TileChanged(this, e);
             }
-        }
-
-
-        event EventHandler IComponent.Disposed
-        {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
-        }
-
-        ISite IComponent.Site
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }
