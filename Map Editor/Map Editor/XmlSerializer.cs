@@ -28,10 +28,18 @@ namespace Map_Editor
         public T Load()
         {
             T result;
-            XmlSerializer serializer = new XmlSerializer(typeof(Scene));
-            FileStream file = new FileStream(path, FileMode.Open);
-            result = (T)serializer.Deserialize(file);
-            file.Close();
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Scene));
+                FileStream file = new FileStream(path, FileMode.Open);
+                result = (T)serializer.Deserialize(file);
+                file.Close();
+            }
+            catch (Exception)
+            {
+                result = default(T);
+            }
+            
             return result;
         }
     }

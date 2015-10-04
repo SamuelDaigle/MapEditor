@@ -19,7 +19,7 @@ namespace Map_Editor.GameData
         public int speedModifier { get; set; }
         public Orientation orientation;
 
-        //public List<IObject> objectsOnTile;
+        public GameObject objectOnTile;
         private TileType type;
         
 
@@ -59,7 +59,14 @@ namespace Map_Editor.GameData
             x = _x;
             y = _y;
             Type = _type;
-            //objectsOnTile = new List<IObject>();
+            objectOnTile = new GameObject();
+            objectOnTile.ObjectChanged += OnObjectChanged;
+        }
+
+        // Notify the tile.
+        private void OnObjectChanged(object sender, EventArgs e)
+        {
+            OnTileChanged(e);
         }
 
         // Notify the terrain.

@@ -15,6 +15,7 @@ namespace Map_Editor
     {
         private Scene scene;
         private PictureBox[][] pictureBoxes;
+        private List<PictureBox> objectsPictureBox;
         private const int PICTURE_BOX_SIZE = 52;
 
         #region TILES_PATH
@@ -31,10 +32,19 @@ namespace Map_Editor
         private const string PATH_TILE_SLOPE = "../../Resources/Tile/Slope.png";
         #endregion
 
+
+
         public Editor()
         {
+            objectsPictureBox = new List<PictureBox>();
             InitializeComponent();
             InitializeControls();
+            InitializeTiles();
+            InitializeObjects();
+        }
+
+        private void InitializeTiles()
+        {
             picTileEmpty.Image = Image.FromFile(PATH_TILE_EMPTY);
             picTileEmpty.ImageLocation = PATH_TILE_EMPTY;
             picTileBad.Image = Image.FromFile(PATH_TILE_BAD);
@@ -58,7 +68,54 @@ namespace Map_Editor
             picTileSlope.Image = Image.FromFile(PATH_TILE_SLOPE);
             picTileSlope.ImageLocation = PATH_TILE_SLOPE;
         }
-        
+
+        private void InitializeObjects()
+        {
+            // TRAPS
+            picTrapDrop.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Drop);
+            picTrapDrop.Image = Image.FromFile(picTrapDrop.ImageLocation);
+            picTrapFire.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Fire);
+            picTrapFire.Image = Image.FromFile(picTrapFire.ImageLocation);
+            picTrapFreeze.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Freeze);
+            picTrapFreeze.Image = Image.FromFile(picTrapFreeze.ImageLocation);
+            picTrapSpike.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Spike);
+            picTrapSpike.Image = Image.FromFile(picTrapSpike.ImageLocation);
+            picTrapTurret.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Turret);
+            picTrapTurret.Image = Image.FromFile(picTrapTurret.ImageLocation);
+
+            // Bonus
+            picBonusDash.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Dash);
+            picBonusDash.Image = Image.FromFile(picBonusDash.ImageLocation);
+            picBonusDecoy.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Decoy);
+            picBonusDecoy.Image = Image.FromFile(picBonusDecoy.ImageLocation);
+            picBonusDouble.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Double);
+            picBonusDouble.Image = Image.FromFile(picBonusDouble.ImageLocation);
+            picBonusEMP.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.EMP);
+            picBonusEMP.Image = Image.FromFile(picBonusEMP.ImageLocation);
+            picBonusImplosion.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Implosion);
+            picBonusImplosion.Image = Image.FromFile(picBonusImplosion.ImageLocation);
+            picBonusMissile.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Missile);
+            picBonusMissile.Image = Image.FromFile(picBonusMissile.ImageLocation);
+            picBonusPower.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Power);
+            picBonusPower.Image = Image.FromFile(picBonusPower.ImageLocation);
+            picBonusRicochet.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Ricochet);
+            picBonusRicochet.Image = Image.FromFile(picBonusRicochet.ImageLocation);
+            picBonusShield.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Shield);
+            picBonusShield.Image = Image.FromFile(picBonusShield.ImageLocation);
+            picBonusSpeed.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Speed);
+            picBonusSpeed.Image = Image.FromFile(picBonusSpeed.ImageLocation);
+
+            // Utilities
+            picUtilGoal.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Goal);
+            picUtilGoal.Image = Image.FromFile(picUtilGoal.ImageLocation);
+            picUtilJump.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Jump);
+            picUtilJump.Image = Image.FromFile(picUtilJump.ImageLocation);
+            picUtilSpawn.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Spawn);
+            picUtilSpawn.Image = Image.FromFile(picUtilSpawn.ImageLocation);
+            picUtilTrigger.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Trigger);
+            picUtilTrigger.Image = Image.FromFile(picUtilTrigger.ImageLocation);
+        }
+
         public Scene Scene
         {
             get
@@ -95,6 +152,16 @@ namespace Map_Editor
                     pictureBoxes[y][x].MouseMove += picModify_Move;
                     pictureBoxes[y][x].MouseDown += picModify_Down;
                     pictureBoxes[y][x].MouseUp += picModify_Up;
+
+                    PictureBox objectBox = new PictureBox();
+                    objectBox.Parent = pictureBoxes[y][x];
+                    objectBox.MouseMove += picModify_Move;
+                    objectBox.MouseDown += picModify_Down;
+                    objectBox.MouseUp += picModify_Up;
+                    objectBox.Size = new System.Drawing.Size(32, 32);
+                    objectBox.Location = new Point((pictureBoxes[y][x].Size.Width - objectBox.Size.Width) / 2, (pictureBoxes[y][x].Size.Height - objectBox.Size.Height) / 2);
+                    pictureBoxes[y][x].Controls.Add(objectBox);
+
                     pnlDraw.Controls.Add(pictureBoxes[y][x]);
                 }
             }
@@ -116,8 +183,19 @@ namespace Map_Editor
         // Received the modified tile.
         private void OnSceneChanged(object sender, EventArgs e)
         {
-            Tile tile = (Tile)sender;
-            pictureBoxes[tile.y][tile.x].Image = GetImage(tile);
+            if (sender is Tile)
+            {
+                Tile tile = (Tile)sender;
+                pictureBoxes[tile.y][tile.x].Image = GetImage(tile);
+
+                if (pictureBoxes[tile.y][tile.x].HasChildren)
+                {
+                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.y][tile.x].Controls[0];
+                    string path = tile.objectOnTile.ToString();
+                    objectPictureBox.ImageLocation = path;
+                    objectPictureBox.Image = Image.FromFile(path);
+                }
+            }
         }
 
         private Image GetImage(Tile _tile)
@@ -167,118 +245,6 @@ namespace Map_Editor
 
                 case Tile.TileType.Wall:
                     path = PATH_TILE_WALL;
-                    break;
-
-                default:
-                    path = "pas lololol";
-                    break;
-            }
-            return Image.FromFile(path);
-        }
-
-        private Image GetImage(Bonus _bonus)
-        {
-            string path;
-            switch (_bonus.type)
-            {
-                case Bonus.BonusType.Dash:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Decoy:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Double:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.EMP:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Implosion:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Missile:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Power:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Ricochet:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Shield:
-                    path = "lolol";
-                    break;
-
-                case Bonus.BonusType.Speed:
-                    path = "lolol";
-                    break;
-
-                default:
-                    path = "pas lololol";
-                    break;
-            }
-            return Image.FromFile(path);
-        }
-
-        private Image GetImage(Trap _trap)
-        {
-            string path;
-            switch (_trap.type)
-            {
-                case Trap.TrapType.Drop:
-                    path = "lolol";
-                    break;
-
-                case Trap.TrapType.Fire:
-                    path = "lolol";
-                    break;
-
-                case Trap.TrapType.Freeze:
-                    path = "lolol";
-                    break;
-
-                case Trap.TrapType.Spike:
-                    path = "lolol";
-                    break;
-
-                case Trap.TrapType.Turret:
-                    path = "lolol";
-                    break;
-
-                default:
-                    path = "pas lololol";
-                    break;
-            }
-            return Image.FromFile(path);
-        }
-
-        private Image GetImage(Utilities _util)
-        {
-            string path;
-            switch (_util.type)
-            {
-                case Utilities.UtilType.Goal:
-                    path = "lolol";
-                    break;
-
-                case Utilities.UtilType.Jump:
-                    path = "lolol";
-                    break;
-
-                case Utilities.UtilType.Spawn:
-                    path = "lolol";
-                    break;
-
-                case Utilities.UtilType.Trigger:
-                    path = "lolol";
                     break;
 
                 default:

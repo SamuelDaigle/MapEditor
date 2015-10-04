@@ -11,7 +11,8 @@ namespace Map_Editor
 {
     public partial class Editor
     {
-        private PictureBox selectedPictureBox;
+        private PictureBox selectedTilePictureBox;
+        private PictureBox selectedObjectPictureBox;
         private Tile selectedTile;
         private bool isMouseDown = false;
 
@@ -25,8 +26,40 @@ namespace Map_Editor
             picTileOneByOne.Click += new System.EventHandler(this.picTile_Click);
             picTileSlow.Click += new System.EventHandler(this.picTile_Click);
             picTileDoor.Click += new System.EventHandler(this.picTile_Click);
-            selectedPictureBox = picTileEmpty;
-            picTile_Click(selectedPictureBox, EventArgs.Empty);
+            picTileWall.Click += new System.EventHandler(this.picTile_Click);
+            picTileEmpty.Click += new System.EventHandler(this.picTile_Click);
+            picTileFloor.Click += new System.EventHandler(this.picTile_Click);
+            picTileSlope.Click += new System.EventHandler(this.picTile_Click);
+            picTileTeleport.Click += new System.EventHandler(this.picTile_Click);
+            picTileTower.Click += new System.EventHandler(this.picTile_Click);
+            picTileBad.Click += new System.EventHandler(this.picTile_Click);
+            // TRAPS
+            picTrapDrop.Click += new System.EventHandler(this.picObject_Click);
+            picTrapFire.Click += new System.EventHandler(this.picObject_Click);
+            picTrapFreeze.Click += new System.EventHandler(this.picObject_Click);
+            picTrapSpike.Click += new System.EventHandler(this.picObject_Click);
+            picTrapTurret.Click += new System.EventHandler(this.picObject_Click);
+
+            // Bonus
+            picBonusDash.Click += new System.EventHandler(this.picObject_Click);
+            picBonusDecoy.Click += new System.EventHandler(this.picObject_Click);
+            picBonusDouble.Click += new System.EventHandler(this.picObject_Click);
+            picBonusEMP.Click += new System.EventHandler(this.picObject_Click);
+            picBonusImplosion.Click += new System.EventHandler(this.picObject_Click);
+            picBonusMissile.Click += new System.EventHandler(this.picObject_Click);
+            picBonusPower.Click += new System.EventHandler(this.picObject_Click);
+            picBonusRicochet.Click += new System.EventHandler(this.picObject_Click);
+            picBonusShield.Click += new System.EventHandler(this.picObject_Click);
+            picBonusSpeed.Click += new System.EventHandler(this.picObject_Click);
+
+            // Utilities
+            picUtilGoal.Click += new System.EventHandler(this.picObject_Click);
+            picUtilJump.Click += new System.EventHandler(this.picObject_Click);
+            picUtilSpawn.Click += new System.EventHandler(this.picObject_Click);
+            picUtilTrigger.Click += new System.EventHandler(this.picObject_Click);
+
+            selectedTilePictureBox = picTileEmpty;
+            picTile_Click(selectedTilePictureBox, EventArgs.Empty);
             
         }
 
@@ -111,12 +144,24 @@ namespace Map_Editor
 
         private void picTile_Click(object sender, EventArgs e)
         {
-            if (selectedPictureBox != null)
+            selectedObjectPictureBox = null;
+            if (selectedTilePictureBox != null)
             {
-                selectedPictureBox.BackColor = Color.Transparent;
+                selectedTilePictureBox.BackColor = Color.Transparent;
             }
-            selectedPictureBox = (PictureBox)sender;
-            selectedPictureBox.BackColor = Color.Yellow;
+            selectedTilePictureBox = (PictureBox)sender;
+            selectedTilePictureBox.BackColor = Color.Yellow;
+        }
+
+        private void picObject_Click(object sender, EventArgs e)
+        {
+            selectedTilePictureBox = null;
+            if (selectedObjectPictureBox != null)
+            {
+                selectedObjectPictureBox.BackColor = Color.Transparent;
+            }
+            selectedObjectPictureBox = (PictureBox)sender;
+            selectedObjectPictureBox.BackColor = Color.Yellow;
         }
 
         public void picModify_Move(object sender, MouseEventArgs e)
@@ -131,23 +176,31 @@ namespace Map_Editor
                 if (pictureBoxX >= 0 && pictureBoxX < scene.selectedTerrain.width &&
                     pictureBoxY >= 0 && pictureBoxY < scene.selectedTerrain.height)
                 {
-                    if (selectedPictureBox != null)
+                    if (selectedTilePictureBox != null)
                     {
                         selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
                         if (e.Button == MouseButtons.Left)
                         {
-                            selectedTile.Type = GetTileType(selectedPictureBox.ImageLocation);
-                            if (selectedPictureBox.ImageLocation == null)
+                            selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
+                            if (selectedTilePictureBox.ImageLocation == null)
                             {
-                                selectedPictureBox.ImageLocation = selectedTile.path;
+                                selectedTilePictureBox.ImageLocation = selectedTile.path;
                             }
-                            selectedTile.path = selectedPictureBox.ImageLocation;
+                            selectedTile.path = selectedTilePictureBox.ImageLocation;
                         }
                         if (e.Button == MouseButtons.Right)
                         {
                             lblTileName.Text = selectedTile.Type.ToString();
                             properties.SelectedObject = selectedTile;
                             grbProperties.Visible = true;
+                        }
+                    }
+                    if (selectedObjectPictureBox != null)
+                    {
+                        selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
+                        if (e.Button == MouseButtons.Left)
+                        {
+                            selectedTile.objectOnTile.SetObject(selectedObjectPictureBox.ImageLocation);
                         }
                     }
                 }
@@ -176,16 +229,19 @@ namespace Map_Editor
         {
             XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>("scene.xml");
             Scene = sceneXML.Load();
-            InitializeView(scene.selectedTerrain.width, scene.selectedTerrain.height);
-            for (int y = 0; y < scene.selectedTerrain.height; y++)
+            if (Scene != null)
             {
-                for (int x = 0; x < scene.selectedTerrain.width; x++)
+                InitializeView(scene.selectedTerrain.width, scene.selectedTerrain.height);
+                for (int y = 0; y < scene.selectedTerrain.height; y++)
                 {
-                    pictureBoxes[y][x].Image = GetImage(scene.selectedTerrain.GetTile(x, y));
+                    for (int x = 0; x < scene.selectedTerrain.width; x++)
+                    {
+                        pictureBoxes[y][x].Image = GetImage(scene.selectedTerrain.GetTile(x, y));
+                    }
                 }
+                Scene.SetEvents();
+                Scene.selectedTerrain.SetEvents();
             }
-            Scene.SetEvents();
-            Scene.selectedTerrain.SetEvents();
         }
 
         private Tile.TileType GetTileType(string _path)

@@ -53,13 +53,10 @@
     <Compile Include="EditorController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameData\Terrain\Bonus.cs" />
-    <Compile Include="GameData\Terrain\IObject.cs" />
+    <Compile Include="GameData\Terrain\GameObject.cs" />
     <Compile Include="GameData\Scene.cs" />
     <Compile Include="GameData\Terrain\Floor.cs" />
     <Compile Include="GameData\Terrain\Tile.cs" />
-    <Compile Include="GameData\Terrain\Trap.cs" />
-    <Compile Include="GameData\Terrain\Utilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneCreation.cs">
@@ -85,6 +82,7 @@
     <EmbeddedResource Include="SceneCreation.resx">
       <DependentUpon>SceneCreation.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

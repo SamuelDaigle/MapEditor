@@ -363,7 +363,6 @@
             this.picTileBad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileBad.TabIndex = 6;
             this.picTileBad.TabStop = false;
-            this.picTileBad.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileTower
             // 
@@ -375,7 +374,6 @@
             this.picTileTower.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileTower.TabIndex = 5;
             this.picTileTower.TabStop = false;
-            this.picTileTower.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileTeleport
             // 
@@ -387,7 +385,6 @@
             this.picTileTeleport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileTeleport.TabIndex = 4;
             this.picTileTeleport.TabStop = false;
-            this.picTileTeleport.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileSlope
             // 
@@ -399,7 +396,6 @@
             this.picTileSlope.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileSlope.TabIndex = 3;
             this.picTileSlope.TabStop = false;
-            this.picTileSlope.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileFloor
             // 
@@ -411,7 +407,6 @@
             this.picTileFloor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileFloor.TabIndex = 2;
             this.picTileFloor.TabStop = false;
-            this.picTileFloor.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileWall
             // 
@@ -423,7 +418,6 @@
             this.picTileWall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileWall.TabIndex = 1;
             this.picTileWall.TabStop = false;
-            this.picTileWall.Click += new System.EventHandler(this.picTile_Click);
             // 
             // picTileEmpty
             // 
@@ -436,7 +430,6 @@
             this.picTileEmpty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTileEmpty.TabIndex = 0;
             this.picTileEmpty.TabStop = false;
-            this.picTileEmpty.Click += new System.EventHandler(this.picTile_Click);
             // 
             // tabObjects
             // 
