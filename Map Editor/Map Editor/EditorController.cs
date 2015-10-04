@@ -232,15 +232,8 @@ namespace Map_Editor
             if (Scene != null)
             {
                 InitializeView(scene.selectedTerrain.width, scene.selectedTerrain.height);
-                for (int y = 0; y < scene.selectedTerrain.height; y++)
-                {
-                    for (int x = 0; x < scene.selectedTerrain.width; x++)
-                    {
-                        pictureBoxes[y][x].Image = GetImage(scene.selectedTerrain.GetTile(x, y));
-                    }
-                }
+                Scene.UnsetEvents();
                 Scene.SetEvents();
-                Scene.selectedTerrain.SetEvents();
             }
         }
 

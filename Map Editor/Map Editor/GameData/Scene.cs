@@ -26,11 +26,13 @@ namespace Map_Editor.GameData
         public void UnsetEvents()
         {
             selectedTerrain.TerrainChanged -= OnTerrainChanged;
+            selectedTerrain.UnsetEvents();
         }
 
         public void SetEvents()
         {
             selectedTerrain.TerrainChanged += OnTerrainChanged;
+            selectedTerrain.SetEvents();
         }
 
         // Received the tile by the terrain.

@@ -155,6 +155,7 @@ namespace Map_Editor
 
                     PictureBox objectBox = new PictureBox();
                     objectBox.Parent = pictureBoxes[y][x];
+                    objectBox.BackColor = Color.Transparent;
                     objectBox.MouseMove += picModify_Move;
                     objectBox.MouseDown += picModify_Down;
                     objectBox.MouseUp += picModify_Up;
@@ -192,8 +193,11 @@ namespace Map_Editor
                 {
                     PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.y][tile.x].Controls[0];
                     string path = tile.objectOnTile.ToString();
-                    objectPictureBox.ImageLocation = path;
-                    objectPictureBox.Image = Image.FromFile(path);
+                    if (path != "")
+                    {
+                        objectPictureBox.ImageLocation = path;
+                        objectPictureBox.Image = Image.FromFile(path);
+                    }
                 }
             }
         }

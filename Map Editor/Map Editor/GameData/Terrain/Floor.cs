@@ -37,6 +37,7 @@ namespace Map_Editor.GameData
                     {
                         tiles[y][x].Type = readData[y * width + x].Type;
                         tiles[y][x].path = readData[y * width + x].path;
+                        tiles[y][x].objectOnTile = readData[y * width + x].objectOnTile;
                     }
                 }
             }
@@ -69,6 +70,7 @@ namespace Map_Editor.GameData
                 for (int x = 0; x < width; x++)
                 {
                     tiles[y][x].TileChanged -= OnTerrainChanged;
+                    tiles[y][x].UnsetEvents();
                 }
             }
         }
@@ -80,8 +82,10 @@ namespace Map_Editor.GameData
                 for (int x = 0; x < width; x++)
                 {
                     tiles[y][x].TileChanged += OnTerrainChanged;
+                    tiles[y][x].SetEvents();
                 }
             }
+            UpdateTiles();
         }
 
         public Tile GetTile(int _X, int _Y)
@@ -102,6 +106,18 @@ namespace Map_Editor.GameData
             if (TerrainChanged != null)
             {
                 TerrainChanged(sender, e);
+            }
+        }
+
+        private void UpdateTiles()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // triggers on tile changed event.
+                    tiles[y][x].objectOnTile.OnObjectChanged(EventArgs.Empty);
+                }
             }
         }
     }

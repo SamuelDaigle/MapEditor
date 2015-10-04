@@ -4,19 +4,81 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
     public class GameObject
     {
-        private BonusType bonusType;
-        private UtilType utilType;
-        private TrapType trapType;
+        [XmlIgnore]
+        public BonusType bonusType;
+        [XmlIgnore]
+        public UtilType utilType;
+        [XmlIgnore]
+        public TrapType trapType;
+
+        public string Bonus
+        {
+            get
+            {
+                return bonusType.ToString();
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    bonusType = default(BonusType);
+                }
+                else
+                {
+                    bonusType = (BonusType)Enum.Parse(typeof(BonusType), value);
+                }
+            }
+        }
+
+        public string Utilities
+        {
+            get
+            {
+                return utilType.ToString();
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    utilType = default(UtilType);
+                }
+                else
+                {
+                    utilType = (UtilType)Enum.Parse(typeof(UtilType), value);
+                }
+            }
+        }
+
+        public string Trap
+        {
+            get
+            {
+                return trapType.ToString();
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    trapType = default(TrapType);
+                }
+                else
+                {
+                    trapType = (TrapType)Enum.Parse(typeof(TrapType), value);
+                }
+            }
+        }
 
         public event EventHandler ObjectChanged;
 
         public enum BonusType
         {
+            None,
             [Description("../../Resources/Tile/Empty.png")]
             Shield,
             [Description("../../Resources/Tile/Bad.png")]
@@ -41,6 +103,7 @@ namespace Map_Editor.GameData
 
         public enum TrapType
         {
+            None,
             [Description("../../Resources/Tile/Empty.png")]
             Turret,
             [Description("../../Resources/Tile/Bad.png")]
@@ -55,6 +118,7 @@ namespace Map_Editor.GameData
 
         public enum UtilType
         {
+            None,
             [Description("../../Resources/Tile/Empty.png")]
             Spawn,
             [Description("../../Resources/Tile/Bad.png")]
@@ -151,9 +215,8 @@ namespace Map_Editor.GameData
             OnObjectChanged(EventArgs.Empty);
         }
 
-
         // Notify the tile.
-        private void OnObjectChanged(EventArgs e)
+        public void OnObjectChanged(EventArgs e)
         {
             if (ObjectChanged != null)
             {

@@ -59,7 +59,19 @@ namespace Map_Editor.GameData
             x = _x;
             y = _y;
             Type = _type;
-            objectOnTile = new GameObject();
+            if (objectOnTile == null)
+            {
+                objectOnTile = new GameObject();
+            }
+        }
+
+        public void UnsetEvents()
+        {
+            objectOnTile.ObjectChanged -= OnObjectChanged;
+        }
+
+        public void SetEvents()
+        {
             objectOnTile.ObjectChanged += OnObjectChanged;
         }
 
