@@ -181,6 +181,18 @@ namespace Map_Editor
             }
         }
 
+        private void ViewTop()
+        {
+            for (int y = 0; y < floorHeight; y++)
+            {
+                for (int x = 0; x < floorWidth; x++)
+                {
+                    Tile tile = scene.GetTopTile(x, y);
+                    pictureBoxes[y][x].Image = GetImage(tile);
+                }
+            }
+        }
+
         // Received the modified tile.
         private void OnSceneChanged(object sender, EventArgs e)
         {

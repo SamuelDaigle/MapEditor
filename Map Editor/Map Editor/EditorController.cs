@@ -125,6 +125,11 @@ namespace Map_Editor
             }
         }
 
+        private void btnTopView_Click(object sender, EventArgs e)
+        {
+            ViewTop();
+        }
+
         private void selectFloor_Click(object sender, EventArgs e)
         {
             Button button = (Button) sender;

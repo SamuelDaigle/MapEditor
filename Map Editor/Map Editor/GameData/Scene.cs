@@ -35,6 +35,20 @@ namespace Map_Editor.GameData
             selectedTerrain.SetEvents();
         }
 
+        public Tile GetTopTile(int _X, int _Y)
+        {
+            Tile tile = null;
+            for (int i = floors.Count - 1; i >= 0; i--)
+            {
+                if (floors[i].GetTile(_X, _Y).Type != Tile.TileType.Empty)
+                {
+                    tile = floors[i].GetTile(_X, _Y);
+                    break;
+                }
+            }
+            return tile;
+        }
+
         // Received the tile by the terrain.
         private void OnTerrainChanged(object sender, EventArgs e)
         {

@@ -81,6 +81,7 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
+            this.btnTopView = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
@@ -174,6 +175,7 @@
             this.pnlFloor.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlFloor.Controls.Add(this.btnAdd);
             this.pnlFloor.Controls.Add(this.btnDelete);
+            this.pnlFloor.Controls.Add(this.btnTopView);
             this.pnlFloor.Controls.Add(this.pnlGroupFloors);
             this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlFloor.Location = new System.Drawing.Point(937, 24);
@@ -205,9 +207,9 @@
             // 
             this.pnlGroupFloors.Controls.Add(this.btnUp);
             this.pnlGroupFloors.Controls.Add(this.btnDown);
-            this.pnlGroupFloors.Location = new System.Drawing.Point(6, 3);
+            this.pnlGroupFloors.Location = new System.Drawing.Point(6, 28);
             this.pnlGroupFloors.Name = "pnlGroupFloors";
-            this.pnlGroupFloors.Size = new System.Drawing.Size(55, 374);
+            this.pnlGroupFloors.Size = new System.Drawing.Size(55, 349);
             this.pnlGroupFloors.TabIndex = 0;
             // 
             // btnUp
@@ -661,6 +663,16 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
+            // btnTopView
+            // 
+            this.btnTopView.Location = new System.Drawing.Point(6, 3);
+            this.btnTopView.Name = "btnTopView";
+            this.btnTopView.Size = new System.Drawing.Size(55, 23);
+            this.btnTopView.TabIndex = 3;
+            this.btnTopView.Text = "Top";
+            this.btnTopView.UseVisualStyleBackColor = true;
+            this.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -777,6 +789,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnTopView;
     }
 }
 
