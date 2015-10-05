@@ -32,8 +32,6 @@ namespace Map_Editor
         private const string PATH_TILE_SLOPE = "../../Resources/Tile/Slope.png";
         #endregion
 
-
-
         public Editor()
         {
             objectsPictureBox = new List<PictureBox>();
@@ -173,6 +171,15 @@ namespace Map_Editor
                 }
             }
             pnlDraw.AutoScroll = true;
+        }
+
+        public void CloseScene()
+        {
+            scene = null;
+            for (int i = pnlDraw.Controls.Count - 1; i >= 0; i--)
+            {
+                pnlDraw.Controls.Remove(pnlDraw.Controls[i]);
+            }
         }
 
         private void UpdatePictureBoxes()

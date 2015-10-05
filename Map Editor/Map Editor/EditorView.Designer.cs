@@ -33,6 +33,9 @@
             this.newSceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDraw = new System.Windows.Forms.Panel();
             this.pnlFloor = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -46,6 +49,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.grbProperties = new System.Windows.Forms.GroupBox();
+            this.btnDeleteTile = new System.Windows.Forms.Button();
             this.lblTileName = new System.Windows.Forms.Label();
             this.properties = new System.Windows.Forms.PropertyGrid();
             this.picTileBreakPass = new System.Windows.Forms.PictureBox();
@@ -82,7 +86,7 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
-            this.btnDeleteTile = new System.Windows.Forms.Button();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
@@ -126,7 +130,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.infoToolMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1204, 24);
@@ -138,7 +143,10 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newSceneToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.loadToolStripMenuItem});
+            this.loadToolStripMenuItem,
+            this.closeToolStripMenuItem,
+            this.saveCloseToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -146,22 +154,43 @@
             // newSceneToolStripMenuItem
             // 
             this.newSceneToolStripMenuItem.Name = "newSceneToolStripMenuItem";
-            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.newSceneToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.newSceneToolStripMenuItem.Text = "New Scene...";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // saveCloseToolStripMenuItem
+            // 
+            this.saveCloseToolStripMenuItem.Name = "saveCloseToolStripMenuItem";
+            this.saveCloseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.saveCloseToolStripMenuItem.Text = "Save and Close";
+            this.saveCloseToolStripMenuItem.Click += new System.EventHandler(this.saveCloseToolStripMenuItem_Click);
+            // 
+            // infoToolMenu
+            // 
+            this.infoToolMenu.Name = "infoToolMenu";
+            this.infoToolMenu.Size = new System.Drawing.Size(24, 20);
+            this.infoToolMenu.Text = "?";
+            this.infoToolMenu.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
             // 
             // pnlDraw
             // 
@@ -305,6 +334,16 @@
             this.grbProperties.TabStop = false;
             this.grbProperties.Text = "Properties";
             this.grbProperties.Visible = false;
+            // 
+            // btnDeleteTile
+            // 
+            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
+            this.btnDeleteTile.Name = "btnDeleteTile";
+            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteTile.TabIndex = 14;
+            this.btnDeleteTile.Text = "Delete";
+            this.btnDeleteTile.UseVisualStyleBackColor = true;
+            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
             // 
             // lblTileName
             // 
@@ -675,15 +714,12 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // btnDeleteTile
+            // exitToolStripMenuItem
             // 
-            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
-            this.btnDeleteTile.Name = "btnDeleteTile";
-            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteTile.TabIndex = 14;
-            this.btnDeleteTile.Text = "Delete";
-            this.btnDeleteTile.UseVisualStyleBackColor = true;
-            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Editor
             // 
@@ -803,6 +839,10 @@
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnTopView;
         private System.Windows.Forms.Button btnDeleteTile;
+        private System.Windows.Forms.ToolStripMenuItem infoToolMenu;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveCloseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

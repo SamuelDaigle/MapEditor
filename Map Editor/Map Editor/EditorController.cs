@@ -283,6 +283,39 @@ namespace Map_Editor
             }
         }
 
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+            if (result == DialogResult.Yes)
+            {
+                saveCloseToolStripMenuItem_Click(sender, e);
+            }
+            if (result == DialogResult.No)
+            {
+                CloseScene();
+            }
+        }
+
+        private void saveCloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveToolStripMenuItem_Click(sender, e);
+            CloseScene();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (scene != null)
+            {
+                closeToolStripMenuItem_Click(sender, e);
+            }
+            Application.Exit();
+        }
+
+        private void infoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Notre équipe: \nVincent Montminy \nSamuel Daigle", "Notre équipe", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+        }
+
         private Tile.TileType GetTileType(string _path)
         {
             Tile.TileType type;
