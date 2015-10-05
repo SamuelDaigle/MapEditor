@@ -13,6 +13,7 @@ namespace Map_Editor
     {
         private PictureBox selectedTilePictureBox;
         private PictureBox selectedObjectPictureBox;
+        private PictureBox draggedPictureBox;
         private Tile selectedTile;
         private bool isMouseDown = false;
 
@@ -60,7 +61,7 @@ namespace Map_Editor
 
             selectedTilePictureBox = picTileEmpty;
             picTile_Click(selectedTilePictureBox, EventArgs.Empty);
-            
+
         }
 
         private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -105,7 +106,7 @@ namespace Map_Editor
             Floor floor = new Floor();
             floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
             Scene.floors.Add(floor);
-            
+
 
             Control downButton = pnlGroupFloors.Controls[pnlGroupFloors.Controls.Count - 1];
             pnlGroupFloors.Controls.RemoveAt(pnlGroupFloors.Controls.Count - 1);
@@ -132,12 +133,12 @@ namespace Map_Editor
 
         private void selectFloor_Click(object sender, EventArgs e)
         {
-            Button button = (Button) sender;
+            Button button = (Button)sender;
             int floorID = Convert.ToInt32(button.Text);
 
             // Remove handles from the old floor
             Scene.UnsetEvents();
-            Scene.selectedTerrain.UnsetEvents(); 
+            Scene.selectedTerrain.UnsetEvents();
 
             Scene.selectedTerrain = Scene.floors[floorID - 1];
             // Add handles to the new floor.
@@ -181,33 +182,51 @@ namespace Map_Editor
                 if (pictureBoxX >= 0 && pictureBoxX < scene.selectedTerrain.width &&
                     pictureBoxY >= 0 && pictureBoxY < scene.selectedTerrain.height)
                 {
-                    if (selectedTilePictureBox != null)
+                    if (e.Button == MouseButtons.Left)
                     {
-                        selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
-                        if (e.Button == MouseButtons.Left)
+                        if (selectedTilePictureBox != null)
                         {
-                            selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
-                            if (selectedTilePictureBox.ImageLocation == null)
+                            selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
+                            if (e.Button == MouseButtons.Left)
                             {
-                                selectedTilePictureBox.ImageLocation = selectedTile.path;
+                                selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
+                                if (selectedTilePictureBox.ImageLocation == null)
+                                {
+                                    selectedTilePictureBox.ImageLocation = selectedTile.path;
+                                }
+                                selectedTile.path = selectedTilePictureBox.ImageLocation;
                             }
-                            selectedTile.path = selectedTilePictureBox.ImageLocation;
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                lblTileName.Text = selectedTile.Type.ToString();
+                                properties.SelectedObject = selectedTile;
+                                grbProperties.Visible = true;
+                            }
                         }
-                        if (e.Button == MouseButtons.Right)
+                        if (selectedObjectPictureBox != null)
                         {
-                            lblTileName.Text = selectedTile.Type.ToString();
-                            properties.SelectedObject = selectedTile;
-                            grbProperties.Visible = true;
+                            selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
+                            if (e.Button == MouseButtons.Left)
+                            {
+                                selectedTile.objectOnTile.SetObject(selectedObjectPictureBox.ImageLocation);
+                            }
                         }
                     }
-                    if (selectedObjectPictureBox != null)
+                    else if (e.Button == MouseButtons.Right)
                     {
-                        selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
-                        if (e.Button == MouseButtons.Left)
+                        draggedPictureBox.Visible = true;
+                        if (pictureBox.Parent != null && pictureBox.Parent is PictureBox)
                         {
-                            selectedTile.objectOnTile.SetObject(selectedObjectPictureBox.ImageLocation);
+                            draggedPictureBox.Image = (pictureBox.Parent as PictureBox).Image;
+                            draggedPictureBox.ImageLocation = (pictureBox.Parent as PictureBox).ImageLocation;
+                        }
+                        else
+                        {
+                            draggedPictureBox.Image = pictureBox.Image;
+                            draggedPictureBox.ImageLocation = pictureBox.ImageLocation;
                         }
                     }
+                    draggedPictureBox.Location = pnlDraw.PointToClient(Control.MousePosition);
                 }
 
             }
@@ -217,11 +236,30 @@ namespace Map_Editor
         {
             isMouseDown = true;
             picModify_Move(sender, e);
+            if (e.Button == MouseButtons.Right)
+            {
+                Point position = pnlDraw.PointToClient(Cursor.Position);
+                int pictureBoxX = (position.X - pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
+                int pictureBoxY = (position.Y - pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
+                selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
+            }
         }
 
         private void picModify_Up(object sender, EventArgs e)
         {
             isMouseDown = false;
+            if (draggedPictureBox.Visible == true)
+            {
+                PictureBox pictureBox = (PictureBox)sender;
+                Point position = pnlDraw.PointToClient(Cursor.Position);
+                int pictureBoxX = (position.X - pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
+                int pictureBoxY = (position.Y - pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
+                selectedTile.Type = Tile.TileType.Empty;
+                selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
+                selectedTile.Type = GetTileType(draggedPictureBox.ImageLocation);
+
+                draggedPictureBox.Visible = false;
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)

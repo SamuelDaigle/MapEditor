@@ -140,6 +140,11 @@ namespace Map_Editor
 
         public void InitializeView(int width, int height)
         {
+            draggedPictureBox = new PictureBox();
+            draggedPictureBox.Size = new System.Drawing.Size(PICTURE_BOX_SIZE, PICTURE_BOX_SIZE);
+            draggedPictureBox.BackColor = Color.Transparent;
+            draggedPictureBox.Visible = false;
+            pnlDraw.Controls.Add(draggedPictureBox);
             pictureBoxes = new PictureBox[height][];
             for (int y = 0; y < height; y++)
             {
@@ -152,6 +157,7 @@ namespace Map_Editor
                     pictureBoxes[y][x].MouseMove += picModify_Move;
                     pictureBoxes[y][x].MouseDown += picModify_Down;
                     pictureBoxes[y][x].MouseUp += picModify_Up;
+                    pictureBoxes[y][x].BackColor = Color.Transparent;
 
                     PictureBox objectBox = new PictureBox();
                     objectBox.Parent = pictureBoxes[y][x];
@@ -176,7 +182,8 @@ namespace Map_Editor
             {
                 for (int x = 0; x < floorWidth; x++)
                 {
-                    pictureBoxes[y][x].Image = GetImage(result[y * floorWidth + x]);
+                    pictureBoxes[y][x].ImageLocation = GetImagePath(result[y * floorWidth + x]);
+                    pictureBoxes[y][x].Image = Image.FromFile(pictureBoxes[y][x].ImageLocation);
                 }
             }
         }
@@ -188,7 +195,8 @@ namespace Map_Editor
                 for (int x = 0; x < floorWidth; x++)
                 {
                     Tile tile = scene.GetTopTile(x, y);
-                    pictureBoxes[y][x].Image = GetImage(tile);
+                    pictureBoxes[y][x].ImageLocation = GetImagePath(tile);
+                    pictureBoxes[y][x].Image = Image.FromFile(pictureBoxes[y][x].ImageLocation);
                 }
             }
         }
@@ -199,7 +207,8 @@ namespace Map_Editor
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
-                pictureBoxes[tile.y][tile.x].Image = GetImage(tile);
+                pictureBoxes[tile.y][tile.x].ImageLocation = GetImagePath(tile);
+                pictureBoxes[tile.y][tile.x].Image = Image.FromFile(pictureBoxes[tile.y][tile.x].ImageLocation);
 
                 if (pictureBoxes[tile.y][tile.x].HasChildren)
                 {
@@ -214,7 +223,7 @@ namespace Map_Editor
             }
         }
 
-        private Image GetImage(Tile _tile)
+        private string GetImagePath(Tile _tile)
         {
             string path;
             switch (_tile.Type)
@@ -267,7 +276,7 @@ namespace Map_Editor
                     path = "pas lololol";
                     break;
             }
-            return Image.FromFile(path);
+            return path;
         }
     }
 }
