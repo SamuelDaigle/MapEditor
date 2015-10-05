@@ -42,10 +42,13 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.pnlStatus = new System.Windows.Forms.Panel();
+            this.lblValidate = new System.Windows.Forms.Label();
+            this.btnValidate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.grbProperties = new System.Windows.Forms.GroupBox();
+            this.btnDeleteTile = new System.Windows.Forms.Button();
             this.lblTileName = new System.Windows.Forms.Label();
             this.properties = new System.Windows.Forms.PropertyGrid();
             this.picTileBreakPass = new System.Windows.Forms.PictureBox();
@@ -82,7 +85,6 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
-            this.btnDeleteTile = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
@@ -244,12 +246,33 @@
             // pnlStatus
             // 
             this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlStatus.Controls.Add(this.lblValidate);
+            this.pnlStatus.Controls.Add(this.btnValidate);
             this.pnlStatus.Controls.Add(this.label1);
             this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlStatus.Location = new System.Drawing.Point(0, 467);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
             this.pnlStatus.TabIndex = 1;
+            // 
+            // lblValidate
+            // 
+            this.lblValidate.AutoSize = true;
+            this.lblValidate.Location = new System.Drawing.Point(675, 52);
+            this.lblValidate.Name = "lblValidate";
+            this.lblValidate.Size = new System.Drawing.Size(35, 13);
+            this.lblValidate.TabIndex = 2;
+            this.lblValidate.Text = "label2";
+            // 
+            // btnValidate
+            // 
+            this.btnValidate.Location = new System.Drawing.Point(594, 47);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(75, 23);
+            this.btnValidate.TabIndex = 1;
+            this.btnValidate.Text = "Validate map";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // label1
             // 
@@ -305,6 +328,16 @@
             this.grbProperties.TabStop = false;
             this.grbProperties.Text = "Properties";
             this.grbProperties.Visible = false;
+            // 
+            // btnDeleteTile
+            // 
+            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
+            this.btnDeleteTile.Name = "btnDeleteTile";
+            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteTile.TabIndex = 14;
+            this.btnDeleteTile.Text = "Delete";
+            this.btnDeleteTile.UseVisualStyleBackColor = true;
+            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
             // 
             // lblTileName
             // 
@@ -675,16 +708,6 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // btnDeleteTile
-            // 
-            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
-            this.btnDeleteTile.Name = "btnDeleteTile";
-            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteTile.TabIndex = 14;
-            this.btnDeleteTile.Text = "Delete";
-            this.btnDeleteTile.UseVisualStyleBackColor = true;
-            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -803,6 +826,8 @@
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnTopView;
         private System.Windows.Forms.Button btnDeleteTile;
+        private System.Windows.Forms.Label lblValidate;
+        private System.Windows.Forms.Button btnValidate;
     }
 }
 

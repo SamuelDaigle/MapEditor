@@ -282,6 +282,20 @@ namespace Map_Editor
                 Scene.SetEvents();
             }
         }
+        private void btnValidate_Click(object sender, EventArgs e)
+        {
+            lblValidate.Text = "Map Existe pas";
+            if (scene != null)
+            {
+                lblValidate.Text = "Map Non Valide";
+                if (scene.ValidateMap())
+                {
+                    lblValidate.Text = "Valide Yay!";
+                }
+            }
+            
+
+        }
 
         private Tile.TileType GetTileType(string _path)
         {

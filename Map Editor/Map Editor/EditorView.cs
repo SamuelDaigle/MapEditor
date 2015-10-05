@@ -154,6 +154,7 @@ namespace Map_Editor
                     pictureBoxes[y][x] = new PictureBox();
                     pictureBoxes[y][x].SetBounds(x * PICTURE_BOX_SIZE, y * PICTURE_BOX_SIZE, PICTURE_BOX_SIZE, PICTURE_BOX_SIZE);
                     pictureBoxes[y][x].BackgroundImageLayout = ImageLayout.Center;
+                    pictureBoxes[y][x].SizeMode = PictureBoxSizeMode.CenterImage;
                     pictureBoxes[y][x].MouseMove += picModify_Move;
                     pictureBoxes[y][x].MouseDown += picModify_Down;
                     pictureBoxes[y][x].MouseUp += picModify_Up;
@@ -166,6 +167,7 @@ namespace Map_Editor
                     objectBox.MouseDown += picModify_Down;
                     objectBox.MouseUp += picModify_Up;
                     objectBox.Size = new System.Drawing.Size(32, 32);
+                    objectBox.SizeMode = PictureBoxSizeMode.CenterImage;
                     objectBox.Location = new Point((pictureBoxes[y][x].Size.Width - objectBox.Size.Width) / 2, (pictureBoxes[y][x].Size.Height - objectBox.Size.Height) / 2);
                     pictureBoxes[y][x].Controls.Add(objectBox);
 
@@ -278,5 +280,7 @@ namespace Map_Editor
             }
             return path;
         }
+
+        
     }
 }

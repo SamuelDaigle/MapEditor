@@ -119,13 +119,13 @@ namespace Map_Editor.GameData
         public enum UtilType
         {
             None,
-            [Description("../../Resources/Tile/Empty.png")]
-            Spawn,
             [Description("../../Resources/Object/Spawn.png")]
-            Goal,
+            Spawn,
             [Description("../../Resources/Object/Goal.png")]
-            Ball,
+            Goal,
             [Description("../../Resources/Object/Ball.png")]
+            Ball,
+            [Description("../../Resources/Tile/Empty.png")]
             Jump
         }
 
