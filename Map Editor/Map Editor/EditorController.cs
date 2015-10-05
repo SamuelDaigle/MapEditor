@@ -238,9 +238,19 @@ namespace Map_Editor
                 selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
             }
 
-            lblTileName.Text = selectedTile.Type.ToString();
-            properties.SelectedObject = selectedTile;
-            grbProperties.Visible = true;
+            PictureBox pictureBox = (PictureBox) sender;
+
+                if (tabControl.SelectedIndex == 0)
+                {
+                    lblTileName.Text = selectedTile.Type.ToString();
+                    properties.SelectedObject = selectedTile;
+                }
+                else
+                {
+                    lblObjectName.Text = selectedTile.Type.ToString();
+                    propertiesObject.SelectedObject = selectedTile.objectOnTile;
+                }
+            
         }
 
         private void picModify_Up(object sender, EventArgs e)
@@ -260,10 +270,7 @@ namespace Map_Editor
             }
         }
 
-        private void btnDeleteTile_Click(object sender, EventArgs e)
-        {
-            selectedTile.Type = Tile.TileType.Empty;
-        }
+
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,30 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
+    public class Position
+    {
+        public Position(int _x, int _y)
+        {
+            x = _x;
+            y = _y;
+        }
+
+        public Position()
+        {
+        }
+        public int x;
+        public int y;
+    }
+
     [DefaultPropertyAttribute("Name")]
     public class Tile
     {
         public string path;
-        public int x;
-        public int y;
-        [CategoryAttribute("Speed"), DescriptionAttribute("Changes the speed of entities walking on the tile.")]
+        public Position position;
         public int speedModifier { get; set; }
-        public Orientation orientation;
+        public Orientation orientation { get; set; }
+        public Point[] wayPoints { get; set; }
+      
 
         public GameObject objectOnTile;
         private TileType type;
@@ -56,8 +72,8 @@ namespace Map_Editor.GameData
 
         public void Initialize(TileType _type, int _x, int _y)
         {
-            x = _x;
-            y = _y;
+            wayPoints = new Point[25];
+            position = new Position(_x, _y);
             Type = _type;
             if (objectOnTile == null)
             {

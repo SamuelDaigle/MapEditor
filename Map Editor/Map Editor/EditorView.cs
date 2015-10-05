@@ -216,12 +216,12 @@ namespace Map_Editor
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
-                pictureBoxes[tile.y][tile.x].ImageLocation = GetImagePath(tile);
-                pictureBoxes[tile.y][tile.x].Image = Image.FromFile(pictureBoxes[tile.y][tile.x].ImageLocation);
+                pictureBoxes[tile.position.y][tile.position.x].ImageLocation = GetImagePath(tile);
+                pictureBoxes[tile.position.y][tile.position.x].Image = Image.FromFile(pictureBoxes[tile.position.y][tile.position.x].ImageLocation);
 
-                if (pictureBoxes[tile.y][tile.x].HasChildren)
+                if (pictureBoxes[tile.position.y][tile.position.x].HasChildren)
                 {
-                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.y][tile.x].Controls[0];
+                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.y][tile.position.x].Controls[0];
                     string path = tile.objectOnTile.ToString();
                     if (path != "")
                     {
@@ -286,6 +286,11 @@ namespace Map_Editor
                     break;
             }
             return path;
+        }
+
+        private void btnDeleteTile_Click(object sender, EventArgs e)
+        {
+
         }
 
         

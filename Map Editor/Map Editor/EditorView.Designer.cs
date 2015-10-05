@@ -35,6 +35,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDraw = new System.Windows.Forms.Panel();
             this.pnlFloor = new System.Windows.Forms.Panel();
@@ -48,7 +49,7 @@
             this.lblValidate = new System.Windows.Forms.Label();
             this.btnValidate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.grbProperties = new System.Windows.Forms.GroupBox();
             this.btnDeleteTile = new System.Windows.Forms.Button();
@@ -88,12 +89,15 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grbPropertiesObject = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblObjectName = new System.Windows.Forms.Label();
+            this.propertiesObject = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabTiles.SuspendLayout();
             this.grbProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTileBreakPass)).BeginInit();
@@ -127,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTrapFire)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapSpike)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapTurret)).BeginInit();
+            this.grbPropertiesObject.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -186,6 +191,13 @@
             this.saveCloseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveCloseToolStripMenuItem.Text = "Save and Close";
             this.saveCloseToolStripMenuItem.Click += new System.EventHandler(this.saveCloseToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // infoToolMenu
             // 
@@ -312,16 +324,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabTiles);
-            this.tabControl1.Controls.Add(this.tabObjects);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tabControl1.Location = new System.Drawing.Point(1004, 24);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(200, 534);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl.Controls.Add(this.tabTiles);
+            this.tabControl.Controls.Add(this.tabObjects);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tabControl.Location = new System.Drawing.Point(1004, 24);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(200, 534);
+            this.tabControl.TabIndex = 0;
             // 
             // tabTiles
             // 
@@ -356,7 +368,6 @@
             this.grbProperties.TabIndex = 15;
             this.grbProperties.TabStop = false;
             this.grbProperties.Text = "Properties";
-            this.grbProperties.Visible = false;
             // 
             // btnDeleteTile
             // 
@@ -510,6 +521,7 @@
             // tabObjects
             // 
             this.tabObjects.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.tabObjects.Controls.Add(this.grbPropertiesObject);
             this.tabObjects.Controls.Add(this.picBonusDash);
             this.tabObjects.Controls.Add(this.picBonusDecoy);
             this.tabObjects.Controls.Add(this.picBonusPower);
@@ -737,12 +749,43 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // exitToolStripMenuItem
+            // grbPropertiesObject
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.grbPropertiesObject.Controls.Add(this.button1);
+            this.grbPropertiesObject.Controls.Add(this.lblObjectName);
+            this.grbPropertiesObject.Controls.Add(this.propertiesObject);
+            this.grbPropertiesObject.Location = new System.Drawing.Point(6, 323);
+            this.grbPropertiesObject.Name = "grbPropertiesObject";
+            this.grbPropertiesObject.Size = new System.Drawing.Size(192, 168);
+            this.grbPropertiesObject.TabIndex = 22;
+            this.grbPropertiesObject.TabStop = false;
+            this.grbPropertiesObject.Text = "Properties";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(109, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // lblObjectName
+            // 
+            this.lblObjectName.AutoSize = true;
+            this.lblObjectName.Location = new System.Drawing.Point(6, 16);
+            this.lblObjectName.Name = "lblObjectName";
+            this.lblObjectName.Size = new System.Drawing.Size(29, 13);
+            this.lblObjectName.TabIndex = 13;
+            this.lblObjectName.Text = "label";
+            // 
+            // propertiesObject
+            // 
+            this.propertiesObject.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.propertiesObject.Location = new System.Drawing.Point(6, 40);
+            this.propertiesObject.Name = "propertiesObject";
+            this.propertiesObject.Size = new System.Drawing.Size(180, 122);
+            this.propertiesObject.TabIndex = 12;
             // 
             // Editor
             // 
@@ -753,7 +796,7 @@
             this.Controls.Add(this.pnlDraw);
             this.Controls.Add(this.pnlFloor);
             this.Controls.Add(this.pnlStatus);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Editor";
@@ -764,7 +807,7 @@
             this.pnlGroupFloors.ResumeLayout(false);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabTiles.ResumeLayout(false);
             this.grbProperties.ResumeLayout(false);
             this.grbProperties.PerformLayout();
@@ -800,6 +843,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTrapFire)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapSpike)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapTurret)).EndInit();
+            this.grbPropertiesObject.ResumeLayout(false);
+            this.grbPropertiesObject.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,7 +858,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.Panel pnlDraw;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabTiles;
         private System.Windows.Forms.PictureBox picTileBreakPass;
         private System.Windows.Forms.PictureBox picTileOneByOne;
@@ -868,6 +913,10 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label lblValidate;
         private System.Windows.Forms.Button btnValidate;
+        private System.Windows.Forms.GroupBox grbPropertiesObject;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblObjectName;
+        private System.Windows.Forms.PropertyGrid propertiesObject;
     }
 }
 

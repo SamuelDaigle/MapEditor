@@ -10,13 +10,45 @@ namespace Map_Editor.GameData
 {
     public class GameObject
     {
-        [XmlIgnore]
-        public BonusType bonusType;
-        [XmlIgnore]
-        public UtilType utilType;
-        [XmlIgnore]
-        public TrapType trapType;
+        private BonusType _bonusType;
+        private TrapType _trapType;
+        private UtilType _utilType;
 
+        [XmlIgnore]
+        public BonusType bonusType
+        {
+            get { return _bonusType; }
+            set
+            {
+                _bonusType = value;
+                _utilType = UtilType.None;
+                _trapType = TrapType.None;
+            }
+        }
+        [XmlIgnore]
+        public UtilType utilType
+        {
+            get { return _utilType; }
+            set
+            {
+                _utilType = value;
+                _bonusType = BonusType.None;
+                _trapType = TrapType.None;
+            }
+        }
+        [XmlIgnore]
+        public TrapType trapType
+        {
+            get { return _trapType; }
+            set
+            {
+                _trapType = value;
+                _utilType = UtilType.None;
+                _bonusType = BonusType.None;
+            }
+        }
+
+        [Browsable(false)]
         public string Bonus
         {
             get
@@ -36,6 +68,7 @@ namespace Map_Editor.GameData
             }
         }
 
+        [Browsable(false)]
         public string Utilities
         {
             get
@@ -54,7 +87,7 @@ namespace Map_Editor.GameData
                 }
             }
         }
-
+        [Browsable(false)]
         public string Trap
         {
             get

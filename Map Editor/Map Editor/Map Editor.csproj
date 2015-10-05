@@ -65,7 +65,7 @@
     <Compile Include="SceneCreation.Designer.cs">
       <DependentUpon>SceneCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="XmlSerializer.cs" />
+    <Compile Include="Model\XmlSerializer.cs" />
     <EmbeddedResource Include="EditorView.resx">
       <DependentUpon>EditorView.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,9 +96,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
