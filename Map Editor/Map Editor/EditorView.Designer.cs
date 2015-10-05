@@ -362,18 +362,20 @@
             this.grbProperties.Controls.Add(this.btnDeleteTile);
             this.grbProperties.Controls.Add(this.lblTileName);
             this.grbProperties.Controls.Add(this.properties);
-            this.grbProperties.Location = new System.Drawing.Point(0, 238);
+            this.grbProperties.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.grbProperties.Location = new System.Drawing.Point(3, 231);
             this.grbProperties.Name = "grbProperties";
-            this.grbProperties.Size = new System.Drawing.Size(192, 274);
+            this.grbProperties.Size = new System.Drawing.Size(186, 274);
             this.grbProperties.TabIndex = 15;
             this.grbProperties.TabStop = false;
             this.grbProperties.Text = "Properties";
             // 
             // btnDeleteTile
             // 
-            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
+            this.btnDeleteTile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDeleteTile.Location = new System.Drawing.Point(3, 29);
             this.btnDeleteTile.Name = "btnDeleteTile";
-            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteTile.Size = new System.Drawing.Size(180, 23);
             this.btnDeleteTile.TabIndex = 14;
             this.btnDeleteTile.Text = "Delete";
             this.btnDeleteTile.UseVisualStyleBackColor = true;
@@ -382,7 +384,8 @@
             // lblTileName
             // 
             this.lblTileName.AutoSize = true;
-            this.lblTileName.Location = new System.Drawing.Point(6, 16);
+            this.lblTileName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTileName.Location = new System.Drawing.Point(3, 16);
             this.lblTileName.Name = "lblTileName";
             this.lblTileName.Size = new System.Drawing.Size(35, 13);
             this.lblTileName.TabIndex = 13;
@@ -391,7 +394,8 @@
             // properties
             // 
             this.properties.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.properties.Location = new System.Drawing.Point(6, 46);
+            this.properties.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.properties.Location = new System.Drawing.Point(3, 53);
             this.properties.Name = "properties";
             this.properties.Size = new System.Drawing.Size(180, 218);
             this.properties.TabIndex = 12;

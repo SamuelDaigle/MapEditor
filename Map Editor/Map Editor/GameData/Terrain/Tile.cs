@@ -33,6 +33,7 @@ namespace Map_Editor.GameData
         public int speedModifier { get; set; }
         public Orientation orientation { get; set; }
         public Point[] wayPoints { get; set; }
+        public Point teleportPoint { get; set; }
       
 
         public GameObject objectOnTile;
