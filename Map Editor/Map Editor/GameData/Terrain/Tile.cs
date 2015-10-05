@@ -15,7 +15,7 @@ namespace Map_Editor.GameData
     public class Tile
     {
         public string path;
-        public Point position;
+        public Point position { get; set; }
         public int speedModifier { get; set; }
         public Orientation orientation { get; set; }
         public Point[] wayPoints { get; set; }

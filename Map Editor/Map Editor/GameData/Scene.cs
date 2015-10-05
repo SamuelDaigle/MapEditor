@@ -72,6 +72,7 @@ namespace Map_Editor.GameData
             int numberOfGoal = 0;
             bool teleportValid = true;
             bool firstFloorEmpty = false;
+            bool towerValid = true;
             
             foreach (Tile T in floors[0].Tiles)
             {
@@ -85,6 +86,16 @@ namespace Map_Editor.GameData
             {
                 foreach (Tile T in F.Tiles)
                 {
+                    if (T.Type == Tile.TileType.Tower)
+                    {
+                        foreach (Floor floor in floors)
+                        {
+                            if (floor.GetTile(T.position.X, T.position.Y).Type != Tile.TileType.Tower)
+                            {
+                                towerValid = false;
+                            }
+                        }
+                    }
                     if (T.objectOnTile.utilType == GameObject.UtilType.Goal)
                     {
                         numberOfGoal++;
@@ -111,7 +122,7 @@ namespace Map_Editor.GameData
             }
 
 
-            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid && !firstFloorEmpty)
+            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid && !firstFloorEmpty && towerValid)
             {
                 return true;
             }
