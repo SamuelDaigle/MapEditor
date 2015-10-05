@@ -66,7 +66,7 @@
             this.picBonusSpeed = new System.Windows.Forms.PictureBox();
             this.picBonusDouble = new System.Windows.Forms.PictureBox();
             this.picUtilJump = new System.Windows.Forms.PictureBox();
-            this.picUtilTrigger = new System.Windows.Forms.PictureBox();
+            this.picUtilBall = new System.Windows.Forms.PictureBox();
             this.picUtilGoal = new System.Windows.Forms.PictureBox();
             this.picUtilSpawn = new System.Windows.Forms.PictureBox();
             this.picBonusMissile = new System.Windows.Forms.PictureBox();
@@ -108,7 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBonusSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDouble)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilJump)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUtilTrigger)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUtilBall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilGoal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilSpawn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusMissile)).BeginInit();
@@ -454,7 +454,7 @@
             this.tabObjects.Controls.Add(this.picBonusSpeed);
             this.tabObjects.Controls.Add(this.picBonusDouble);
             this.tabObjects.Controls.Add(this.picUtilJump);
-            this.tabObjects.Controls.Add(this.picUtilTrigger);
+            this.tabObjects.Controls.Add(this.picUtilBall);
             this.tabObjects.Controls.Add(this.picUtilGoal);
             this.tabObjects.Controls.Add(this.picUtilSpawn);
             this.tabObjects.Controls.Add(this.picBonusMissile);
@@ -531,14 +531,14 @@
             this.picUtilJump.TabIndex = 16;
             this.picUtilJump.TabStop = false;
             // 
-            // picUtilTrigger
+            // picUtilBall
             // 
-            this.picUtilTrigger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picUtilTrigger.Location = new System.Drawing.Point(91, 285);
-            this.picUtilTrigger.Name = "picUtilTrigger";
-            this.picUtilTrigger.Size = new System.Drawing.Size(32, 32);
-            this.picUtilTrigger.TabIndex = 15;
-            this.picUtilTrigger.TabStop = false;
+            this.picUtilBall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picUtilBall.Location = new System.Drawing.Point(91, 285);
+            this.picUtilBall.Name = "picUtilBall";
+            this.picUtilBall.Size = new System.Drawing.Size(32, 32);
+            this.picUtilBall.TabIndex = 15;
+            this.picUtilBall.TabStop = false;
             // 
             // picUtilGoal
             // 
@@ -728,7 +728,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBonusSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDouble)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilJump)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUtilTrigger)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUtilBall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilGoal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUtilSpawn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusMissile)).EndInit();
@@ -774,7 +774,7 @@
         private System.Windows.Forms.PictureBox picBonusSpeed;
         private System.Windows.Forms.PictureBox picBonusDouble;
         private System.Windows.Forms.PictureBox picUtilJump;
-        private System.Windows.Forms.PictureBox picUtilTrigger;
+        private System.Windows.Forms.PictureBox picUtilBall;
         private System.Windows.Forms.PictureBox picUtilGoal;
         private System.Windows.Forms.PictureBox picUtilSpawn;
         private System.Windows.Forms.PictureBox picBonusMissile;

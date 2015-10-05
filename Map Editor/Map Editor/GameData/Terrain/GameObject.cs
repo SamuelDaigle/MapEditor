@@ -106,13 +106,13 @@ namespace Map_Editor.GameData
             None,
             [Description("../../Resources/Tile/Empty.png")]
             Turret,
-            [Description("../../Resources/Tile/Bad.png")]
+            [Description("../../Resources/Object/Turret.png")]
             Spike,
-            [Description("../../Resources/Tile/Breaking.png")]
+            [Description("../../Resources/Object/Spikes.png")]
             Fire,
-            [Description("../../Resources/Tile/Door.png")]
+            [Description("../../Resources/Object/Fire.png")]
             Freeze,
-            [Description("../../Resources/Tile/Floor.png")]
+            [Description("../../Resources/Object/Freeze.png")]
             Drop
         }
 
@@ -121,11 +121,11 @@ namespace Map_Editor.GameData
             None,
             [Description("../../Resources/Tile/Empty.png")]
             Spawn,
-            [Description("../../Resources/Tile/Bad.png")]
+            [Description("../../Resources/Object/Spawn.png")]
             Goal,
-            [Description("../../Resources/Tile/Breaking.png")]
-            Trigger,
-            [Description("../../Resources/Tile/Door.png")]
+            [Description("../../Resources/Object/Goal.png")]
+            Ball,
+            [Description("../../Resources/Object/Ball.png")]
             Jump
         }
 

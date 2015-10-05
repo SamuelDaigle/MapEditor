@@ -112,8 +112,8 @@ namespace Map_Editor
             picUtilJump.Image = Image.FromFile(picUtilJump.ImageLocation);
             picUtilSpawn.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Spawn);
             picUtilSpawn.Image = Image.FromFile(picUtilSpawn.ImageLocation);
-            picUtilTrigger.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Trigger);
-            picUtilTrigger.Image = Image.FromFile(picUtilTrigger.ImageLocation);
+            picUtilBall.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Ball);
+            picUtilBall.Image = Image.FromFile(picUtilBall.ImageLocation);
         }
 
         public Scene Scene

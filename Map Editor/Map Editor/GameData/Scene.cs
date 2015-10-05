@@ -63,5 +63,37 @@ namespace Map_Editor.GameData
                 SceneChanged(sender, e);
             }
         }
+
+        public bool ValidateMap()
+        {
+            int numberOfSpawns = 0;
+            int numberOfBalls = 0;
+            int numberOfGoal = 0;
+
+            foreach (Floor F in floors)
+            {
+                foreach (Tile T in F.Tiles)
+                {
+                    if (T.objectOnTile.utilType == GameObject.UtilType.Goal)
+                    {
+                        numberOfGoal++;
+                    }
+                    if (T.objectOnTile.utilType == GameObject.UtilType.Spawn)
+                    {
+                        numberOfSpawns++;
+                    }
+                    if (T.objectOnTile.utilType == GameObject.UtilType.Ball)
+                    {
+                        numberOfBalls++;
+                    }
+                }
+                
+            }
+            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace Map_Editor
             picUtilGoal.Click += new System.EventHandler(this.picObject_Click);
             picUtilJump.Click += new System.EventHandler(this.picObject_Click);
             picUtilSpawn.Click += new System.EventHandler(this.picObject_Click);
-            picUtilTrigger.Click += new System.EventHandler(this.picObject_Click);
+            picUtilBall.Click += new System.EventHandler(this.picObject_Click);
 
             selectedTilePictureBox = picTileEmpty;
             picTile_Click(selectedTilePictureBox, EventArgs.Empty);
