@@ -37,6 +37,7 @@
             this.pnlFloor = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnTopView = new System.Windows.Forms.Button();
             this.pnlGroupFloors = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
@@ -81,7 +82,7 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
-            this.btnTopView = new System.Windows.Forms.Button();
+            this.btnDeleteTile = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
@@ -203,6 +204,16 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Visible = false;
             // 
+            // btnTopView
+            // 
+            this.btnTopView.Location = new System.Drawing.Point(6, 3);
+            this.btnTopView.Name = "btnTopView";
+            this.btnTopView.Size = new System.Drawing.Size(55, 23);
+            this.btnTopView.TabIndex = 3;
+            this.btnTopView.Text = "Top";
+            this.btnTopView.UseVisualStyleBackColor = true;
+            this.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
+            // 
             // pnlGroupFloors
             // 
             this.pnlGroupFloors.Controls.Add(this.btnUp);
@@ -284,6 +295,7 @@
             // 
             // grbProperties
             // 
+            this.grbProperties.Controls.Add(this.btnDeleteTile);
             this.grbProperties.Controls.Add(this.lblTileName);
             this.grbProperties.Controls.Add(this.properties);
             this.grbProperties.Location = new System.Drawing.Point(0, 238);
@@ -663,15 +675,15 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // btnTopView
+            // btnDeleteTile
             // 
-            this.btnTopView.Location = new System.Drawing.Point(6, 3);
-            this.btnTopView.Name = "btnTopView";
-            this.btnTopView.Size = new System.Drawing.Size(55, 23);
-            this.btnTopView.TabIndex = 3;
-            this.btnTopView.Text = "Top";
-            this.btnTopView.UseVisualStyleBackColor = true;
-            this.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
+            this.btnDeleteTile.Location = new System.Drawing.Point(109, 11);
+            this.btnDeleteTile.Name = "btnDeleteTile";
+            this.btnDeleteTile.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteTile.TabIndex = 14;
+            this.btnDeleteTile.Text = "Delete";
+            this.btnDeleteTile.UseVisualStyleBackColor = true;
+            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
             // 
             // Editor
             // 
@@ -790,6 +802,7 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnTopView;
+        private System.Windows.Forms.Button btnDeleteTile;
     }
 }
 

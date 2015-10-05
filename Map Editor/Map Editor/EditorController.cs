@@ -196,12 +196,6 @@ namespace Map_Editor
                                 }
                                 selectedTile.path = selectedTilePictureBox.ImageLocation;
                             }
-                            if (e.Button == MouseButtons.Right)
-                            {
-                                lblTileName.Text = selectedTile.Type.ToString();
-                                properties.SelectedObject = selectedTile;
-                                grbProperties.Visible = true;
-                            }
                         }
                         if (selectedObjectPictureBox != null)
                         {
@@ -243,6 +237,10 @@ namespace Map_Editor
                 int pictureBoxY = (position.Y - pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                 selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
             }
+
+            lblTileName.Text = selectedTile.Type.ToString();
+            properties.SelectedObject = selectedTile;
+            grbProperties.Visible = true;
         }
 
         private void picModify_Up(object sender, EventArgs e)
@@ -260,6 +258,11 @@ namespace Map_Editor
 
                 draggedPictureBox.Visible = false;
             }
+        }
+
+        private void btnDeleteTile_Click(object sender, EventArgs e)
+        {
+            selectedTile.Type = Tile.TileType.Empty;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
