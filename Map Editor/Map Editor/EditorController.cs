@@ -14,6 +14,7 @@ namespace Map_Editor
         private PictureBox selectedTilePictureBox;
         private PictureBox selectedObjectPictureBox;
         private PictureBox draggedPictureBox;
+        private PictureBox selectedModifiedPictureBox;
         private Tile selectedTile;
         private bool isMouseDown = false;
 
@@ -228,7 +229,27 @@ namespace Map_Editor
             }
 
             PictureBox pictureBox = (PictureBox)sender;
-
+            if (selectedModifiedPictureBox != null)
+            {
+                if (selectedModifiedPictureBox.Parent is PictureBox)
+                {
+                    (selectedModifiedPictureBox.Parent as PictureBox).BackColor = Color.Transparent;
+                }
+                else
+                {
+                    selectedModifiedPictureBox.BackColor = Color.Transparent;
+                }
+            }
+            
+            selectedModifiedPictureBox = pictureBox;
+            if (selectedModifiedPictureBox.Parent is PictureBox)
+            {
+                (selectedModifiedPictureBox.Parent as PictureBox).BackColor = Color.DarkOrange;
+            }
+            else
+            {
+                selectedModifiedPictureBox.BackColor = Color.DarkOrange;
+            }
             if (tabControl.SelectedIndex == 0)
             {
                 lblTileName.Text = selectedTile.Type.ToString();
