@@ -224,10 +224,14 @@ namespace Map_Editor
                 {
                     PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.Y][tile.position.X].Controls[0];
                     string path = tile.objectOnTile.ToString();
+                    objectPictureBox.ImageLocation = path;
                     if (path != "")
                     {
-                        objectPictureBox.ImageLocation = path;
                         objectPictureBox.Image = Image.FromFile(path);
+                    }
+                    else
+                    {
+                        objectPictureBox.Image = null;
                     }
                 }
             }
@@ -289,17 +293,7 @@ namespace Map_Editor
             return path;
         }
 
-        private void btnDeleteTile_Click(object sender, EventArgs e)
-        {
-            selectedTile.Type = Tile.TileType.Empty;
-        }
-
-        private void btnDeleteObject_Click(object sender, EventArgs e)
-        {
-            selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
-            selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
-            selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
-        }
+        
 
 
     }

@@ -23,6 +23,7 @@ namespace Map_Editor.GameData
                 _bonusType = value;
                 _utilType = UtilType.None;
                 _trapType = TrapType.None;
+                OnObjectChanged(EventArgs.Empty);
             }
         }
         [XmlIgnore]
@@ -34,6 +35,7 @@ namespace Map_Editor.GameData
                 _utilType = value;
                 _bonusType = BonusType.None;
                 _trapType = TrapType.None;
+                OnObjectChanged(EventArgs.Empty);
             }
         }
         [XmlIgnore]
@@ -45,6 +47,7 @@ namespace Map_Editor.GameData
                 _trapType = value;
                 _utilType = UtilType.None;
                 _bonusType = BonusType.None;
+                OnObjectChanged(EventArgs.Empty);
             }
         }
 

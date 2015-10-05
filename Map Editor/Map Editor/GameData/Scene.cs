@@ -111,7 +111,7 @@ namespace Map_Editor.GameData
             }
 
 
-            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid)
+            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid && !firstFloorEmpty)
             {
                 return true;
             }

@@ -242,6 +242,18 @@ namespace Map_Editor
 
         }
 
+        private void btnDeleteTile_Click(object sender, EventArgs e)
+        {
+            selectedTile.Type = Tile.TileType.Empty;
+        }
+
+        private void btnDeleteObject_Click(object sender, EventArgs e)
+        {
+            selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
+            selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
+            selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
+        }
+
         private void picModify_Up(object sender, EventArgs e)
         {
             isMouseDown = false;
