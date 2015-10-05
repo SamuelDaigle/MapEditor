@@ -67,6 +67,10 @@
             this.picTileWall = new System.Windows.Forms.PictureBox();
             this.picTileEmpty = new System.Windows.Forms.PictureBox();
             this.tabObjects = new System.Windows.Forms.TabPage();
+            this.grbPropertiesObject = new System.Windows.Forms.GroupBox();
+            this.btnDeleteObject = new System.Windows.Forms.Button();
+            this.lblObjectName = new System.Windows.Forms.Label();
+            this.propertiesObject = new System.Windows.Forms.PropertyGrid();
             this.picBonusDash = new System.Windows.Forms.PictureBox();
             this.picBonusDecoy = new System.Windows.Forms.PictureBox();
             this.picBonusPower = new System.Windows.Forms.PictureBox();
@@ -89,10 +93,6 @@
             this.lblUtilities = new System.Windows.Forms.Label();
             this.lblBonus = new System.Windows.Forms.Label();
             this.lblTraps = new System.Windows.Forms.Label();
-            this.grbPropertiesObject = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblObjectName = new System.Windows.Forms.Label();
-            this.propertiesObject = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
             this.pnlGroupFloors.SuspendLayout();
@@ -112,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileWall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).BeginInit();
             this.tabObjects.SuspendLayout();
+            this.grbPropertiesObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).BeginInit();
@@ -131,7 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTrapFire)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapSpike)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapTurret)).BeginInit();
-            this.grbPropertiesObject.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -555,6 +555,45 @@
             this.tabObjects.TabIndex = 1;
             this.tabObjects.Text = "Objects";
             // 
+            // grbPropertiesObject
+            // 
+            this.grbPropertiesObject.Controls.Add(this.btnDeleteObject);
+            this.grbPropertiesObject.Controls.Add(this.lblObjectName);
+            this.grbPropertiesObject.Controls.Add(this.propertiesObject);
+            this.grbPropertiesObject.Location = new System.Drawing.Point(6, 323);
+            this.grbPropertiesObject.Name = "grbPropertiesObject";
+            this.grbPropertiesObject.Size = new System.Drawing.Size(192, 168);
+            this.grbPropertiesObject.TabIndex = 22;
+            this.grbPropertiesObject.TabStop = false;
+            this.grbPropertiesObject.Text = "Properties";
+            // 
+            // btnDeleteObject
+            // 
+            this.btnDeleteObject.Location = new System.Drawing.Point(109, 11);
+            this.btnDeleteObject.Name = "btnDeleteObject";
+            this.btnDeleteObject.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteObject.TabIndex = 14;
+            this.btnDeleteObject.Text = "Delete";
+            this.btnDeleteObject.UseVisualStyleBackColor = true;
+            this.btnDeleteObject.Click += new System.EventHandler(this.btnDeleteObject_Click);
+            // 
+            // lblObjectName
+            // 
+            this.lblObjectName.AutoSize = true;
+            this.lblObjectName.Location = new System.Drawing.Point(6, 16);
+            this.lblObjectName.Name = "lblObjectName";
+            this.lblObjectName.Size = new System.Drawing.Size(29, 13);
+            this.lblObjectName.TabIndex = 13;
+            this.lblObjectName.Text = "label";
+            // 
+            // propertiesObject
+            // 
+            this.propertiesObject.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.propertiesObject.Location = new System.Drawing.Point(6, 40);
+            this.propertiesObject.Name = "propertiesObject";
+            this.propertiesObject.Size = new System.Drawing.Size(180, 122);
+            this.propertiesObject.TabIndex = 12;
+            // 
             // picBonusDash
             // 
             this.picBonusDash.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -753,44 +792,6 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // grbPropertiesObject
-            // 
-            this.grbPropertiesObject.Controls.Add(this.button1);
-            this.grbPropertiesObject.Controls.Add(this.lblObjectName);
-            this.grbPropertiesObject.Controls.Add(this.propertiesObject);
-            this.grbPropertiesObject.Location = new System.Drawing.Point(6, 323);
-            this.grbPropertiesObject.Name = "grbPropertiesObject";
-            this.grbPropertiesObject.Size = new System.Drawing.Size(192, 168);
-            this.grbPropertiesObject.TabIndex = 22;
-            this.grbPropertiesObject.TabStop = false;
-            this.grbPropertiesObject.Text = "Properties";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(109, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // lblObjectName
-            // 
-            this.lblObjectName.AutoSize = true;
-            this.lblObjectName.Location = new System.Drawing.Point(6, 16);
-            this.lblObjectName.Name = "lblObjectName";
-            this.lblObjectName.Size = new System.Drawing.Size(29, 13);
-            this.lblObjectName.TabIndex = 13;
-            this.lblObjectName.Text = "label";
-            // 
-            // propertiesObject
-            // 
-            this.propertiesObject.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.propertiesObject.Location = new System.Drawing.Point(6, 40);
-            this.propertiesObject.Name = "propertiesObject";
-            this.propertiesObject.Size = new System.Drawing.Size(180, 122);
-            this.propertiesObject.TabIndex = 12;
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -828,6 +829,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileEmpty)).EndInit();
             this.tabObjects.ResumeLayout(false);
             this.tabObjects.PerformLayout();
+            this.grbPropertiesObject.ResumeLayout(false);
+            this.grbPropertiesObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDash)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusDecoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBonusPower)).EndInit();
@@ -847,8 +850,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTrapFire)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapSpike)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrapTurret)).EndInit();
-            this.grbPropertiesObject.ResumeLayout(false);
-            this.grbPropertiesObject.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -918,7 +919,7 @@
         private System.Windows.Forms.Label lblValidate;
         private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.GroupBox grbPropertiesObject;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDeleteObject;
         private System.Windows.Forms.Label lblObjectName;
         private System.Windows.Forms.PropertyGrid propertiesObject;
     }

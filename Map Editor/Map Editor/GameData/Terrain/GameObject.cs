@@ -53,17 +53,17 @@ namespace Map_Editor.GameData
         {
             get
             {
-                return bonusType.ToString();
+                return _bonusType.ToString();
             }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    bonusType = default(BonusType);
+                    _bonusType = default(BonusType);
                 }
                 else
                 {
-                    bonusType = (BonusType)Enum.Parse(typeof(BonusType), value);
+                    _bonusType = (BonusType)Enum.Parse(typeof(BonusType), value);
                 }
             }
         }
@@ -73,17 +73,17 @@ namespace Map_Editor.GameData
         {
             get
             {
-                return utilType.ToString();
+                return _utilType.ToString();
             }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    utilType = default(UtilType);
+                    _utilType = default(UtilType);
                 }
                 else
                 {
-                    utilType = (UtilType)Enum.Parse(typeof(UtilType), value);
+                    _utilType = (UtilType)Enum.Parse(typeof(UtilType), value);
                 }
             }
         }
@@ -92,17 +92,17 @@ namespace Map_Editor.GameData
         {
             get
             {
-                return trapType.ToString();
+                return _trapType.ToString();
             }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    trapType = default(TrapType);
+                    _trapType = default(TrapType);
                 }
                 else
                 {
-                    trapType = (TrapType)Enum.Parse(typeof(TrapType), value);
+                    _trapType = (TrapType)Enum.Parse(typeof(TrapType), value);
                 }
             }
         }

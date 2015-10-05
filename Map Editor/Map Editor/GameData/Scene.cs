@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -69,6 +70,16 @@ namespace Map_Editor.GameData
             int numberOfSpawns = 0;
             int numberOfBalls = 0;
             int numberOfGoal = 0;
+            bool teleportValid = true;
+            bool firstFloorEmpty = false;
+            
+            foreach (Tile T in floors[0].Tiles)
+            {
+                if (T.Type == Tile.TileType.Empty)
+                {
+                    firstFloorEmpty = true;
+                }
+            }
 
             foreach (Floor F in floors)
             {
@@ -86,10 +97,21 @@ namespace Map_Editor.GameData
                     {
                         numberOfBalls++;
                     }
+                    if (teleportValid && T.Type == Tile.TileType.Teleport)
+                    {
+                        if (F.GetTile(T.teleportPoint.X, T.teleportPoint.Y).Type != Tile.TileType.Teleport)
+                        {
+                            teleportValid = false;
+                        }
+                    }
                 }
+
+               
                 
             }
-            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4)
+
+
+            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid)
             {
                 return true;
             }

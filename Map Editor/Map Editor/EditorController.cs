@@ -184,26 +184,15 @@ namespace Map_Editor
                 {
                     if (e.Button == MouseButtons.Left)
                     {
+                        selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
                         if (selectedTilePictureBox != null)
                         {
-                            selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
-                            if (e.Button == MouseButtons.Left)
-                            {
-                                selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
-                                if (selectedTilePictureBox.ImageLocation == null)
-                                {
-                                    selectedTilePictureBox.ImageLocation = selectedTile.path;
-                                }
-                                selectedTile.path = selectedTilePictureBox.ImageLocation;
-                            }
+                            selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
+                            selectedTile.path = selectedTilePictureBox.ImageLocation;
                         }
                         if (selectedObjectPictureBox != null)
                         {
-                            selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
-                            if (e.Button == MouseButtons.Left)
-                            {
-                                selectedTile.objectOnTile.SetObject(selectedObjectPictureBox.ImageLocation);
-                            }
+                            selectedTile.objectOnTile.SetObject(selectedObjectPictureBox.ImageLocation);
                         }
                     }
                     else if (e.Button == MouseButtons.Right)
@@ -219,8 +208,8 @@ namespace Map_Editor
                             draggedPictureBox.Image = pictureBox.Image;
                             draggedPictureBox.ImageLocation = pictureBox.ImageLocation;
                         }
+                        draggedPictureBox.Location = pnlDraw.PointToClient(Control.MousePosition);
                     }
-                    draggedPictureBox.Location = pnlDraw.PointToClient(Control.MousePosition);
                 }
 
             }
@@ -238,19 +227,19 @@ namespace Map_Editor
                 selectedTile = scene.selectedTerrain.GetTile(pictureBoxX, pictureBoxY);
             }
 
-            PictureBox pictureBox = (PictureBox) sender;
+            PictureBox pictureBox = (PictureBox)sender;
 
-                if (tabControl.SelectedIndex == 0)
-                {
-                    lblTileName.Text = selectedTile.Type.ToString();
-                    properties.SelectedObject = selectedTile;
-                }
-                else
-                {
-                    lblObjectName.Text = selectedTile.Type.ToString();
-                    propertiesObject.SelectedObject = selectedTile.objectOnTile;
-                }
-            
+            if (tabControl.SelectedIndex == 0)
+            {
+                lblTileName.Text = selectedTile.Type.ToString();
+                properties.SelectedObject = selectedTile;
+            }
+            else
+            {
+                lblObjectName.Text = selectedTile.Type.ToString();
+                propertiesObject.SelectedObject = selectedTile.objectOnTile;
+            }
+
         }
 
         private void picModify_Up(object sender, EventArgs e)
@@ -289,6 +278,7 @@ namespace Map_Editor
                 Scene.SetEvents();
             }
         }
+
         private void btnValidate_Click(object sender, EventArgs e)
         {
             lblValidate.Text = "Map Existe pas";
@@ -300,7 +290,7 @@ namespace Map_Editor
                     lblValidate.Text = "Valide Yay!";
                 }
             }
-            
+
 
         }
 

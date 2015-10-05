@@ -38,6 +38,10 @@ namespace Map_Editor.GameData
                         tiles[y][x].Type = readData[y * width + x].Type;
                         tiles[y][x].path = readData[y * width + x].path;
                         tiles[y][x].objectOnTile = readData[y * width + x].objectOnTile;
+                        tiles[y][x].teleportPoint = readData[y *width + x].teleportPoint;
+                        tiles[y][x].speedModifier = readData[y * width + x].speedModifier;
+                        tiles[y][x].orientation = readData[y * width + x].orientation;
+                        tiles[y][x].wayPoints = readData[y * width + x].wayPoints;
                     }
                 }
             }
@@ -58,7 +62,6 @@ namespace Map_Editor.GameData
                     tiles[y][x] = new Tile();
                     tiles[y][x].TileChanged += OnTerrainChanged;
                     tiles[y][x].Initialize(_type, x, y);
-                    tiles[y][x].path = "../../Resources/Tile/Empty.png";
                 }
             }
         }

@@ -10,26 +10,12 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
-    public class Position
-    {
-        public Position(int _x, int _y)
-        {
-            x = _x;
-            y = _y;
-        }
-
-        public Position()
-        {
-        }
-        public int x;
-        public int y;
-    }
 
     [DefaultPropertyAttribute("Name")]
     public class Tile
     {
         public string path;
-        public Position position;
+        public Point position;
         public int speedModifier { get; set; }
         public Orientation orientation { get; set; }
         public Point[] wayPoints { get; set; }
@@ -74,7 +60,7 @@ namespace Map_Editor.GameData
         public void Initialize(TileType _type, int _x, int _y)
         {
             wayPoints = new Point[25];
-            position = new Position(_x, _y);
+            position = new Point(_x, _y);
             Type = _type;
             if (objectOnTile == null)
             {

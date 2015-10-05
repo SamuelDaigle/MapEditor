@@ -216,12 +216,13 @@ namespace Map_Editor
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
-                pictureBoxes[tile.position.y][tile.position.x].ImageLocation = GetImagePath(tile);
-                pictureBoxes[tile.position.y][tile.position.x].Image = Image.FromFile(pictureBoxes[tile.position.y][tile.position.x].ImageLocation);
+                pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = GetImagePath(tile);
+                pictureBoxes[tile.position.Y][tile.position.X].Image = Image.FromFile(pictureBoxes[tile.position.Y][tile.position.X].ImageLocation);
+               // Lololololol pictureBoxes[tile.position.y][tile.position.x].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
-                if (pictureBoxes[tile.position.y][tile.position.x].HasChildren)
+                if (pictureBoxes[tile.position.Y][tile.position.X].HasChildren)
                 {
-                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.y][tile.position.x].Controls[0];
+                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.Y][tile.position.X].Controls[0];
                     string path = tile.objectOnTile.ToString();
                     if (path != "")
                     {
@@ -290,9 +291,16 @@ namespace Map_Editor
 
         private void btnDeleteTile_Click(object sender, EventArgs e)
         {
-
+            selectedTile.Type = Tile.TileType.Empty;
         }
 
-        
+        private void btnDeleteObject_Click(object sender, EventArgs e)
+        {
+            selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
+            selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
+            selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
+        }
+
+
     }
 }
