@@ -44,16 +44,27 @@ namespace Map_Editor.GameData
 
         public enum TileType
         {
+            [Description("../../Resources/Tile/Empty.png")]
             Empty,
+            [Description("../../Resources/Tile/Wall.png")]
             Wall,
+            [Description("../../Resources/Tile/Floor.png")]
             Floor,
+            [Description("../../Resources/Tile/Slope.png")]
             Slope,
+            [Description("../../Resources/Tile/Teleport.png")]
             Teleport,
+            [Description("../../Resources/Tile/Tower.png")]
             Tower,
+            [Description("../../Resources/Tile/Bad.png")]
             Bad,
+            [Description("../../Resources/Tile/Door.png")]
             Door,
+            [Description("../../Resources/Tile/Slow.png")]
             Slow,
+            [Description("../../Resources/Tile/OneByOne.png")]
             OneByOne,
+            [Description("../../Resources/Tile/Breaking.png")]
             BreakPass
         }
 
@@ -76,6 +87,26 @@ namespace Map_Editor.GameData
         public void SetEvents()
         {
             objectOnTile.ObjectChanged += OnObjectChanged;
+        }
+
+        public static string ToDescriptionString(TileType val)
+        {
+            DescriptionAttribute[] attributes = (DescriptionAttribute[])val.GetType().GetField(val.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return attributes.Length > 0 ? attributes[0].Description : string.Empty;
+        }
+
+        public void SetTile(string _path)
+        {
+            foreach (TileType type in Enum.GetValues(typeof(TileType)))
+            {
+                if (ToDescriptionString(type) == _path)
+                {
+                    this.type = type;
+                    break;
+                }
+            }
+
+            OnTileChanged(EventArgs.Empty);
         }
 
         // Notify the tile.
