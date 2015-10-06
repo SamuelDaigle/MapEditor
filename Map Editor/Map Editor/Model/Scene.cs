@@ -10,6 +10,8 @@ namespace Map_Editor.GameData
 {
     public class Scene
     {
+        public static int MAX_FLOOR = 5;
+
         public string name;
         public Floor selectedFloor;
 
@@ -35,6 +37,10 @@ namespace Map_Editor.GameData
         private void LoadScene(Scene _other)
         {
             floors = new List<Floor>();
+            this.name = _other.name;
+            this.floorWidth = _other.floorWidth;
+            this.floorHeight = _other.floorHeight;
+
             foreach (Floor floor in _other.floors)
             {
                 AddFloor();
@@ -65,21 +71,24 @@ namespace Map_Editor.GameData
             else
             {
                 CreateNewScene();
+                OnSceneChanged(this, EventArgs.Empty);
             }
-            OnSceneChanged(this, EventArgs.Empty);
         }
 
         public void AddFloor()
         {
-            Floor floor = new Floor();
-            floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
-            selectedFloor = floor;
-            SetEvents();
-            floors.Add(floor);
-            OnFloorAdded(floor, EventArgs.Empty);
+            if (floors.Count < 5)
+            {
+                Floor floor = new Floor();
+                floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
+                selectedFloor = floor;
+                SetEvents();
+                floors.Add(floor);
+                OnFloorAdded(floor, EventArgs.Empty);
+            }
         }
 
-        private void SetAllTiles(Tile.TileType _type)
+        public void SetAllTiles(Tile.TileType _type)
         {
             for (int y = 0; y < floorWidth; y++)
             {
@@ -115,6 +124,8 @@ namespace Map_Editor.GameData
                     topFloor.SetTile(x, y, GetTopTile(x, y));
                 }
             }
+            selectedFloor = topFloor;
+            OnSceneChanged(this, EventArgs.Empty);
         }
 
         public void SelectFloor(int _id)
@@ -149,8 +160,8 @@ namespace Map_Editor.GameData
 
         public bool ValidateMap()
         {
-           Validator validator = new Validator(this);
-           return validator.ValidateMap();
+            Validator validator = new Validator(this);
+            return validator.ValidateMap();
         }
 
 

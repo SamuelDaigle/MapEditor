@@ -148,7 +148,7 @@ namespace Map_Editor.GameData
             Fire,
             [Description("../../Resources/Object/Freeze.png")]
             Freeze,
-            [Description("../../Resources/Object/Freeze.png")]
+            [Description("../../Resources/Object/LoseOP.png")]
             Drop
         }
 

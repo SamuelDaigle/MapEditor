@@ -123,6 +123,7 @@ namespace Map_Editor
                         CurrentModel.floorWidth = terrainWidth;
                         CurrentModel.floorHeight = terrainHeight;
                         CurrentModel.LoadFromFile(CurrentModel.name + ".xml");
+                        CurrentModel.SetAllTiles(type);
 
                         SetAllTileViewEvents();
                     }
@@ -151,9 +152,7 @@ namespace Map_Editor
             {
                 CurrentModel.AddFloor();
 
-                selectFloor_Click((Button)sender, EventArgs.Empty);
-
-                if (CurrentModel.floors.Count >= 5)
+                if (CurrentModel.floors.Count >= Scene.MAX_FLOOR)
                 {
                     view.btnAdd.Enabled = false;
                 }
@@ -168,8 +167,6 @@ namespace Map_Editor
             {
                 Button button = (Button)sender;
                 int floorID = Convert.ToInt32(button.Text);
-
-
 
                 // Remove handles from the old floor
                 CurrentModel.UnsetEvents();
@@ -324,13 +321,38 @@ namespace Map_Editor
 
             private void saveToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>("scene.xml");
-                sceneXML.Save(CurrentModel);
+                if (CurrentModel != null)
+                {
+                    XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>(CurrentModel.name + ".xml");
+                    sceneXML.Save(CurrentModel);
+                }
             }
 
             private void loadToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                
+                if (CurrentModel != null)
+                {
+                    closeToolStripMenuItem_Click(sender, e);
+                }
+                using (OpenFileDialog dialog = new OpenFileDialog())
+                {
+                    try
+                    {
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            CurrentModel = null;
+                            CurrentModel = new Scene();
+                            CurrentModel.LoadFromFile(dialog.FileName);
+                            view.InitializeView(CurrentModel.floorWidth, CurrentModel.floorHeight);
+                            SetAllTileViewEvents();
+                            CurrentModel.SelectFloor(0);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    }
+                }
             }
 
             private void btnValidate_Click(object sender, EventArgs e)
@@ -348,21 +370,32 @@ namespace Map_Editor
 
             private void closeToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
-                if (result == DialogResult.Yes)
+                if (CurrentModel != null)
                 {
-                    saveCloseToolStripMenuItem_Click(sender, e);
-                }
-                if (result == DialogResult.No)
-                {
-                    view.CloseScene();
+                    DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+                    if (result == DialogResult.Yes)
+                    {
+                        saveCloseToolStripMenuItem_Click(sender, e);
+                    }
+                    if (result == DialogResult.No)
+                    {
+                        view.CloseScene();
+                    }
+                    if (result != DialogResult.Cancel)
+                    {
+
+                        CurrentModel = null;
+                    }
                 }
             }
 
             private void saveCloseToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                saveToolStripMenuItem_Click(sender, e);
-                view.CloseScene();
+                if (CurrentModel != null)
+                {
+                    saveToolStripMenuItem_Click(sender, e);
+                    view.CloseScene();
+                }
             }
 
             private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -385,9 +418,10 @@ namespace Map_Editor
                 // Add it to the view.
                 Button btnFloor = new Button();
                 btnFloor.Text = CurrentModel.floors.Count.ToString();
-                btnFloor.Size = new Size(view.btnUp.Size.Width, view.btnUp.Size.Height);
+                btnFloor.Size = new Size(53, 25);
                 btnFloor.Click += selectFloor_Click;
                 view.pnlGroupFloors.Controls.Add(btnFloor);
+                selectFloor_Click(btnFloor, EventArgs.Empty);
             }
 
             // Received the modified tile.

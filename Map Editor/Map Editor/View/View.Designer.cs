@@ -43,8 +43,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnTopView = new System.Windows.Forms.Button();
             this.pnlGroupFloors = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.lblValidate = new System.Windows.Forms.Label();
             this.btnValidate = new System.Windows.Forms.Button();
@@ -95,7 +93,6 @@
             this.lblTraps = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
-            this.pnlGroupFloors.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabTiles.SuspendLayout();
@@ -181,14 +178,12 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.closeToolStripMenuItem.Text = "Close";
-            
             // 
             // saveCloseToolStripMenuItem
             // 
             this.saveCloseToolStripMenuItem.Name = "saveCloseToolStripMenuItem";
             this.saveCloseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveCloseToolStripMenuItem.Text = "Save and Close";
-            
             // 
             // exitToolStripMenuItem
             // 
@@ -253,30 +248,10 @@
             // 
             // pnlGroupFloors
             // 
-            this.pnlGroupFloors.Controls.Add(this.btnUp);
-            this.pnlGroupFloors.Controls.Add(this.btnDown);
             this.pnlGroupFloors.Location = new System.Drawing.Point(6, 28);
             this.pnlGroupFloors.Name = "pnlGroupFloors";
             this.pnlGroupFloors.Size = new System.Drawing.Size(55, 349);
             this.pnlGroupFloors.TabIndex = 0;
-            // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(3, 3);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(52, 23);
-            this.btnUp.TabIndex = 0;
-            this.btnUp.Text = "▲";
-            this.btnUp.UseVisualStyleBackColor = true;
-            // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(3, 32);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(52, 23);
-            this.btnDown.TabIndex = 2;
-            this.btnDown.Text = "▼";
-            this.btnDown.UseVisualStyleBackColor = true;
             // 
             // pnlStatus
             // 
@@ -783,7 +758,7 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // Editor
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -795,12 +770,11 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Editor";
+            this.Name = "View";
             this.Text = "Ducktators\'s map editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnlFloor.ResumeLayout(false);
-            this.pnlGroupFloors.ResumeLayout(false);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.tabControl.ResumeLayout(false);
@@ -899,8 +873,6 @@
         private System.Windows.Forms.FlowLayoutPanel pnlGroupFloors;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnTopView;
         private System.Windows.Forms.Button btnDeleteTile;
         private System.Windows.Forms.ToolStripMenuItem infoToolMenu;

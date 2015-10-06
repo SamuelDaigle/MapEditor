@@ -144,6 +144,10 @@ namespace Map_Editor
             {
                 pnlDraw.Controls.Remove(pnlDraw.Controls[i]);
             }
+            for (int i = pnlGroupFloors.Controls.Count - 1; i >= 0; i--)
+            {
+                pnlGroupFloors.Controls.Remove(pnlGroupFloors.Controls[i]);
+            }
         }
 
         private void SelectPictureBox(PictureBox pictureBox)
@@ -176,21 +180,24 @@ namespace Map_Editor
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
-                pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = Tile.ToDescriptionString(tile.Type);
-                pictureBoxes[tile.position.Y][tile.position.X].Image = Image.FromFile(pictureBoxes[tile.position.Y][tile.position.X].ImageLocation);
-
-                if (pictureBoxes[tile.position.Y][tile.position.X].HasChildren)
+                if (pictureBoxes != null)
                 {
-                    PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.Y][tile.position.X].Controls[0];
-                    string path = tile.objectOnTile.ToString();
-                    objectPictureBox.ImageLocation = path;
-                    if (path != "")
+                    pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = Tile.ToDescriptionString(tile.Type);
+                    pictureBoxes[tile.position.Y][tile.position.X].Image = Image.FromFile(pictureBoxes[tile.position.Y][tile.position.X].ImageLocation);
+
+                    if (pictureBoxes[tile.position.Y][tile.position.X].HasChildren)
                     {
-                        objectPictureBox.Image = Image.FromFile(path);
-                    }
-                    else
-                    {
-                        objectPictureBox.Image = null;
+                        PictureBox objectPictureBox = (PictureBox)pictureBoxes[tile.position.Y][tile.position.X].Controls[0];
+                        string path = tile.objectOnTile.ToString();
+                        objectPictureBox.ImageLocation = path;
+                        if (path != "")
+                        {
+                            objectPictureBox.Image = Image.FromFile(path);
+                        }
+                        else
+                        {
+                            objectPictureBox.Image = null;
+                        }
                     }
                 }
             }

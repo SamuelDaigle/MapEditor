@@ -88,7 +88,7 @@ namespace Map_Editor.GameData
                     tiles[y][x].SetEvents();
                 }
             }
-            UpdateTiles();
+            //UpdateTiles();
         }
 
         public Tile GetTile(int _X, int _Y)
@@ -121,16 +121,16 @@ namespace Map_Editor.GameData
             }
         }
 
-        private void UpdateTiles()
-        {
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    // triggers on tile changed event.
-                    tiles[y][x].objectOnTile.OnObjectChanged(EventArgs.Empty);
-                }
-            }
-        }
+        //private void UpdateTiles()
+        //{
+        //    for (int y = 0; y < height; y++)
+        //    {
+        //        for (int x = 0; x < width; x++)
+        //        {
+        //            // triggers on tile changed event.
+        //            tiles[y][x].objectOnTile.OnObjectChanged(EventArgs.Empty);
+        //        }
+        //    }
+        //}
     }
 }
