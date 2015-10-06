@@ -20,20 +20,6 @@ namespace Map_Editor
         private PictureBox selectedModifiedPictureBox;
         private const int PICTURE_BOX_SIZE = 52;
 
-        #region TILES_PATH
-        private const string PATH_TILE_EMPTY = "../../Resources/Tile/Empty.png";
-        private const string PATH_TILE_BAD = "../../Resources/Tile/Bad.png";
-        private const string PATH_TILE_BREAKING = "../../Resources/Tile/Breaking.png";
-        private const string PATH_TILE_DOOR = "../../Resources/Tile/Door.png";
-        private const string PATH_TILE_FLOOR = "../../Resources/Tile/Floor.png";
-        private const string PATH_TILE_ONE_BY_ONE = "../../Resources/Tile/OneByOne.png";
-        private const string PATH_TILE_SLOW = "../../Resources/Tile/Slow.png";
-        private const string PATH_TILE_TELEPORT = "../../Resources/Tile/Teleport.png";
-        private const string PATH_TILE_TOWER = "../../Resources/Tile/Tower.png";
-        private const string PATH_TILE_WALL = "../../Resources/Tile/Wall.png";
-        private const string PATH_TILE_SLOPE = "../../Resources/Tile/Slope.png";
-        #endregion
-
         public View()
         {
             objectsPictureBox = new List<PictureBox>();
@@ -48,28 +34,28 @@ namespace Map_Editor
 
         private void InitializeTiles()
         {
-            picTileEmpty.Image = Image.FromFile(PATH_TILE_EMPTY);
-            picTileEmpty.ImageLocation = PATH_TILE_EMPTY;
-            picTileBad.Image = Image.FromFile(PATH_TILE_BAD);
-            picTileBad.ImageLocation = PATH_TILE_BAD;
-            picTileBreakPass.Image = Image.FromFile(PATH_TILE_BREAKING);
-            picTileBreakPass.ImageLocation = PATH_TILE_BREAKING;
-            picTileDoor.Image = Image.FromFile(PATH_TILE_DOOR);
-            picTileDoor.ImageLocation = PATH_TILE_DOOR;
-            picTileFloor.Image = Image.FromFile(PATH_TILE_FLOOR);
-            picTileFloor.ImageLocation = PATH_TILE_FLOOR;
-            picTileOneByOne.Image = Image.FromFile(PATH_TILE_ONE_BY_ONE);
-            picTileOneByOne.ImageLocation = PATH_TILE_ONE_BY_ONE;
-            picTileSlow.Image = Image.FromFile(PATH_TILE_SLOW);
-            picTileSlow.ImageLocation = PATH_TILE_SLOW;
-            picTileTeleport.Image = Image.FromFile(PATH_TILE_TELEPORT);
-            picTileTeleport.ImageLocation = PATH_TILE_TELEPORT;
-            picTileTower.Image = Image.FromFile(PATH_TILE_TOWER);
-            picTileTower.ImageLocation = PATH_TILE_TOWER;
-            picTileWall.Image = Image.FromFile(PATH_TILE_WALL);
-            picTileWall.ImageLocation = PATH_TILE_WALL;
-            picTileSlope.Image = Image.FromFile(PATH_TILE_SLOPE);
-            picTileSlope.ImageLocation = PATH_TILE_SLOPE;
+            picTileEmpty.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Empty);
+            picTileEmpty.Image = Image.FromFile(picTileEmpty.ImageLocation);
+            picTileBad.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Bad);
+            picTileBad.Image = Image.FromFile(picTileBad.ImageLocation);
+            picTileBreakPass.ImageLocation = Tile.ToDescriptionString(Tile.TileType.BreakPass);
+            picTileBreakPass.Image = Image.FromFile(picTileBreakPass.ImageLocation);
+            picTileDoor.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Door);
+            picTileDoor.Image = Image.FromFile(picTileDoor.ImageLocation);
+            picTileFloor.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Floor);
+            picTileFloor.Image = Image.FromFile(picTileFloor.ImageLocation);
+            picTileOneByOne.ImageLocation = Tile.ToDescriptionString(Tile.TileType.OneByOne);
+            picTileOneByOne.Image = Image.FromFile(picTileOneByOne.ImageLocation);
+            picTileSlow.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Slow);
+            picTileSlow.Image = Image.FromFile(picTileSlow.ImageLocation);
+            picTileTeleport.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Teleport);
+            picTileTeleport.Image = Image.FromFile(picTileTeleport.ImageLocation);
+            picTileTower.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Tower);
+            picTileTower.Image = Image.FromFile(picTileTower.ImageLocation);
+            picTileWall.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Wall);
+            picTileWall.Image = Image.FromFile(picTileWall.ImageLocation);
+            picTileSlope.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Slope);
+            picTileSlope.Image = Image.FromFile(picTileSlope.ImageLocation);
         }
 
         private void InitializeObjects()
@@ -190,7 +176,7 @@ namespace Map_Editor
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
-                pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = GetImagePath(tile);
+                pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = Tile.ToDescriptionString(tile.Type);
                 pictureBoxes[tile.position.Y][tile.position.X].Image = Image.FromFile(pictureBoxes[tile.position.Y][tile.position.X].ImageLocation);
 
                 if (pictureBoxes[tile.position.Y][tile.position.X].HasChildren)
@@ -209,65 +195,5 @@ namespace Map_Editor
                 }
             }
         }
-
-        private string GetImagePath(Tile _tile)
-        {
-            string path;
-            switch (_tile.Type)
-            {
-                case Tile.TileType.Bad:
-                    path = PATH_TILE_BAD;
-                    break;
-
-                case Tile.TileType.BreakPass:
-                    path = PATH_TILE_BREAKING;
-                    break;
-
-                case Tile.TileType.Door:
-                    path = PATH_TILE_DOOR;
-                    break;
-
-                case Tile.TileType.Empty:
-                    path = PATH_TILE_EMPTY;
-                    break;
-
-                case Tile.TileType.Floor:
-                    path = PATH_TILE_FLOOR;
-                    break;
-
-                case Tile.TileType.OneByOne:
-                    path = PATH_TILE_ONE_BY_ONE;
-                    break;
-
-                case Tile.TileType.Slope:
-                    path = PATH_TILE_SLOPE;
-                    break;
-
-                case Tile.TileType.Slow:
-                    path = PATH_TILE_SLOW;
-                    break;
-
-                case Tile.TileType.Teleport:
-                    path = PATH_TILE_TELEPORT;
-                    break;
-
-                case Tile.TileType.Tower:
-                    path = PATH_TILE_TOWER;
-                    break;
-
-                case Tile.TileType.Wall:
-                    path = PATH_TILE_WALL;
-                    break;
-
-                default:
-                    path = "pas lololol";
-                    break;
-            }
-            return path;
-        }
-
-        
-
-
     }
 }

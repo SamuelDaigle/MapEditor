@@ -140,13 +140,13 @@ namespace Map_Editor.GameData
         public enum TrapType
         {
             None,
-            [Description("../../Resources/Tile/Empty.png")]
-            Turret,
             [Description("../../Resources/Object/Turret.png")]
-            Spike,
+            Turret,
             [Description("../../Resources/Object/Spikes.png")]
-            Fire,
+            Spike,
             [Description("../../Resources/Object/Fire.png")]
+            Fire,
+            [Description("../../Resources/Object/Freeze.png")]
             Freeze,
             [Description("../../Resources/Object/Freeze.png")]
             Drop
