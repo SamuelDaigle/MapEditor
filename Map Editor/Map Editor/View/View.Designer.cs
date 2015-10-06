@@ -1,6 +1,6 @@
 ﻿namespace Map_Editor
 {
-    partial class Editor
+    partial class View
     {
         /// <summary>
         /// Required designer variable.
@@ -169,42 +169,38 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.loadToolStripMenuItem.Text = "Load";
-            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            
             // 
             // saveCloseToolStripMenuItem
             // 
             this.saveCloseToolStripMenuItem.Name = "saveCloseToolStripMenuItem";
             this.saveCloseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveCloseToolStripMenuItem.Text = "Save and Close";
-            this.saveCloseToolStripMenuItem.Click += new System.EventHandler(this.saveCloseToolStripMenuItem_Click);
+            
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // infoToolMenu
             // 
             this.infoToolMenu.Name = "infoToolMenu";
             this.infoToolMenu.Size = new System.Drawing.Size(24, 20);
             this.infoToolMenu.Text = "?";
-            this.infoToolMenu.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
             // 
             // pnlDraw
             // 
@@ -235,7 +231,6 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -255,7 +250,6 @@
             this.btnTopView.TabIndex = 3;
             this.btnTopView.Text = "Top";
             this.btnTopView.UseVisualStyleBackColor = true;
-            this.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
             // 
             // pnlGroupFloors
             // 
@@ -313,7 +307,6 @@
             this.btnValidate.TabIndex = 1;
             this.btnValidate.Text = "Validate map";
             this.btnValidate.UseVisualStyleBackColor = true;
-            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // label1
             // 
@@ -379,7 +372,6 @@
             this.btnDeleteTile.TabIndex = 14;
             this.btnDeleteTile.Text = "Delete";
             this.btnDeleteTile.UseVisualStyleBackColor = true;
-            this.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
             // 
             // lblTileName
             // 
@@ -575,7 +567,6 @@
             this.btnDeleteObject.TabIndex = 14;
             this.btnDeleteObject.Text = "Delete";
             this.btnDeleteObject.UseVisualStyleBackColor = true;
-            this.btnDeleteObject.Click += new System.EventHandler(this.btnDeleteObject_Click);
             // 
             // lblObjectName
             // 

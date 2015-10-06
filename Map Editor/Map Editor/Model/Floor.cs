@@ -96,6 +96,11 @@ namespace Map_Editor.GameData
             return tiles[_Y][_X];
         }
 
+        public void SetTile(int _X, int _Y, Tile _tile)
+        {
+            tiles[_Y][_X] = _tile;
+        }
+
         // Received by the tile.
         private void OnTileChanged(object sender, EventArgs e)
         {

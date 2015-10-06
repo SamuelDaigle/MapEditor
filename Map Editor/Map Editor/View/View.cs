@@ -11,11 +11,13 @@ using System.Windows.Forms;
 
 namespace Map_Editor
 {
-    public partial class Editor : Form
+    public partial class View : Form
     {
-        private Scene scene;
+        private Scene model;
         private PictureBox[][] pictureBoxes;
         private List<PictureBox> objectsPictureBox;
+        private PictureBox draggedPictureBox;
+        private PictureBox selectedModifiedPictureBox;
         private const int PICTURE_BOX_SIZE = 52;
 
         #region TILES_PATH
@@ -32,13 +34,16 @@ namespace Map_Editor
         private const string PATH_TILE_SLOPE = "../../Resources/Tile/Slope.png";
         #endregion
 
-        public Editor()
+        public View()
         {
             objectsPictureBox = new List<PictureBox>();
             InitializeComponent();
-            InitializeControls();
+
+            // Map editor toolbar
             InitializeTiles();
             InitializeObjects();
+
+            new Controller(this);
         }
 
         private void InitializeTiles()
@@ -114,28 +119,6 @@ namespace Map_Editor
             picUtilBall.Image = Image.FromFile(picUtilBall.ImageLocation);
         }
 
-        public Scene Scene
-        {
-            get
-            {
-                return scene;
-            }
-            set
-            {
-                if (scene != null)
-                {
-                    scene.SceneChanged -= OnSceneChanged;
-                }
-
-                scene = value;
-
-                if (scene != null)
-                {
-                    scene.SceneChanged += OnSceneChanged;
-                }
-            }
-        }
-
         public void InitializeView(int width, int height)
         {
             draggedPictureBox = new PictureBox();
@@ -153,17 +136,10 @@ namespace Map_Editor
                     pictureBoxes[y][x].SetBounds(x * PICTURE_BOX_SIZE, y * PICTURE_BOX_SIZE, PICTURE_BOX_SIZE, PICTURE_BOX_SIZE);
                     pictureBoxes[y][x].BackgroundImageLayout = ImageLayout.Center;
                     pictureBoxes[y][x].SizeMode = PictureBoxSizeMode.CenterImage;
-                    pictureBoxes[y][x].MouseMove += picModify_Move;
-                    pictureBoxes[y][x].MouseDown += picModify_Down;
-                    pictureBoxes[y][x].MouseUp += picModify_Up;
-                    pictureBoxes[y][x].BackColor = Color.Transparent;
 
                     PictureBox objectBox = new PictureBox();
                     objectBox.Parent = pictureBoxes[y][x];
                     objectBox.BackColor = Color.Transparent;
-                    objectBox.MouseMove += picModify_Move;
-                    objectBox.MouseDown += picModify_Down;
-                    objectBox.MouseUp += picModify_Up;
                     objectBox.Size = new System.Drawing.Size(32, 32);
                     objectBox.SizeMode = PictureBoxSizeMode.CenterImage;
                     objectBox.Location = new Point((pictureBoxes[y][x].Size.Width - objectBox.Size.Width) / 2, (pictureBoxes[y][x].Size.Height - objectBox.Size.Height) / 2);
@@ -177,48 +153,45 @@ namespace Map_Editor
 
         public void CloseScene()
         {
-            scene = null;
+            model = null;
             for (int i = pnlDraw.Controls.Count - 1; i >= 0; i--)
             {
                 pnlDraw.Controls.Remove(pnlDraw.Controls[i]);
             }
         }
 
-        private void UpdatePictureBoxes()
+        private void SelectPictureBox(PictureBox pictureBox)
         {
-            Tile[] result = Scene.selectedTerrain.Tiles;
-            for (int y = 0; y < floorHeight; y++)
+            if (selectedModifiedPictureBox != null)
             {
-                for (int x = 0; x < floorWidth; x++)
+                if (selectedModifiedPictureBox.Parent is PictureBox)
                 {
-                    pictureBoxes[y][x].ImageLocation = GetImagePath(result[y * floorWidth + x]);
-                    pictureBoxes[y][x].Image = Image.FromFile(pictureBoxes[y][x].ImageLocation);
+                    (selectedModifiedPictureBox.Parent as PictureBox).BackColor = Color.Transparent;
                 }
+                else
+                {
+                    selectedModifiedPictureBox.BackColor = Color.Transparent;
+                }
+            }
+
+            selectedModifiedPictureBox = pictureBox;
+            if (selectedModifiedPictureBox.Parent is PictureBox)
+            {
+                (selectedModifiedPictureBox.Parent as PictureBox).BackColor = Color.DarkOrange;
+            }
+            else
+            {
+                selectedModifiedPictureBox.BackColor = Color.DarkOrange;
             }
         }
 
-        private void ViewTop()
-        {
-            for (int y = 0; y < floorHeight; y++)
-            {
-                for (int x = 0; x < floorWidth; x++)
-                {
-                    Tile tile = scene.GetTopTile(x, y);
-                    pictureBoxes[y][x].ImageLocation = GetImagePath(tile);
-                    pictureBoxes[y][x].Image = Image.FromFile(pictureBoxes[y][x].ImageLocation);
-                }
-            }
-        }
-
-        // Received the modified tile.
-        private void OnSceneChanged(object sender, EventArgs e)
+        private void RefreshObject(object sender)
         {
             if (sender is Tile)
             {
                 Tile tile = (Tile)sender;
                 pictureBoxes[tile.position.Y][tile.position.X].ImageLocation = GetImagePath(tile);
                 pictureBoxes[tile.position.Y][tile.position.X].Image = Image.FromFile(pictureBoxes[tile.position.Y][tile.position.X].ImageLocation);
-               // Lololololol pictureBoxes[tile.position.y][tile.position.x].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
                 if (pictureBoxes[tile.position.Y][tile.position.X].HasChildren)
                 {
