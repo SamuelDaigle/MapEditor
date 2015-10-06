@@ -90,9 +90,9 @@ namespace Map_Editor.GameData
 
         public void SetAllTiles(Tile.TileType _type)
         {
-            for (int y = 0; y < floorWidth; y++)
+            for (int y = 0; y < floorHeight; y++)
             {
-                for (int x = 0; x < floorHeight; x++)
+                for (int x = 0; x < floorWidth; x++)
                 {
                     selectedFloor.GetTile(x, y).Type = _type;
                 }
