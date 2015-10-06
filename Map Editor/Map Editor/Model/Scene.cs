@@ -149,66 +149,8 @@ namespace Map_Editor.GameData
 
         public bool ValidateMap()
         {
-            int numberOfSpawns = 0;
-            int numberOfBalls = 0;
-            int numberOfGoal = 0;
-            bool teleportValid = true;
-            bool firstFloorEmpty = false;
-            bool towerValid = true;
-
-            foreach (Tile T in floors[0].Tiles)
-            {
-                if (T.Type == Tile.TileType.Empty)
-                {
-                    firstFloorEmpty = true;
-                }
-            }
-
-            foreach (Floor F in floors)
-            {
-                foreach (Tile T in F.Tiles)
-                {
-                    if (T.Type == Tile.TileType.Tower)
-                    {
-                        foreach (Floor floor in floors)
-                        {
-                            if (floor.GetTile(T.position.X, T.position.Y).Type != Tile.TileType.Tower)
-                            {
-                                towerValid = false;
-                            }
-                        }
-                    }
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Goal)
-                    {
-                        numberOfGoal++;
-                    }
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Spawn)
-                    {
-                        numberOfSpawns++;
-                    }
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Ball)
-                    {
-                        numberOfBalls++;
-                    }
-                    if (teleportValid && T.Type == Tile.TileType.Teleport)
-                    {
-                        if (F.GetTile(T.teleportPoint.X, T.teleportPoint.Y).Type != Tile.TileType.Teleport)
-                        {
-                            teleportValid = false;
-                        }
-                    }
-                }
-
-
-
-            }
-
-
-            if (numberOfGoal == 1 && numberOfBalls >= 1 && numberOfSpawns == 4 && teleportValid && !firstFloorEmpty && towerValid)
-            {
-                return true;
-            }
-            return false;
+           Validator validator = new Validator(this);
+           return validator.ValidateMap();
         }
 
 

@@ -93,7 +93,11 @@ namespace Map_Editor.GameData
 
         public Tile GetTile(int _X, int _Y)
         {
-            return tiles[_Y][_X];
+            if (_X >= 0 && _X < width && _Y >= 0 && _Y < height)
+            {
+                return tiles[_Y][_X];
+            }
+            return null;
         }
 
         public void SetTile(int _X, int _Y, Tile _tile)
