@@ -220,7 +220,6 @@ namespace Map_Editor
                             if (selectedTilePictureBox != null)
                             {
                                 selectedTile.SetTile(selectedTilePictureBox.ImageLocation);
-                                selectedTile.path = selectedTilePictureBox.ImageLocation;
                             }
                             if (selectedObjectPictureBox != null)
                             {
@@ -233,12 +232,10 @@ namespace Map_Editor
                             if (pictureBox.Parent != null && pictureBox.Parent is PictureBox)
                             {
                                 view.draggedPictureBox.Image = (pictureBox.Parent as PictureBox).Image;
-                                view.draggedPictureBox.ImageLocation = (pictureBox.Parent as PictureBox).ImageLocation;
                             }
                             else
                             {
                                 view.draggedPictureBox.Image = pictureBox.Image;
-                                view.draggedPictureBox.ImageLocation = pictureBox.ImageLocation;
                             }
                             view.draggedPictureBox.Location = view.pnlDraw.PointToClient(Control.MousePosition);
                         }
@@ -257,7 +254,10 @@ namespace Map_Editor
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
-                    draggedTiles = selectedTile;
+                    if (draggedTiles == null)
+                    {
+                        draggedTiles = selectedTile;
+                    }
                 }
 
                 PictureBox pictureBox = (PictureBox)sender;
@@ -297,9 +297,10 @@ namespace Map_Editor
                     Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
-                    selectedTile.Type = Tile.TileType.Empty;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
                     selectedTile.Type = draggedTiles.Type;
+                    draggedTiles.Type = Tile.TileType.Empty;
+                    draggedTiles = null;
 
                     view.draggedPictureBox.Visible = false;
                 }
