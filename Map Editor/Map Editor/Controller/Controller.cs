@@ -43,6 +43,7 @@ namespace Map_Editor
 
             private PictureBox selectedTilePictureBox;
             private PictureBox selectedObjectPictureBox;
+            private Tile draggedTiles;
             private Tile selectedTile;
             private bool isMouseDown = false;
 
@@ -218,8 +219,7 @@ namespace Map_Editor
                             selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
                             if (selectedTilePictureBox != null)
                             {
-                                selectedTile.Type = GetTileType(selectedTilePictureBox.ImageLocation);
-                                selectedTile.path = selectedTilePictureBox.ImageLocation;
+                                selectedTile.SetTile(selectedTilePictureBox.ImageLocation);
                             }
                             if (selectedObjectPictureBox != null)
                             {
@@ -232,12 +232,10 @@ namespace Map_Editor
                             if (pictureBox.Parent != null && pictureBox.Parent is PictureBox)
                             {
                                 view.draggedPictureBox.Image = (pictureBox.Parent as PictureBox).Image;
-                                view.draggedPictureBox.ImageLocation = (pictureBox.Parent as PictureBox).ImageLocation;
                             }
                             else
                             {
                                 view.draggedPictureBox.Image = pictureBox.Image;
-                                view.draggedPictureBox.ImageLocation = pictureBox.ImageLocation;
                             }
                             view.draggedPictureBox.Location = view.pnlDraw.PointToClient(Control.MousePosition);
                         }
@@ -256,6 +254,10 @@ namespace Map_Editor
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
+                    if (draggedTiles == null)
+                    {
+                        draggedTiles = selectedTile;
+                    }
                 }
 
                 PictureBox pictureBox = (PictureBox)sender;
@@ -295,9 +297,24 @@ namespace Map_Editor
                     Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
-                    selectedTile.Type = Tile.TileType.Empty;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
-                    selectedTile.Type = GetTileType(view.draggedPictureBox.ImageLocation);
+
+                    DialogResult dialogResult;
+                    if (selectedTile.Type == Tile.TileType.Empty)
+                    {
+                        dialogResult = DialogResult.Yes;
+                    }
+                    else
+                    {
+                        dialogResult = MessageBox.Show("Voulez-vous vraiment écraser cette tuile?", "Drag", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                    }
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        selectedTile.Type = draggedTiles.Type;
+                        draggedTiles.Type = Tile.TileType.Empty;
+                        draggedTiles = null;
+                    }
 
                     view.draggedPictureBox.Visible = false;
                 }
@@ -360,62 +377,6 @@ namespace Map_Editor
             private void infoToolStripMenuItem1_Click(object sender, EventArgs e)
             {
                 MessageBox.Show("Notre équipe: \nVincent Montminy \nSamuel Daigle", "Notre équipe", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
-            }
-
-            private Tile.TileType GetTileType(string _path)
-            {
-                Tile.TileType type;
-                switch (_path)
-                {
-                    case PATH_TILE_BAD:
-                        type = Tile.TileType.Bad;
-                        break;
-
-                    case PATH_TILE_BREAKING:
-                        type = Tile.TileType.BreakPass;
-                        break;
-
-                    case PATH_TILE_DOOR:
-                        type = Tile.TileType.Door;
-                        break;
-
-                    case PATH_TILE_EMPTY:
-                        type = Tile.TileType.Empty;
-                        break;
-
-                    case PATH_TILE_FLOOR:
-                        type = Tile.TileType.Floor;
-                        break;
-
-                    case PATH_TILE_ONE_BY_ONE:
-                        type = Tile.TileType.OneByOne;
-                        break;
-
-                    case PATH_TILE_SLOPE:
-                        type = Tile.TileType.Slope;
-                        break;
-
-                    case PATH_TILE_SLOW:
-                        type = Tile.TileType.Slow;
-                        break;
-
-                    case PATH_TILE_TELEPORT:
-                        type = Tile.TileType.Teleport;
-                        break;
-
-                    case PATH_TILE_TOWER:
-                        type = Tile.TileType.Tower;
-                        break;
-
-                    case PATH_TILE_WALL:
-                        type = Tile.TileType.Wall;
-                        break;
-
-                    default:
-                        type = Tile.TileType.Empty;
-                        break;
-                }
-                return type;
             }
 
             // Received the added floor.
