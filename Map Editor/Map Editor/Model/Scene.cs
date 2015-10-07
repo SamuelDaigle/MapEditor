@@ -25,6 +25,8 @@ namespace Map_Editor.GameData
         public event EventHandler SceneChanged;
         public event EventHandler FloorAdded;
 
+        private int floorID;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Scene"/> class.
         /// </summary>
@@ -57,7 +59,6 @@ namespace Map_Editor.GameData
             foreach (Floor floor in _other.floors)
             {
                 AddFloor();
-                floors[floors.Count - 1] = floor;
             }
         }
 
@@ -107,9 +108,9 @@ namespace Map_Editor.GameData
             {
                 Floor floor = new Floor();
                 floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
-                selectedFloor = floor;
-                SetEvents();
                 floors.Add(floor);
+                SelectFloor(floors.Count - 1);
+                SetEvents();
                 OnFloorAdded(floor, EventArgs.Empty);
             }
         }
@@ -173,6 +174,7 @@ namespace Map_Editor.GameData
         /// <param name="_id">The _id.</param>
         public void SelectFloor(int _id)
         {
+            floorID = _id;
             selectedFloor = floors[_id];
             OnSceneChanged(this, EventArgs.Empty);
         }
@@ -185,6 +187,7 @@ namespace Map_Editor.GameData
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTerrainChanged(object sender, EventArgs e)
         {
+            floors[floorID] = selectedFloor;
             OnSceneChanged(sender, e);
         }
 

@@ -100,7 +100,7 @@ namespace Map_Editor.GameData
                         Tile.Orientation orientation = T.orientation;
                         int noSlopesNear = 0;
                         List<Tile> tilesAroundList = new List<Tile>();
-                        
+
                         tilesAroundList.Add(F.GetTile(T.position.X - 1, T.position.Y));
                         tilesAroundList.Add(F.GetTile(T.position.X + 1, T.position.Y));
                         tilesAroundList.Add(F.GetTile(T.position.X, T.position.Y - 1));
@@ -108,13 +108,16 @@ namespace Map_Editor.GameData
 
                         foreach (Tile tile in tilesAroundList)
                         {
-                            if (tile.Type == Tile.TileType.Slope)
+                            if (tile != null)
                             {
-                                noSlopesNear++;
-                                if (tile.orientation != orientation)
+                                if (tile.Type == Tile.TileType.Slope)
                                 {
-                                    MessageBox.Show("Les pentes doivent être dans la même direction", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                    return false;
+                                    noSlopesNear++;
+                                    if (tile.orientation != orientation)
+                                    {
+                                        MessageBox.Show("Les pentes doivent être dans la même direction", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                        return false;
+                                    }
                                 }
                             }
                         }

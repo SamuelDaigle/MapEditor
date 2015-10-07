@@ -276,8 +276,6 @@ namespace Map_Editor.GameData
                     }
                 }
             }
-
-            OnObjectChanged(EventArgs.Empty);
         }
 
         // Notify the tile.
