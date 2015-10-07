@@ -166,6 +166,7 @@ namespace Map_Editor.GameData
                 }
             }
             selectedFloor = topFloor;
+            floorID = -1;
             OnSceneChanged(this, EventArgs.Empty);
         }
 
@@ -188,7 +189,10 @@ namespace Map_Editor.GameData
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTerrainChanged(object sender, EventArgs e)
         {
-            floors[floorID] = selectedFloor;
+            if (floorID >= 0) // pas si Top View.
+            {
+                floors[floorID] = selectedFloor;
+            }
             OnSceneChanged(sender, e);
         }
 
