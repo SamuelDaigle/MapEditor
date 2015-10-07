@@ -11,6 +11,9 @@ using System.Xml.Serialization;
 namespace Map_Editor.GameData
 {
 
+    /// <summary>
+    /// Represents a tile, can contain an object on it.
+    /// </summary>
     [DefaultPropertyAttribute("Name")]
     public class Tile
     {
@@ -68,6 +71,12 @@ namespace Map_Editor.GameData
             BreakPass
         }
 
+        /// <summary>
+        /// Initializes the specified _type.
+        /// </summary>
+        /// <param name="_type">The _type.</param>
+        /// <param name="_x">The _x.</param>
+        /// <param name="_y">The _y.</param>
         public void Initialize(TileType _type, int _x, int _y)
         {
             wayPoints = new Point[25];
@@ -79,22 +88,37 @@ namespace Map_Editor.GameData
             }
         }
 
+        /// <summary>
+        /// Unsets the events.
+        /// </summary>
         public void UnsetEvents()
         {
             objectOnTile.ObjectChanged -= OnObjectChanged;
         }
 
+        /// <summary>
+        /// Sets the events.
+        /// </summary>
         public void SetEvents()
         {
             objectOnTile.ObjectChanged += OnObjectChanged;
         }
 
+        /// <summary>
+        /// Gets the path of the type, with its description.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
         public static string ToDescriptionString(TileType val)
         {
             DescriptionAttribute[] attributes = (DescriptionAttribute[])val.GetType().GetField(val.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : string.Empty;
         }
 
+        /// <summary>
+        /// Sets the tile with the path.
+        /// </summary>
+        /// <param name="_path">The _path.</param>
         public void SetTile(string _path)
         {
             foreach (TileType type in Enum.GetValues(typeof(TileType)))
@@ -110,12 +134,21 @@ namespace Map_Editor.GameData
         }
 
         // Notify the tile.
+        /// <summary>
+        /// Called when [object changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnObjectChanged(object sender, EventArgs e)
         {
             OnTileChanged(e);
         }
 
         // Notify the terrain.
+        /// <summary>
+        /// Raises the <see cref="E:TileChanged" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTileChanged(EventArgs e)
         {
             if (TileChanged != null)

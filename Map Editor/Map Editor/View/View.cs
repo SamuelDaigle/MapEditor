@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Map_Editor
 {
+    /// <summary>
+    /// View, has all the graphics properties.
+    /// </summary>
     public partial class View : Form
     {
         private Scene model;
@@ -20,6 +23,9 @@ namespace Map_Editor
         private PictureBox selectedModifiedPictureBox;
         private const int PICTURE_BOX_SIZE = 52;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="View"/> class.
+        /// </summary>
         public View()
         {
             objectsPictureBox = new List<PictureBox>();
@@ -32,6 +38,9 @@ namespace Map_Editor
             new Controller(this);
         }
 
+        /// <summary>
+        /// Initializes the tiles.
+        /// </summary>
         private void InitializeTiles()
         {
             picTileEmpty.ImageLocation = Tile.ToDescriptionString(Tile.TileType.Empty);
@@ -58,6 +67,9 @@ namespace Map_Editor
             picTileSlope.Image = Image.FromFile(picTileSlope.ImageLocation);
         }
 
+        /// <summary>
+        /// Initializes the objects.
+        /// </summary>
         private void InitializeObjects()
         {
             // TRAPS
@@ -105,6 +117,11 @@ namespace Map_Editor
             picUtilBall.Image = Image.FromFile(picUtilBall.ImageLocation);
         }
 
+        /// <summary>
+        /// Initializes the view.
+        /// </summary>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
         public void InitializeView(int width, int height)
         {
             draggedPictureBox = new PictureBox();
@@ -137,6 +154,9 @@ namespace Map_Editor
             pnlDraw.AutoScroll = true;
         }
 
+        /// <summary>
+        /// Closes the scene.
+        /// </summary>
         public void CloseScene()
         {
             model = null;
@@ -150,6 +170,10 @@ namespace Map_Editor
             }
         }
 
+        /// <summary>
+        /// Selects the picture box.
+        /// </summary>
+        /// <param name="pictureBox">The picture box.</param>
         private void SelectPictureBox(PictureBox pictureBox)
         {
             if (selectedModifiedPictureBox != null)
@@ -175,6 +199,10 @@ namespace Map_Editor
             }
         }
 
+        /// <summary>
+        /// Refreshes the object.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
         private void RefreshObject(object sender)
         {
             if (sender is Tile)

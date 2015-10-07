@@ -9,14 +9,27 @@ using System.Xml.Serialization;
 
 namespace Map_Editor
 {
+    /// <summary>
+    /// Class serializer that can serialize any class as it has a template.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class XmlCustomSerializer<T>
     {
         string path;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlCustomSerializer{T}"/> class.
+        /// </summary>
+        /// <param name="_path">The _path.</param>
         public XmlCustomSerializer(string _path)
         {
             path = _path;
         }
 
+        /// <summary>
+        /// Saves the specified _object.
+        /// </summary>
+        /// <param name="_object">The _object.</param>
         public void Save(T _object)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
@@ -25,6 +38,10 @@ namespace Map_Editor
             file.Close();
         }
 
+        /// <summary>
+        /// Loads this instance.
+        /// </summary>
+        /// <returns></returns>
         public T Load()
         {
             T result;

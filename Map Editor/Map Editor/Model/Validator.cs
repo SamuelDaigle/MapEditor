@@ -7,15 +7,26 @@ using System.Windows.Forms;
 
 namespace Map_Editor.GameData
 {
-    class Validator
+    /// <summary>
+    /// Validates the scene.
+    /// </summary>
+    public class Validator
     {
         private Scene sceneToValidate;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Validator"/> class.
+        /// </summary>
+        /// <param name="_scene">The _scene.</param>
         public Validator(Scene _scene)
         {
             sceneToValidate = _scene;
         }
 
+        /// <summary>
+        /// Validates the map.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateMap()
         {
             if (!validateFirstFloorNotEmpty()) return false;
@@ -27,6 +38,10 @@ namespace Map_Editor.GameData
             return true;
         }
 
+        /// <summary>
+        /// Validates the first floor not empty.
+        /// </summary>
+        /// <returns></returns>
         private bool validateFirstFloorNotEmpty()
         {
             foreach (Tile T in sceneToValidate.floors[0].Tiles)
@@ -39,6 +54,10 @@ namespace Map_Editor.GameData
             return true;
         }
 
+        /// <summary>
+        /// Validates the teleporters.
+        /// </summary>
+        /// <returns></returns>
         private bool validateTeleporters()
         {
             foreach (Floor F in sceneToValidate.floors)
@@ -58,6 +77,10 @@ namespace Map_Editor.GameData
             return true;
         }
 
+        /// <summary>
+        /// Validates the slopes.
+        /// </summary>
+        /// <returns></returns>
         private bool validateSlopes()
         {
             foreach (Floor F in sceneToValidate.floors)
@@ -107,6 +130,10 @@ namespace Map_Editor.GameData
             return true;
         }
 
+        /// <summary>
+        /// Validates the towers.
+        /// </summary>
+        /// <returns></returns>
         private bool validateTowers()
         {
             foreach (Floor F in sceneToValidate.floors)
@@ -129,6 +156,10 @@ namespace Map_Editor.GameData
             return true;
         }
 
+        /// <summary>
+        /// Validates the objects.
+        /// </summary>
+        /// <returns></returns>
         private bool validateObjects()
         {
             int numberOfSpawns = 0;
