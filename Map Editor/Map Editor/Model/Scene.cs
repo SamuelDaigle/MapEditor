@@ -59,6 +59,7 @@ namespace Map_Editor.GameData
             foreach (Floor floor in _other.floors)
             {
                 AddFloor();
+                floors[floors.Count - 1] = floor;
             }
         }
 

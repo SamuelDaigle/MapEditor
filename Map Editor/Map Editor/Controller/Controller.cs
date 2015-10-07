@@ -437,13 +437,12 @@ namespace Map_Editor
                     {
                         if (dialog.ShowDialog() == DialogResult.OK)
                         {
-                            CurrentModel = null;
                             CurrentModel = new Scene();
                             CurrentModel.LoadFromFile(dialog.FileName);
                             view.InitializeView(CurrentModel.floorWidth, CurrentModel.floorHeight);
                             SetAllTileViewEvents();
-                            CurrentModel.SelectFloor(0);
                             CurrentModel.SetEvents();
+                            CurrentModel.SelectFloor(0);
                         }
                     }
                     catch (Exception ex)
