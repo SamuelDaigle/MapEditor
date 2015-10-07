@@ -379,7 +379,7 @@ namespace Map_Editor
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
 
-                    if (selectedTile != null)
+                    if (selectedTile != null && selectedTile.position != draggedTiles.position)
                     {
                         DialogResult dialogResult;
                         if (selectedTile.Type == Tile.TileType.Empty)
