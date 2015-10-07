@@ -43,12 +43,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnTopView = new System.Windows.Forms.Button();
             this.pnlGroupFloors = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.pnlStatus = new System.Windows.Forms.Panel();
-            this.lblValidate = new System.Windows.Forms.Label();
-            this.btnValidate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabTiles = new System.Windows.Forms.TabPage();
             this.grbProperties = new System.Windows.Forms.GroupBox();
@@ -95,8 +89,6 @@
             this.lblTraps = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlFloor.SuspendLayout();
-            this.pnlGroupFloors.SuspendLayout();
-            this.pnlStatus.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabTiles.SuspendLayout();
             this.grbProperties.SuspendLayout();
@@ -181,14 +173,12 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.closeToolStripMenuItem.Text = "Close";
-            
             // 
             // saveCloseToolStripMenuItem
             // 
             this.saveCloseToolStripMenuItem.Name = "saveCloseToolStripMenuItem";
             this.saveCloseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveCloseToolStripMenuItem.Text = "Save and Close";
-            
             // 
             // exitToolStripMenuItem
             // 
@@ -207,7 +197,7 @@
             this.pnlDraw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDraw.Location = new System.Drawing.Point(0, 24);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(937, 443);
+            this.pnlDraw.Size = new System.Drawing.Size(937, 534);
             this.pnlDraw.TabIndex = 1;
             // 
             // pnlFloor
@@ -220,23 +210,25 @@
             this.pnlFloor.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlFloor.Location = new System.Drawing.Point(937, 24);
             this.pnlFloor.Name = "pnlFloor";
-            this.pnlFloor.Size = new System.Drawing.Size(67, 443);
+            this.pnlFloor.Size = new System.Drawing.Size(67, 534);
             this.pnlFloor.TabIndex = 2;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(6, 386);
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAdd.Location = new System.Drawing.Point(0, 488);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(55, 23);
+            this.btnAdd.Size = new System.Drawing.Size(67, 23);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(6, 415);
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnDelete.Location = new System.Drawing.Point(0, 511);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(55, 23);
+            this.btnDelete.Size = new System.Drawing.Size(67, 23);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -253,69 +245,10 @@
             // 
             // pnlGroupFloors
             // 
-            this.pnlGroupFloors.Controls.Add(this.btnUp);
-            this.pnlGroupFloors.Controls.Add(this.btnDown);
             this.pnlGroupFloors.Location = new System.Drawing.Point(6, 28);
             this.pnlGroupFloors.Name = "pnlGroupFloors";
             this.pnlGroupFloors.Size = new System.Drawing.Size(55, 349);
             this.pnlGroupFloors.TabIndex = 0;
-            // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(3, 3);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(52, 23);
-            this.btnUp.TabIndex = 0;
-            this.btnUp.Text = "▲";
-            this.btnUp.UseVisualStyleBackColor = true;
-            // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(3, 32);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(52, 23);
-            this.btnDown.TabIndex = 2;
-            this.btnDown.Text = "▼";
-            this.btnDown.UseVisualStyleBackColor = true;
-            // 
-            // pnlStatus
-            // 
-            this.pnlStatus.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnlStatus.Controls.Add(this.lblValidate);
-            this.pnlStatus.Controls.Add(this.btnValidate);
-            this.pnlStatus.Controls.Add(this.label1);
-            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlStatus.Location = new System.Drawing.Point(0, 467);
-            this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(1004, 91);
-            this.pnlStatus.TabIndex = 1;
-            // 
-            // lblValidate
-            // 
-            this.lblValidate.AutoSize = true;
-            this.lblValidate.Location = new System.Drawing.Point(675, 52);
-            this.lblValidate.Name = "lblValidate";
-            this.lblValidate.Size = new System.Drawing.Size(35, 13);
-            this.lblValidate.TabIndex = 2;
-            this.lblValidate.Text = "label2";
-            // 
-            // btnValidate
-            // 
-            this.btnValidate.Location = new System.Drawing.Point(594, 47);
-            this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(75, 23);
-            this.btnValidate.TabIndex = 1;
-            this.btnValidate.Text = "Validate map";
-            this.btnValidate.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
             // 
             // tabControl
             // 
@@ -783,7 +716,7 @@
             this.lblTraps.TabIndex = 0;
             this.lblTraps.Text = "Traps";
             // 
-            // Editor
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -791,18 +724,14 @@
             this.ClientSize = new System.Drawing.Size(1204, 558);
             this.Controls.Add(this.pnlDraw);
             this.Controls.Add(this.pnlFloor);
-            this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Editor";
+            this.Name = "View";
             this.Text = "Ducktators\'s map editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnlFloor.ResumeLayout(false);
-            this.pnlGroupFloors.ResumeLayout(false);
-            this.pnlStatus.ResumeLayout(false);
-            this.pnlStatus.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabTiles.ResumeLayout(false);
             this.grbProperties.ResumeLayout(false);
@@ -891,24 +820,18 @@
         private System.Windows.Forms.Label lblBonus;
         private System.Windows.Forms.Label lblTraps;
         private System.Windows.Forms.Panel pnlFloor;
-        private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PropertyGrid properties;
         private System.Windows.Forms.Label lblTileName;
         private System.Windows.Forms.GroupBox grbProperties;
         private System.Windows.Forms.FlowLayoutPanel pnlGroupFloors;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnTopView;
         private System.Windows.Forms.Button btnDeleteTile;
         private System.Windows.Forms.ToolStripMenuItem infoToolMenu;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveCloseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Label lblValidate;
-        private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.GroupBox grbPropertiesObject;
         private System.Windows.Forms.Button btnDeleteObject;
         private System.Windows.Forms.Label lblObjectName;

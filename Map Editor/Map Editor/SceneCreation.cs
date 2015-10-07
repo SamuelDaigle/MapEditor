@@ -11,6 +11,9 @@ using Map_Editor.GameData;
 
 namespace Map_Editor
 {
+    /// <summary>
+    /// Form called when creating a new scene.
+    /// </summary>
     public partial class SceneCreation : Form
     {
         // Values returned after the form is closed.
@@ -20,11 +23,19 @@ namespace Map_Editor
 
         public Tile.TileType TileType { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SceneCreation"/> class.
+        /// </summary>
         public SceneCreation()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSubmit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSubmit_Click(object sender, EventArgs e)
         {
 
@@ -40,7 +51,6 @@ namespace Map_Editor
                 }
             }
 
-
             if (SceneName == "")
             {
                 lblError.Text = "Scene name must be set";
@@ -54,6 +64,11 @@ namespace Map_Editor
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the SceneCreation control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SceneCreation_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtSceneName;

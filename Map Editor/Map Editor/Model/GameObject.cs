@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
+    /// <summary>
+    /// Represents on top of a tile.
+    /// </summary>
     public class GameObject
     {
         private BonusType _bonusType;
@@ -148,7 +151,7 @@ namespace Map_Editor.GameData
             Fire,
             [Description("../../Resources/Object/Freeze.png")]
             Freeze,
-            [Description("../../Resources/Object/Freeze.png")]
+            [Description("../../Resources/Object/LoseOP.png")]
             Drop
         }
 
@@ -165,6 +168,13 @@ namespace Map_Editor.GameData
             Jump
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// In this case, returns the path of the selected Type.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             string result = "";
@@ -191,24 +201,43 @@ namespace Map_Editor.GameData
             return result;
         }
 
+        /// <summary>
+        /// Gets the path of the trap type.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
         public static string ToDescriptionString(TrapType val)
         {
             DescriptionAttribute[] attributes = (DescriptionAttribute[])val.GetType().GetField(val.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the path of the bonus type.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
         public static string ToDescriptionString(BonusType val)
         {
             DescriptionAttribute[] attributes = (DescriptionAttribute[])val.GetType().GetField(val.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the path of the utilities type.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
         public static string ToDescriptionString(UtilType val)
         {
             DescriptionAttribute[] attributes = (DescriptionAttribute[])val.GetType().GetField(val.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : string.Empty;
         }
 
+        /// <summary>
+        /// Sets the object with the path.
+        /// </summary>
+        /// <param name="_path">The _path.</param>
         public void SetObject(string _path)
         {
             bool found = false;
@@ -252,6 +281,10 @@ namespace Map_Editor.GameData
         }
 
         // Notify the tile.
+        /// <summary>
+        /// Raises the <see cref="E:ObjectChanged" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnObjectChanged(EventArgs e)
         {
             if (ObjectChanged != null)

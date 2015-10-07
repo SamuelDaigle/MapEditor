@@ -8,8 +8,13 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
+    /// <summary>
+    /// Model, represents the scene, has all the floors and have more logic to it.
+    /// </summary>
     public class Scene
     {
+        public static int MAX_FLOOR = 5;
+
         public string name;
         public Floor selectedFloor;
 
@@ -20,21 +25,35 @@ namespace Map_Editor.GameData
         public event EventHandler SceneChanged;
         public event EventHandler FloorAdded;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Scene"/> class.
+        /// </summary>
         public Scene()
         {
             floors = new List<Floor>();
             selectedFloor = new Floor();
         }
 
+        /// <summary>
+        /// Creates the new scene.
+        /// </summary>
         private void CreateNewScene()
         {
             floors = new List<Floor>();
             AddFloor();
         }
 
+        /// <summary>
+        /// Loads the scene.
+        /// </summary>
+        /// <param name="_other">The _other.</param>
         private void LoadScene(Scene _other)
         {
             floors = new List<Floor>();
+            this.name = _other.name;
+            this.floorWidth = _other.floorWidth;
+            this.floorHeight = _other.floorHeight;
+
             foreach (Floor floor in _other.floors)
             {
                 AddFloor();
@@ -42,18 +61,28 @@ namespace Map_Editor.GameData
             }
         }
 
+        /// <summary>
+        /// Unsets the events.
+        /// </summary>
         public void UnsetEvents()
         {
             selectedFloor.TerrainChanged -= OnTerrainChanged;
             selectedFloor.UnsetEvents();
         }
 
+        /// <summary>
+        /// Sets the events.
+        /// </summary>
         public void SetEvents()
         {
             selectedFloor.TerrainChanged += OnTerrainChanged;
             selectedFloor.SetEvents();
         }
 
+        /// <summary>
+        /// Loads from file.
+        /// </summary>
+        /// <param name="_filepath">The _filepath.</param>
         public void LoadFromFile(string _filepath)
         {
             XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>(_filepath);
@@ -65,31 +94,47 @@ namespace Map_Editor.GameData
             else
             {
                 CreateNewScene();
+                OnSceneChanged(this, EventArgs.Empty);
             }
-            OnSceneChanged(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Adds the floor.
+        /// </summary>
         public void AddFloor()
         {
-            Floor floor = new Floor();
-            floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
-            selectedFloor = floor;
-            SetEvents();
-            floors.Add(floor);
-            OnFloorAdded(floor, EventArgs.Empty);
+            if (floors.Count < 5)
+            {
+                Floor floor = new Floor();
+                floor.Initialize(floorWidth, floorHeight, Tile.TileType.Empty);
+                selectedFloor = floor;
+                SetEvents();
+                floors.Add(floor);
+                OnFloorAdded(floor, EventArgs.Empty);
+            }
         }
 
-        private void SetAllTiles(Tile.TileType _type)
+        /// <summary>
+        /// Sets all tiles.
+        /// </summary>
+        /// <param name="_type">The _type.</param>
+        public void SetAllTiles(Tile.TileType _type)
         {
-            for (int y = 0; y < floorWidth; y++)
+            for (int y = 0; y < floorHeight; y++)
             {
-                for (int x = 0; x < floorHeight; x++)
+                for (int x = 0; x < floorWidth; x++)
                 {
                     selectedFloor.GetTile(x, y).Type = _type;
                 }
             }
         }
 
+        /// <summary>
+        /// Gets the top tile.
+        /// </summary>
+        /// <param name="_X">The _ x.</param>
+        /// <param name="_Y">The _ y.</param>
+        /// <returns></returns>
         public Tile GetTopTile(int _X, int _Y)
         {
             Tile tile = null;
@@ -104,6 +149,9 @@ namespace Map_Editor.GameData
             return tile;
         }
 
+        /// <summary>
+        /// Selects the top floor.
+        /// </summary>
         public void SelectTopFloor()
         {
             Floor topFloor = new Floor();
@@ -115,8 +163,14 @@ namespace Map_Editor.GameData
                     topFloor.SetTile(x, y, GetTopTile(x, y));
                 }
             }
+            selectedFloor = topFloor;
+            OnSceneChanged(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Selects the floor.
+        /// </summary>
+        /// <param name="_id">The _id.</param>
         public void SelectFloor(int _id)
         {
             selectedFloor = floors[_id];
@@ -124,12 +178,22 @@ namespace Map_Editor.GameData
         }
 
         // Received the tile by the terrain.
+        /// <summary>
+        /// Called when [terrain changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTerrainChanged(object sender, EventArgs e)
         {
             OnSceneChanged(sender, e);
         }
 
         // Notify the view.
+        /// <summary>
+        /// Called when [scene changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnSceneChanged(object sender, EventArgs e)
         {
             if (SceneChanged != null)
@@ -139,6 +203,11 @@ namespace Map_Editor.GameData
         }
 
         // Notify the view.
+        /// <summary>
+        /// Called when [floor added].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnFloorAdded(object sender, EventArgs e)
         {
             if (FloorAdded != null)
@@ -147,10 +216,14 @@ namespace Map_Editor.GameData
             }
         }
 
+        /// <summary>
+        /// Validates the map.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateMap()
         {
-           Validator validator = new Validator(this);
-           return validator.ValidateMap();
+            Validator validator = new Validator(this);
+            return validator.ValidateMap();
         }
 
 

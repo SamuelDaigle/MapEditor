@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Map_Editor.GameData
 {
+    /// <summary>
+    /// Represents a floor and contains a 2D array of tiles.
+    /// </summary>
     public class Floor
     {
         public int width;
@@ -49,6 +52,12 @@ namespace Map_Editor.GameData
 
         public event EventHandler TerrainChanged;
 
+        /// <summary>
+        /// Initializes the specified _width.
+        /// </summary>
+        /// <param name="_width">The _width.</param>
+        /// <param name="_height">The _height.</param>
+        /// <param name="_type">The _type.</param>
         public void Initialize(int _width, int _height, Tile.TileType _type)
         {
             width = _width;
@@ -66,6 +75,9 @@ namespace Map_Editor.GameData
             }
         }
 
+        /// <summary>
+        /// Unsets the events.
+        /// </summary>
         public void UnsetEvents()
         {
             for (int y = 0; y < height; y++)
@@ -78,6 +90,9 @@ namespace Map_Editor.GameData
             }
         }
 
+        /// <summary>
+        /// Sets the events.
+        /// </summary>
         public void SetEvents()
         {
             for (int y = 0; y < height; y++)
@@ -88,9 +103,14 @@ namespace Map_Editor.GameData
                     tiles[y][x].SetEvents();
                 }
             }
-            UpdateTiles();
         }
 
+        /// <summary>
+        /// Gets the tile.
+        /// </summary>
+        /// <param name="_X">The _ x.</param>
+        /// <param name="_Y">The _ y.</param>
+        /// <returns></returns>
         public Tile GetTile(int _X, int _Y)
         {
             if (_X >= 0 && _X < width && _Y >= 0 && _Y < height)
@@ -100,12 +120,23 @@ namespace Map_Editor.GameData
             return null;
         }
 
+        /// <summary>
+        /// Sets the tile.
+        /// </summary>
+        /// <param name="_X">The _ x.</param>
+        /// <param name="_Y">The _ y.</param>
+        /// <param name="_tile">The _tile.</param>
         public void SetTile(int _X, int _Y, Tile _tile)
         {
             tiles[_Y][_X] = _tile;
         }
 
         // Received by the tile.
+        /// <summary>
+        /// Called when [tile changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTileChanged(object sender, EventArgs e)
         {
             OnTerrainChanged(sender, e);
@@ -113,23 +144,16 @@ namespace Map_Editor.GameData
 
 
         // Notify the scene.
+        /// <summary>
+        /// Called when [terrain changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnTerrainChanged(object sender, EventArgs e)
         {
             if (TerrainChanged != null)
             {
                 TerrainChanged(sender, e);
-            }
-        }
-
-        private void UpdateTiles()
-        {
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    // triggers on tile changed event.
-                    tiles[y][x].objectOnTile.OnObjectChanged(EventArgs.Empty);
-                }
             }
         }
     }

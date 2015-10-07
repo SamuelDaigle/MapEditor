@@ -9,8 +9,14 @@ using System.Windows.Forms;
 
 namespace Map_Editor
 {
+    /// <summary>
+    /// View, has the view with all graphics properties.
+    /// </summary>
     public partial class View
     {
+        /// <summary>
+        /// Controller, controls the events.
+        /// </summary>
         public class Controller
         {
             private readonly View view;
@@ -47,6 +53,11 @@ namespace Map_Editor
             private Tile selectedTile;
             private bool isMouseDown = false;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Controller"/> class.
+            /// Set up events.
+            /// </summary>
+            /// <param name="view">The view.</param>
             public Controller(View view)
             {
                 this.view = view;
@@ -97,7 +108,6 @@ namespace Map_Editor
                 view.infoToolMenu.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
                 view.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
                 view.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
-                view.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
                 view.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
                 view.btnDeleteObject.Click += new System.EventHandler(this.btnDeleteObject_Click);
 
@@ -105,8 +115,17 @@ namespace Map_Editor
                 picTile_Click(selectedTilePictureBox, EventArgs.Empty);
             }
 
+            /// <summary>
+            /// Handles the Click event of the newSceneToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (CurrentModel != null)
+                {
+                    closeToolStripMenuItem_Click(sender, e);
+                }
                 using (SceneCreation form = new SceneCreation())
                 {
                     DialogResult dialogResult = form.ShowDialog();
@@ -123,12 +142,16 @@ namespace Map_Editor
                         CurrentModel.floorWidth = terrainWidth;
                         CurrentModel.floorHeight = terrainHeight;
                         CurrentModel.LoadFromFile(CurrentModel.name + ".xml");
+                        CurrentModel.SetAllTiles(type);
 
                         SetAllTileViewEvents();
                     }
                 }
             }
 
+            /// <summary>
+            /// Sets all tile view events.
+            /// </summary>
             private void SetAllTileViewEvents()
             {
                 for (int y = 0; y < CurrentModel.floorHeight; y++)
@@ -147,29 +170,40 @@ namespace Map_Editor
                 }
             }
 
+            /// <summary>
+            /// Handles the Click event of the btnAdd control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnAdd_Click(object sender, EventArgs e)
             {
                 CurrentModel.AddFloor();
 
-                selectFloor_Click((Button)sender, EventArgs.Empty);
-
-                if (CurrentModel.floors.Count >= 5)
+                if (CurrentModel.floors.Count >= Scene.MAX_FLOOR)
                 {
                     view.btnAdd.Enabled = false;
                 }
             }
 
+            /// <summary>
+            /// Handles the Click event of the btnTopView control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnTopView_Click(object sender, EventArgs e)
             {
                 CurrentModel.SelectTopFloor();
             }
 
+            /// <summary>
+            /// Handles the Click event of the selectFloor control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void selectFloor_Click(object sender, EventArgs e)
             {
                 Button button = (Button)sender;
                 int floorID = Convert.ToInt32(button.Text);
-
-
 
                 // Remove handles from the old floor
                 CurrentModel.UnsetEvents();
@@ -180,6 +214,11 @@ namespace Map_Editor
                 CurrentModel.SetEvents();
             }
 
+            /// <summary>
+            /// Handles the Click event of the picTile control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void picTile_Click(object sender, EventArgs e)
             {
                 selectedObjectPictureBox = null;
@@ -191,6 +230,11 @@ namespace Map_Editor
                 selectedTilePictureBox.BackColor = Color.Yellow;
             }
 
+            /// <summary>
+            /// Handles the Click event of the picObject control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void picObject_Click(object sender, EventArgs e)
             {
                 selectedTilePictureBox = null;
@@ -202,6 +246,11 @@ namespace Map_Editor
                 selectedObjectPictureBox.BackColor = Color.Yellow;
             }
 
+            /// <summary>
+            /// Handles the Move event of the picModify control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
             public void picModify_Move(object sender, MouseEventArgs e)
             {
                 if (isMouseDown)
@@ -210,7 +259,6 @@ namespace Map_Editor
                     Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
-                    view.label1.Text = position.ToString();
                     if (pictureBoxX >= 0 && pictureBoxX < CurrentModel.selectedFloor.width &&
                         pictureBoxY >= 0 && pictureBoxY < CurrentModel.selectedFloor.height)
                     {
@@ -244,6 +292,11 @@ namespace Map_Editor
                 }
             }
 
+            /// <summary>
+            /// Handles the Down event of the picModify control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
             private void picModify_Down(object sender, MouseEventArgs e)
             {
                 isMouseDown = true;
@@ -276,11 +329,21 @@ namespace Map_Editor
 
             }
 
+            /// <summary>
+            /// Handles the Click event of the btnDeleteTile control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnDeleteTile_Click(object sender, EventArgs e)
             {
                 selectedTile.Type = Tile.TileType.Empty;
             }
 
+            /// <summary>
+            /// Handles the Click event of the btnDeleteObject control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnDeleteObject_Click(object sender, EventArgs e)
             {
                 selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
@@ -288,6 +351,11 @@ namespace Map_Editor
                 selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
             }
 
+            /// <summary>
+            /// Handles the Up event of the picModify control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void picModify_Up(object sender, EventArgs e)
             {
                 isMouseDown = false;
@@ -320,51 +388,96 @@ namespace Map_Editor
                 }
             }
 
-
-
+            /// <summary>
+            /// Handles the Click event of the saveToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
             private void saveToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>("scene.xml");
-                sceneXML.Save(CurrentModel);
-            }
-
-            private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                
-            }
-
-            private void btnValidate_Click(object sender, EventArgs e)
-            {
-                view.lblValidate.Text = "Map Existe pas";
                 if (CurrentModel != null)
                 {
-                    view.lblValidate.Text = "Map Non Valide";
                     if (CurrentModel.ValidateMap())
                     {
-                        view.lblValidate.Text = "Valide Yay!";
+                        XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>(CurrentModel.name + ".xml");
+                        sceneXML.Save(CurrentModel);
                     }
                 }
             }
 
+            /// <summary>
+            /// Handles the Click event of the loadToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+            private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (CurrentModel != null)
+                {
+                    closeToolStripMenuItem_Click(sender, e);
+                }
+                using (OpenFileDialog dialog = new OpenFileDialog())
+                {
+                    try
+                    {
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            CurrentModel = null;
+                            CurrentModel = new Scene();
+                            CurrentModel.LoadFromFile(dialog.FileName);
+                            view.InitializeView(CurrentModel.floorWidth, CurrentModel.floorHeight);
+                            SetAllTileViewEvents();
+                            CurrentModel.SelectFloor(0);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Handles the Click event of the closeToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void closeToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
-                if (result == DialogResult.Yes)
+                if (CurrentModel != null)
                 {
-                    saveCloseToolStripMenuItem_Click(sender, e);
+                    DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                    if (result == DialogResult.Yes)
+                    {
+                        saveCloseToolStripMenuItem_Click(sender, e);
+                    }
+                    if (result == DialogResult.No)
+                    {
+                        view.CloseScene();
+                    }
+                    CurrentModel = null;
                 }
-                if (result == DialogResult.No)
+            }
+
+            /// <summary>
+            /// Handles the Click event of the saveCloseToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+            private void saveCloseToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (CurrentModel != null)
                 {
+                    saveToolStripMenuItem_Click(sender, e);
                     view.CloseScene();
                 }
             }
 
-            private void saveCloseToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                saveToolStripMenuItem_Click(sender, e);
-                view.CloseScene();
-            }
-
+            /// <summary>
+            /// Handles the Click event of the exitToolStripMenuItem control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void exitToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 if (CurrentModel != null)
@@ -374,23 +487,39 @@ namespace Map_Editor
                 Application.Exit();
             }
 
+            /// <summary>
+            /// Handles the Click event of the infoToolStripMenuItem1 control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void infoToolStripMenuItem1_Click(object sender, EventArgs e)
             {
                 MessageBox.Show("Notre équipe: \nVincent Montminy \nSamuel Daigle", "Notre équipe", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             }
 
             // Received the added floor.
+            /// <summary>
+            /// Called when [floor added].
+            /// </summary>
+            /// <param name="sender">The sender.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void OnFloorAdded(object sender, EventArgs e)
             {
                 // Add it to the view.
                 Button btnFloor = new Button();
                 btnFloor.Text = CurrentModel.floors.Count.ToString();
-                btnFloor.Size = new Size(view.btnUp.Size.Width, view.btnUp.Size.Height);
+                btnFloor.Size = new Size(53, 25);
                 btnFloor.Click += selectFloor_Click;
                 view.pnlGroupFloors.Controls.Add(btnFloor);
+                selectFloor_Click(btnFloor, EventArgs.Empty);
             }
 
             // Received the modified tile.
+            /// <summary>
+            /// Called when [scene changed].
+            /// </summary>
+            /// <param name="sender">The sender.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void OnSceneChanged(object sender, EventArgs e)
             {
                 if (sender is Tile) // Only update one tile.
