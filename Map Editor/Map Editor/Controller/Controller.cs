@@ -379,21 +379,24 @@ namespace Map_Editor
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
 
-                    DialogResult dialogResult;
-                    if (selectedTile.Type == Tile.TileType.Empty)
+                    if (selectedTile != null)
                     {
-                        dialogResult = DialogResult.Yes;
-                    }
-                    else
-                    {
-                        dialogResult = MessageBox.Show("Voulez-vous vraiment écraser cette tuile?", "Drag", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-                    }
+                        DialogResult dialogResult;
+                        if (selectedTile.Type == Tile.TileType.Empty)
+                        {
+                            dialogResult = DialogResult.Yes;
+                        }
+                        else
+                        {
+                            dialogResult = MessageBox.Show("Voulez-vous vraiment écraser cette tuile?", "Drag", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                        }
 
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        selectedTile.Type = draggedTiles.Type;
-                        draggedTiles.Type = Tile.TileType.Empty;
-                        draggedTiles = null;
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            selectedTile.Type = draggedTiles.Type;
+                            draggedTiles.Type = Tile.TileType.Empty;
+                            draggedTiles = null;
+                        }
                     }
 
                     view.draggedPictureBox.Visible = false;
@@ -440,6 +443,7 @@ namespace Map_Editor
                             view.InitializeView(CurrentModel.floorWidth, CurrentModel.floorHeight);
                             SetAllTileViewEvents();
                             CurrentModel.SelectFloor(0);
+                            CurrentModel.SetEvents();
                         }
                     }
                     catch (Exception ex)
@@ -482,6 +486,7 @@ namespace Map_Editor
                 {
                     saveToolStripMenuItem_Click(sender, e);
                     view.CloseScene();
+                    CurrentModel = null;
                 }
             }
 

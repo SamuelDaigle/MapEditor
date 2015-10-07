@@ -48,6 +48,7 @@ namespace Map_Editor.GameData
             {
                 if (T.Type == Tile.TileType.Empty)
                 {
+                    MessageBox.Show("Aucune tuile vide sur le plancher 1", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return false;
                 }
             }
