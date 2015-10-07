@@ -118,25 +118,25 @@ namespace Map_Editor.GameData
         public enum BonusType
         {
             None,
-            [Description("../../Resources/Tile/Empty.png")]
+            [Description("../../Resources/Object/Shield.png")]
             Shield,
-            [Description("../../Resources/Tile/Bad.png")]
+            [Description("../../Resources/Object/EMP.png")]
             EMP,
-            [Description("../../Resources/Tile/Breaking.png")]
+            [Description("../../Resources/Object/Implosion.png")]
             Implosion,
-            [Description("../../Resources/Tile/Door.png")]
+            [Description("../../Resources/Object/Ricochet.png")]
             Ricochet,
-            [Description("../../Resources/Tile/Floor.png")]
+            [Description("../../Resources/Object/Missile.png")]
             Missile,
-            [Description("../../Resources/Tile/Empty.png")]
+            [Description("../../Resources/Object/Double.png")]
             Double,
-            [Description("../../Resources/Tile/Bad.png")]
+            [Description("../../Resources/Object/Speed.png")]
             Speed,
-            [Description("../../Resources/Tile/Breaking.png")]
+            [Description("../../Resources/Object/Power.png")]
             Power,
-            [Description("../../Resources/Tile/Door.png")]
+            [Description("../../Resources/Object/Decoy.png")]
             Decoy,
-            [Description("../../Resources/Tile/Floor.png")]
+            [Description("../../Resources/Object/Dash.png")]
             Dash
         }
 
@@ -164,7 +164,7 @@ namespace Map_Editor.GameData
             Goal,
             [Description("../../Resources/Object/Ball.png")]
             Ball,
-            [Description("../../Resources/Tile/Empty.png")]
+            [Description("../../Resources/Object/Jump.png")]
             Jump
         }
 
