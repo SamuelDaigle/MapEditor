@@ -177,11 +177,14 @@ namespace Map_Editor
             /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnAdd_Click(object sender, EventArgs e)
             {
-                CurrentModel.AddFloor();
-
-                if (CurrentModel.floors.Count >= Scene.MAX_FLOOR)
+                if (CurrentModel != null)
                 {
-                    view.btnAdd.Enabled = false;
+                    CurrentModel.AddFloor();
+
+                    if (CurrentModel.floors.Count >= Scene.MAX_FLOOR)
+                    {
+                        view.btnAdd.Enabled = false;
+                    }
                 }
             }
 
@@ -192,7 +195,10 @@ namespace Map_Editor
             /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnTopView_Click(object sender, EventArgs e)
             {
-                CurrentModel.SelectTopFloor();
+                if (CurrentModel != null)
+                {
+                    CurrentModel.SelectTopFloor();
+                }
             }
 
             /// <summary>
@@ -336,7 +342,10 @@ namespace Map_Editor
             /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnDeleteTile_Click(object sender, EventArgs e)
             {
-                selectedTile.Type = Tile.TileType.Empty;
+                if (selectedTile != null)
+                {
+                    selectedTile.Type = Tile.TileType.Empty;
+                }
             }
 
             /// <summary>
@@ -346,9 +355,12 @@ namespace Map_Editor
             /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             private void btnDeleteObject_Click(object sender, EventArgs e)
             {
-                selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
-                selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
-                selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
+                if (selectedTile != null && selectedTile.objectOnTile != null)
+                {
+                    selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
+                    selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
+                    selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
+                }
             }
 
             /// <summary>
