@@ -97,7 +97,6 @@ namespace Map_Editor
                 view.infoToolMenu.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
                 view.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
                 view.btnTopView.Click += new System.EventHandler(this.btnTopView_Click);
-                view.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
                 view.btnDeleteTile.Click += new System.EventHandler(this.btnDeleteTile_Click);
                 view.btnDeleteObject.Click += new System.EventHandler(this.btnDeleteObject_Click);
 
@@ -107,6 +106,10 @@ namespace Map_Editor
 
             private void newSceneToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (CurrentModel != null)
+                {
+                    closeToolStripMenuItem_Click(sender, e);
+                }
                 using (SceneCreation form = new SceneCreation())
                 {
                     DialogResult dialogResult = form.ShowDialog();
@@ -207,7 +210,6 @@ namespace Map_Editor
                     Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
-                    view.label1.Text = position.ToString();
                     if (pictureBoxX >= 0 && pictureBoxX < CurrentModel.selectedFloor.width &&
                         pictureBoxY >= 0 && pictureBoxY < CurrentModel.selectedFloor.height)
                     {
@@ -323,8 +325,11 @@ namespace Map_Editor
             {
                 if (CurrentModel != null)
                 {
-                    XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>(CurrentModel.name + ".xml");
-                    sceneXML.Save(CurrentModel);
+                    if (CurrentModel.ValidateMap())
+                    {
+                        XmlCustomSerializer<Scene> sceneXML = new XmlCustomSerializer<Scene>(CurrentModel.name + ".xml");
+                        sceneXML.Save(CurrentModel);
+                    }
                 }
             }
 
@@ -355,24 +360,11 @@ namespace Map_Editor
                 }
             }
 
-            private void btnValidate_Click(object sender, EventArgs e)
-            {
-                view.lblValidate.Text = "Map Existe pas";
-                if (CurrentModel != null)
-                {
-                    view.lblValidate.Text = "Map Non Valide";
-                    if (CurrentModel.ValidateMap())
-                    {
-                        view.lblValidate.Text = "Valide Yay!";
-                    }
-                }
-            }
-
             private void closeToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 if (CurrentModel != null)
                 {
-                    DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+                    DialogResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
                     {
                         saveCloseToolStripMenuItem_Click(sender, e);
@@ -381,11 +373,7 @@ namespace Map_Editor
                     {
                         view.CloseScene();
                     }
-                    if (result != DialogResult.Cancel)
-                    {
-
-                        CurrentModel = null;
-                    }
+                    CurrentModel = null;
                 }
             }
 

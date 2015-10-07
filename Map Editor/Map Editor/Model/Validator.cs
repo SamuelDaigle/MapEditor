@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Map_Editor.GameData
 {
@@ -17,26 +18,13 @@ namespace Map_Editor.GameData
 
         public bool ValidateMap()
         {
-            bool mapValid;
+            if (!validateFirstFloorNotEmpty()) return false;
+            if (!validateObjects()) return false;
+            if (!validateSlopes()) return false;
+            if (!validateTeleporters()) return false;
+            if (!validateTowers()) return false;
 
-            mapValid = validateFirstFloorNotEmpty();
-            if (mapValid)
-            {
-                mapValid = validateObjects();
-            }
-            if (mapValid)
-            {
-                mapValid = validateSlopes();
-            }
-            if (mapValid)
-            {
-                mapValid = validateTeleporters();
-            }
-            if (mapValid)
-            {
-                mapValid = validateTowers();
-            }
-            return mapValid;
+            return true;
         }
 
         private bool validateFirstFloorNotEmpty()
@@ -61,6 +49,7 @@ namespace Map_Editor.GameData
                     {
                         if (F.GetTile(T.teleportPoint.X, T.teleportPoint.Y).Type != Tile.TileType.Teleport)
                         {
+                            MessageBox.Show("Téléporteur doit pointer vers un téléporteur.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             return false;
                         }
                     }
@@ -80,6 +69,7 @@ namespace Map_Editor.GameData
                         if (sceneToValidate.floors[sceneToValidate.floors.IndexOf(F) + 1].GetTile(T.position.X,
                                 T.position.Y).Type != Tile.TileType.Empty)
                         {
+                            MessageBox.Show("Tuile doit être vide par dessus une pente.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             return false;
                         }
 
@@ -99,6 +89,7 @@ namespace Map_Editor.GameData
                                 noSlopesNear++;
                                 if (tile.orientation != orientation)
                                 {
+                                    MessageBox.Show("Les pentes doivent être dans la même direction", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                     return false;
                                 }
                             }
@@ -108,6 +99,7 @@ namespace Map_Editor.GameData
                         {
                             return true;
                         }
+                        MessageBox.Show("La pente est trop longue", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         return false;
                     }
                 }
@@ -127,6 +119,7 @@ namespace Map_Editor.GameData
                         {
                             if (floor.GetTile(T.position.X, T.position.Y).Type != Tile.TileType.Tower)
                             {
+                                MessageBox.Show("La tour ne se rend pas jusqu'au plus haut plancher.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 return false;
                             }
                         }
@@ -164,6 +157,7 @@ namespace Map_Editor.GameData
             {
                 return true;
             }
+            MessageBox.Show("Le nombre d'objet n'est pas valide \n==1 but \n>=1 balle(s) \n==4 spawns", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             return false;
         }
     }
