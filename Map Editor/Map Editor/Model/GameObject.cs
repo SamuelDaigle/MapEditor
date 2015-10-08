@@ -11,7 +11,7 @@ namespace Map_Editor.GameData
     /// <summary>
     /// Represents on top of a tile.
     /// </summary>
-    public class GameObject
+    public class TileObject
     {
         private BonusType _bonusType;
         private TrapType _trapType;

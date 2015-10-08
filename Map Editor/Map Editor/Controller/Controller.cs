@@ -357,9 +357,9 @@ namespace Map_Editor
             {
                 if (selectedTile != null && selectedTile.objectOnTile != null)
                 {
-                    selectedTile.objectOnTile.utilType = GameObject.UtilType.None;
-                    selectedTile.objectOnTile.bonusType = GameObject.BonusType.None;
-                    selectedTile.objectOnTile.trapType = GameObject.TrapType.None;
+                    selectedTile.objectOnTile.utilType = TileObject.UtilType.None;
+                    selectedTile.objectOnTile.bonusType = TileObject.BonusType.None;
+                    selectedTile.objectOnTile.trapType = TileObject.TrapType.None;
                 }
             }
 

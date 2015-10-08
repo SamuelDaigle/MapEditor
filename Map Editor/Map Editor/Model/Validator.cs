@@ -174,15 +174,15 @@ namespace Map_Editor.GameData
             {
                 foreach (Tile T in F.Tiles)
                 {
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Goal)
+                    if (T.objectOnTile.utilType == TileObject.UtilType.Goal)
                     {
                         numberOfGoal++;
                     }
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Spawn)
+                    if (T.objectOnTile.utilType == TileObject.UtilType.Spawn)
                     {
                         numberOfSpawns++;
                     }
-                    if (T.objectOnTile.utilType == GameObject.UtilType.Ball)
+                    if (T.objectOnTile.utilType == TileObject.UtilType.Ball)
                     {
                         numberOfBalls++;
                     }

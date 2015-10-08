@@ -73,47 +73,47 @@ namespace Map_Editor
         private void InitializeObjects()
         {
             // TRAPS
-            picTrapDrop.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Drop);
+            picTrapDrop.ImageLocation = TileObject.ToDescriptionString(TileObject.TrapType.Drop);
             picTrapDrop.Image = Image.FromFile(picTrapDrop.ImageLocation);
-            picTrapFire.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Fire);
+            picTrapFire.ImageLocation = TileObject.ToDescriptionString(TileObject.TrapType.Fire);
             picTrapFire.Image = Image.FromFile(picTrapFire.ImageLocation);
-            picTrapFreeze.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Freeze);
+            picTrapFreeze.ImageLocation = TileObject.ToDescriptionString(TileObject.TrapType.Freeze);
             picTrapFreeze.Image = Image.FromFile(picTrapFreeze.ImageLocation);
-            picTrapSpike.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Spike);
+            picTrapSpike.ImageLocation = TileObject.ToDescriptionString(TileObject.TrapType.Spike);
             picTrapSpike.Image = Image.FromFile(picTrapSpike.ImageLocation);
-            picTrapTurret.ImageLocation = GameObject.ToDescriptionString(GameObject.TrapType.Turret);
+            picTrapTurret.ImageLocation = TileObject.ToDescriptionString(TileObject.TrapType.Turret);
             picTrapTurret.Image = Image.FromFile(picTrapTurret.ImageLocation);
 
             // Bonus
-            picBonusDash.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Dash);
+            picBonusDash.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Dash);
             picBonusDash.Image = Image.FromFile(picBonusDash.ImageLocation);
-            picBonusDecoy.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Decoy);
+            picBonusDecoy.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Decoy);
             picBonusDecoy.Image = Image.FromFile(picBonusDecoy.ImageLocation);
-            picBonusDouble.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Double);
+            picBonusDouble.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Double);
             picBonusDouble.Image = Image.FromFile(picBonusDouble.ImageLocation);
-            picBonusEMP.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.EMP);
+            picBonusEMP.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.EMP);
             picBonusEMP.Image = Image.FromFile(picBonusEMP.ImageLocation);
-            picBonusImplosion.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Implosion);
+            picBonusImplosion.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Implosion);
             picBonusImplosion.Image = Image.FromFile(picBonusImplosion.ImageLocation);
-            picBonusMissile.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Missile);
+            picBonusMissile.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Missile);
             picBonusMissile.Image = Image.FromFile(picBonusMissile.ImageLocation);
-            picBonusPower.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Power);
+            picBonusPower.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Power);
             picBonusPower.Image = Image.FromFile(picBonusPower.ImageLocation);
-            picBonusRicochet.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Ricochet);
+            picBonusRicochet.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Ricochet);
             picBonusRicochet.Image = Image.FromFile(picBonusRicochet.ImageLocation);
-            picBonusShield.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Shield);
+            picBonusShield.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Shield);
             picBonusShield.Image = Image.FromFile(picBonusShield.ImageLocation);
-            picBonusSpeed.ImageLocation = GameObject.ToDescriptionString(GameObject.BonusType.Speed);
+            picBonusSpeed.ImageLocation = TileObject.ToDescriptionString(TileObject.BonusType.Speed);
             picBonusSpeed.Image = Image.FromFile(picBonusSpeed.ImageLocation);
 
             // Utilities
-            picUtilGoal.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Goal);
+            picUtilGoal.ImageLocation = TileObject.ToDescriptionString(TileObject.UtilType.Goal);
             picUtilGoal.Image = Image.FromFile(picUtilGoal.ImageLocation);
-            picUtilJump.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Jump);
+            picUtilJump.ImageLocation = TileObject.ToDescriptionString(TileObject.UtilType.Jump);
             picUtilJump.Image = Image.FromFile(picUtilJump.ImageLocation);
-            picUtilSpawn.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Spawn);
+            picUtilSpawn.ImageLocation = TileObject.ToDescriptionString(TileObject.UtilType.Spawn);
             picUtilSpawn.Image = Image.FromFile(picUtilSpawn.ImageLocation);
-            picUtilBall.ImageLocation = GameObject.ToDescriptionString(GameObject.UtilType.Ball);
+            picUtilBall.ImageLocation = TileObject.ToDescriptionString(TileObject.UtilType.Ball);
             picUtilBall.Image = Image.FromFile(picUtilBall.ImageLocation);
         }
 

@@ -21,11 +21,14 @@ namespace Map_Editor.GameData
         public Point position { get; set; }
         public int speedModifier { get; set; }
         public Orientation orientation { get; set; }
+
+        [XmlIgnore]
         public Point[] wayPoints { get; set; }
         public Point teleportPoint { get; set; }
       
 
-        public GameObject objectOnTile;
+        [XmlIgnore]
+        public TileObject objectOnTile;
         private TileType type;
         
 
@@ -84,7 +87,7 @@ namespace Map_Editor.GameData
             Type = _type;
             if (objectOnTile == null)
             {
-                objectOnTile = new GameObject();
+                objectOnTile = new TileObject();
             }
         }
 
