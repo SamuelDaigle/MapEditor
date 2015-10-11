@@ -26,8 +26,6 @@ namespace Map_Editor.GameData
         public Point[] wayPoints { get; set; }
         public Point teleportPoint { get; set; }
       
-
-        [XmlIgnore]
         public TileObject objectOnTile;
         private TileType type;
         

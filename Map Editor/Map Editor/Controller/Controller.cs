@@ -262,7 +262,7 @@ namespace Map_Editor
                 if (isMouseDown)
                 {
                     PictureBox pictureBox = (PictureBox)sender;
-                    Point position = view.pnlDraw.PointToClient(Cursor.Position);
+                    System.Drawing.Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     if (pictureBoxX >= 0 && pictureBoxX < CurrentModel.selectedFloor.width &&
@@ -309,7 +309,7 @@ namespace Map_Editor
                 picModify_Move(sender, e);
                 if (e.Button == MouseButtons.Right)
                 {
-                    Point position = view.pnlDraw.PointToClient(Cursor.Position);
+                    System.Drawing.Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);
@@ -374,7 +374,7 @@ namespace Map_Editor
                 if (view.draggedPictureBox.Visible == true)
                 {
                     PictureBox pictureBox = (PictureBox)sender;
-                    Point position = view.pnlDraw.PointToClient(Cursor.Position);
+                    System.Drawing.Point position = view.pnlDraw.PointToClient(Cursor.Position);
                     int pictureBoxX = (position.X - view.pnlDraw.AutoScrollPosition.X) / PICTURE_BOX_SIZE;
                     int pictureBoxY = (position.Y - view.pnlDraw.AutoScrollPosition.Y) / PICTURE_BOX_SIZE;
                     selectedTile = CurrentModel.selectedFloor.GetTile(pictureBoxX, pictureBoxY);

@@ -145,7 +145,7 @@ namespace Map_Editor
                     objectBox.BackColor = Color.Transparent;
                     objectBox.Size = new System.Drawing.Size(32, 32);
                     objectBox.SizeMode = PictureBoxSizeMode.CenterImage;
-                    objectBox.Location = new Point((pictureBoxes[y][x].Size.Width - objectBox.Size.Width) / 2, (pictureBoxes[y][x].Size.Height - objectBox.Size.Height) / 2);
+                    objectBox.Location = new System.Drawing.Point((pictureBoxes[y][x].Size.Width - objectBox.Size.Width) / 2, (pictureBoxes[y][x].Size.Height - objectBox.Size.Height) / 2);
                     pictureBoxes[y][x].Controls.Add(objectBox);
 
                     pnlDraw.Controls.Add(pictureBoxes[y][x]);

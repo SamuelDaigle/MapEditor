@@ -16,6 +16,8 @@ namespace Map_Editor.GameData
         public static int MAX_FLOOR = 5;
 
         public string name;
+
+        [XmlIgnore]
         public Floor selectedFloor;
 
         public List<Floor> floors;
