@@ -29,7 +29,7 @@ namespace Map_Editor.GameData
         /// <returns></returns>
         public bool ValidateMap()
         {
-            if (!validateFirstFloorNotEmpty()) return false;
+            //if (!validateFirstFloorNotEmpty()) return false;
             if (!validateObjects()) return false;
             if (!validateSlopes()) return false;
             if (!validateTeleporters()) return false;
